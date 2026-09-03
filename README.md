@@ -1,4 +1,4 @@
-# McJim Cyberworks — Core IT & Enterprise Infrastructure Platform
+# McJim Cyberworks â€” Core IT & Enterprise Infrastructure Platform
 
 McJim Cyberworks is an integrated digital ecosystem, software development framework, and cloud deployment workspace built for full-scale freelance IT operations, serverless system automation, and web application management. 
 
@@ -9,7 +9,7 @@ This platform bridges enterprise networking utilities, modern parameter-sanitize
 The architecture consolidates multiple operational nodes into one cohesive infrastructure:
 
 *   **Cloud Architecture & CDN Edge:** High-performance deployments leveraging Google Cloud Platform (GCP) resources coupled with Cloudflare infrastructure for advanced DNS routing, security filtering, and proactive request monitoring.
-*   **Serverless Communication Pipes:** Native handling of asynchronous client contact records, telemetry vectors, and web form interactions powered entirely via Web3Forms API wrappers—bypassing traditional server-side SMTP overhead.
+*   **Serverless Communication Pipes:** Native handling of asynchronous client contact records, telemetry vectors, and web form interactions powered entirely via Web3Forms API wrappersâ€”bypassing traditional server-side SMTP overhead.
 *   **Analytics & Verification Layer:** Integrated traffic tracking via the restored Google Analytics `gtag.js` client wrapper alongside continuous public site tracking validation.
 *   **Authorized AdSense Monetization:** Fully compliant and verified Google AdSense integration, publishing real-time ad allocations anchored directly by root-level ownership verification engines.
 *   **Dynamic UI & Media Asset Pipeline:** A modern, sanitized media processing framework integrating native drag-and-drop client staging spaces with hardware-accelerated Lightbox2 front-end rendering engines.
@@ -34,7 +34,7 @@ The architecture consolidates multiple operational nodes into one cohesive infra
 ### 1. Initialize the Working Core
 Pull the production codebase cleanly into your default local server directory (`D:\Server\www\`):
 ```bash
-git clone https://github.com/McJim69/mcjim_cyberworks.git .
+git clone https://github.com/McJim69/main.git .
 ```
 
 ### 2. Configure Local Environment Secrets
@@ -91,4 +91,4 @@ images/posts/
 ```
 
 ## ?? Operational License
-Proprietary Corporate Engine — Designed, engineered, and maintained securely under development by McJim Cyberworks. All rights reserved.
+Proprietary Corporate Engine â€” Designed, engineered, and maintained securely under development by McJim Cyberworks. All rights reserved.
