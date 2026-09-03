@@ -1,0 +1,201 @@
+.blog{margin-bottom:10px;margin-top:10px !important}
+
+.blog-card{
+	padding:10px;
+	border-radius:10px;
+	margin:20px 0 20px 0;
+	justify-content:center;
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	background-color: rgba(10, 15, 30, 0.4);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.blog-card:hover, .blog-recent:hover {
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 25px 8px rgba(117,102,204,0.6);
+}
+
+.blog-title   {margin-top:15px;text-align:center}
+.blog-created {text-align:center;color:#bbb}
+.blog-created img{border-radius:50%;width:30px;height:30px;object-fit:cover}
+.blog-content {margin:10px 15px 10px 15px}
+.blog-control {margin:10px;text-align:center !important}
+.blog-control button{width:80px;border-radius:15px;padding:8px 15px 8px 15px !important}
+.blog-comment {margin:15px;font-size:14px;color:#bbb !important}
+.blog-comment h6{margin-top:10px;text-align:left;color:#bbb}
+.blog-comment img{border-radius:50%;width:25px;height:25px;object-fit:cover}
+.addb-comment button{margin-top:0 !important;text-align:center; margin-top:10px;border-radius:15px;padding:8px 15px 8px 15px !important}
+.addb-comment textarea{color:#fff;border: 1px solid rgba(255, 255, 255, 0.08) !important;border-radius:10px;width:100%;padding:10px;background: rgba(255, 255, 255, 0.04) !important;}
+
+.image-wrapper {
+	position: relative;
+	padding:5px;
+	margin:0;
+}
+
+.image-wrapper img {
+	width:100%;
+	aspect-ratio:16/9;
+	border-radius:5px !important;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.delete-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #fff;
+	width: 24px;
+	padding:1px;
+	border: none;
+	height: 24px;
+	display: none;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 50%;
+	background: #545454;
+}
+.image-wrapper:hover .delete-btn {display: block;}
+
+.swal-input{
+	width:100%;
+	color:#bbb;
+	padding:10px;
+	border-radius:8px;
+	margin-bottom:15px;
+	border: 2px solid #1e1e1e !important;
+	background-color: rgba(10, 15, 30, 1.0) !important;  
+}
+
+.swal-file{
+	display: none !important;
+	visibility: hidden !important;
+}
+
+.swal2-popup {
+  border-radius:15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(10, 15, 30, 1.0) !important;  
+  box-shadow: 0px 0px 25px 8px rgba(117,102,204,0.6);
+}
+.custom-dropzone {
+    color: #bbb;
+    padding: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 8px;
+    text-align: center;
+    background: #1e1e1e;
+    font-family: inherit;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+    transition: all 0.2s ease-in-out;
+    border: 2px dashed rgba(255, 255, 255, 0.18);
+
+}
+.custom-dropzone:hover {
+	color:#bbb;
+    background: #002;
+    border-color: #94a3b8;
+}
+.custom-dropzone.drag-active {
+    color: #000;
+    background: #e2e8f0;
+    border-color: #3b82f6;
+    transform: scale(1.01);
+}
+@media(max-width:760px){
+	.blog-created{font-size:12px;}
+	.blog-content{font-size:14px;}
+	.blog-comment{font-size:12px;}	
+	.thid{display:none !important;}
+	.custom-dropzone {font-size:12px;}	
+    .blog-title h1, .blog-title h2, .blog-title h3, .blog-title h4 {font-size: 16px;}
+}
+:root {
+  --ql-dark-text: #e0e0e0;    
+  --ql-dark-active: #4da9ff;     
+  --ql-dark-popover-bg: #252526; 
+  --ql-dark-text-muted: #aaaaaa; 
+  --ql-dark-border: #1e1e1e !important; 
+  --ql-dark-toolbar-bg: #1e1e1e !important;  
+  --ql-dark-bg: rgba(10, 15, 30, 1.0) !important; 
+}
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+  border-color: var(--ql-dark-border) !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.ql-toolbar.ql-snow {
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+  background: #1e1e1e !important;
+  border: 2px solid #1e1e1e !important; 
+}
+.ql-container.ql-snow {
+  height:200px;
+  color: var(--ql-dark-text);
+  border-bottom-left-radius:8px;  
+  border-bottom-right-radius:8px;
+  background-color: var(--ql-dark-bg);
+  border: 2px solid #1e1e1e !important; 
+}
+.ql-snow .ql-toolbar button .ql-stroke,
+.ql-snow.ql-toolbar button .ql-stroke {
+  stroke: var(--ql-dark-text-muted);
+}
+.ql-snow .ql-toolbar button .ql-fill,
+.ql-snow.ql-toolbar button .ql-fill {
+  fill: var(--ql-dark-text-muted);
+}
+.ql-snow .ql-toolbar button .ql-even,
+.ql-snow.ql-toolbar button .ql-even {stroke: var(--ql-dark-text-muted);}
+.ql-snow .ql-toolbar button:hover .ql-stroke,
+.ql-snow .ql-toolbar button:focus .ql-stroke,
+.ql-snow .ql-toolbar button:hover .ql-stroke,
+.ql-snow .ql-toolbar button:focus .ql-stroke,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke,
+.ql-snow .ql-toolbar button.ql-active .ql-stroke {stroke: var(--ql-dark-active);}
+.ql-snow .ql-toolbar button:hover .ql-fill,
+.ql-snow .ql-toolbar button:focus .ql-fill,
+.ql-snow .ql-toolbar button:hover .ql-fill,
+.ql-snow .ql-toolbar button:focus .ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-fill,
+.ql-snow .ql-toolbar button.ql-active .ql-fill {fill: var(--ql-dark-active);}
+.ql-snow .ql-picker {color: var(--ql-dark-text-muted);}
+.ql-snow .ql-picker .ql-stroke { stroke: var(--ql-dark-text-muted);}
+.ql-snow .ql-picker:hover,.ql-snow .ql-picker.ql-expanded {color: var(--ql-dark-active);}
+.ql-snow .ql-picker:hover .ql-stroke,
+.ql-snow .ql-picker.ql-expanded .ql-stroke {stroke: var(--ql-dark-active);}
+.ql-snow .ql-picker-options {
+  border-color: var(--ql-dark-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background-color: var(--ql-dark-popover-bg);
+}
+.ql-snow .ql-picker-item {color: var(--ql-dark-text-muted);}
+.ql-snow .ql-picker-item:hover,
+.ql-snow .ql-picker-item.ql-selected {
+  color: var(--ql-dark-active) !important;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.ql-snow .ql-tooltip {
+  color: var(--ql-dark-text);
+  border-color: var(--ql-dark-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background-color: var(--ql-dark-popover-bg);
+}
+.ql-snow .ql-tooltip input[type=text] {
+  color: var(--ql-dark-text);
+  background-color: var(--ql-dark-bg);
+  border: 1px solid var(--ql-dark-border);
+}
+.ql-snow .ql-tooltip a {color: var(--ql-dark-active);}
+.ql-container.ql-snow pre.ql-syntax {
+  color: #f8f8f2;
+  background-color: #111;
+  border: 1px solid var(--ql-dark-border);
+}
+.ql-editor.ql-blank::before {color: rgba(255, 255, 255, 0.35);font-style: italic;}
+.ql-snow .ql-editor code {background-color: rgba(255, 255, 255, 0.1);color: #ff79c6;}

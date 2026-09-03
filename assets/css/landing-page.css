@@ -1,0 +1,202 @@
+/* ==========================================
+   LANDING PAGE DESIGN SYSTEM (WORLD CLASS)
+   ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background: #030712;
+  color: #f3f4f6;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+/* ==========================================
+   HERO WITH INTRO VIDEO
+   ========================================== */
+header#hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+header video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+header .overlay {
+  background: radial-gradient(circle at center, rgba(3, 7, 18, 0.4) 0%, rgba(3, 7, 18, 0.85) 100%);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+header .content {
+  position: relative;
+  z-index: 1;
+  padding: 0 2rem;
+  transition: opacity 1s ease;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #6366f1 0%, #3b82f6 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+}
+
+/* ==========================================
+   CALL-TO-ACTION BUTTONS
+   ========================================== */
+.cta-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #3b82f6 50%, #06b6d4 100%);
+  color: #fff;
+  padding: 1rem 2.2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
+  color: #fff;
+}
+
+/* Skip Intro button */
+.skip-btn {
+  position: absolute;
+  bottom: 80px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f3f4f6;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.skip-btn:hover {
+  background: #fff;
+  color: #030712;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.25);
+}
+
+/* Fade-out effect */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* ==========================================
+   FEATURES (GLASSMORPHIC CARDS)
+   ========================================== */
+section.features {
+  padding: 6rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  background: #030712;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature:hover {
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.15), 0 10px 20px -10px rgba(0,0,0,0.5);
+}
+
+.feature h3 {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.feature h3 i {
+  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feature p {
+  color: #9ca3af;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+  background: #030712;
+  text-align: center;
+  padding: 3rem 2rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+footer a {
+  margin: 0 0.5rem;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+footer a:hover {
+  color: #fff;
+}

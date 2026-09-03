@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+Allow: /blog.php
+Allow: /projects.php
+Allow: /movies.php
+Allow: /movies_owl.php
+Allow: /landing.php
+Allow: /about.php
+Allow: /contact.php
+Allow: /signup.php
+Allow: /images/
+Allow: /assets/
+Allow: /vendor/
+
+# Block administrative and sensitive pages
+Disallow: /login.php
+Disallow: /connect.php
+Disallow: /auto-logout.php
+Disallow: /downloads.php
+Disallow: /admin-users.php
+Disallow: /crud_functions.php
+Disallow: /empty_session.php
+Disallow: /error_codes.php
+Disallow: /remove.php
+Disallow: /users_update.php
+Disallow: /validate.php
+Disallow: /ajax_*.php
+Disallow: /user_*.php
+Disallow: /chat/

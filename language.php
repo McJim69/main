@@ -1,0 +1,46 @@
+<?php
+	define('WE_HAVE', 'We have ');
+	define('AND', ' and ');
+	define('ONLINE',' online');
+	define('NONE','No Users Online');
+	define('REG_USERS','Registered Users');
+			
+	define('ABOUT_TITLE','ABOUT US');	
+	define('ABOUT_TEXT0', 'McJim Cyberworks specialize in delivering cutting-edge IT solutions tailored to the unique needs of businesses. With a dedicated team of experts, we offer a comprehensive range of services, including cloud computing, cybersecurity, software development, and IT consultancy. Our mission is to empower organizations to thrive in the digital age by providing innovative, reliable, and scalable technology solutions.');
+	define('ABOUT_TEXT1', 'McJim Cyberworks is a business name registered with the Department of Trade and Industry (DTI), bearing Certificate No. 00388532 and Business Permit No. TAB-2015-2018.');
+	define('ABOUT_TEXT1a', 'Web Development');
+	define('ABOUT_TEXT1b', 'Sales and Services');
+	define('ABOUT_TEXT1c', 'Network Deployment');
+	define('ABOUT_TEXT1d', 'Server Management');
+	define('ABOUT_TEXT2', 'Our primary objective in establishing this business is to provide Information Technology (IT) services to marginalized communities, particularly those in remote areas, as they are less privileged when it comes to access to modern technology.');
+	define('MOVIE_LIST_TITLE', 'List of Movies');
+	define('POWERED_BY', 'Powered by');
+	define('OWNER', 'MCJIM CASTILLON MAATA');
+	define('BRGY', 'Malim');
+	define('MUN', 'Tabina');
+	define('PROV', 'Zamboanga del Sur');
+	define('MPN', 'Mobile Phone Number');
+	define('CPN', '09196423881');
+	define('STATE', 'Philippines');
+	define('FB', 'Facebook');
+	define('FBTIT', 'Facebook Page');
+	define('FBPAGE', 'facebook.com/cybermcjim');
+	define('FBURL', 'https://www.facebook.com/cybermcjim');
+	define('POST', 'Postal Address');
+	define('ZIP', '7034');	
+	define('EMTIT', 'Email Address');
+	define('EMAIL', 'cybermcjim@gmail.com');
+	define('WEBCOM', 'MCJIM SERVER WEBSITE');
+	define('DOTCOM', 'MCJIM SERVER DOT COM WEBSITE');
+	define('MCDEV', 'MCJIM CYBERWORKS & DEVELOPMENT');
+	define('DESIGN_BY', 'Designed by');
+	define('MCW', 'MCJIM Cyberworks');
+	define('WHSP', 'Web Hosting Service Provider');
+	define('PASS_REQ', 'Password Recovery Request');
+	define('PASS_REC', 'Password Recovery');
+	define('USER_FULLNAME', 'Username or Full Name');
+	define('EMAIL_CPN', 'Email Address or Cellphone Number');
+	define('TYPE_MSG', 'Type your message here');
+	define('USR_ACC_REG', 'User Account Registration');
+	define('SIGN_UP', 'Sign Up! It’s free and always will be.');	
+?>
