@@ -1,0 +1,240 @@
+[04-Sep-2026 16:58:50 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 16:58:50 UTC] PHP Stack trace:
+[04-Sep-2026 16:58:50 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:02:11 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:02:11 UTC] PHP Stack trace:
+[04-Sep-2026 17:02:11 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:03:02 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:03:02 UTC] PHP Stack trace:
+[04-Sep-2026 17:03:02 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:05:10 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:05:10 UTC] PHP Stack trace:
+[04-Sep-2026 17:05:10 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:08:13 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:08:13 UTC] PHP Stack trace:
+[04-Sep-2026 17:08:13 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:13:18 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:13:18 UTC] PHP Stack trace:
+[04-Sep-2026 17:13:18 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:25:10 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:25:10 UTC] PHP Stack trace:
+[04-Sep-2026 17:25:10 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:27:57 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:27:57 UTC] PHP Stack trace:
+[04-Sep-2026 17:27:57 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:29:37 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:29:37 UTC] PHP Stack trace:
+[04-Sep-2026 17:29:37 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:39:07 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:39:07 UTC] PHP Stack trace:
+[04-Sep-2026 17:39:07 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:39:18 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:39:18 UTC] PHP Stack trace:
+[04-Sep-2026 17:39:18 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:40:42 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:40:42 UTC] PHP Stack trace:
+[04-Sep-2026 17:40:42 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:42:12 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:42:12 UTC] PHP Stack trace:
+[04-Sep-2026 17:42:12 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:42:27 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:42:27 UTC] PHP Stack trace:
+[04-Sep-2026 17:42:27 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:43:02 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:43:02 UTC] PHP Stack trace:
+[04-Sep-2026 17:43:02 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:43:32 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:43:32 UTC] PHP Stack trace:
+[04-Sep-2026 17:43:32 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:43:57 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 123
+[04-Sep-2026 17:43:57 UTC] PHP Stack trace:
+[04-Sep-2026 17:43:57 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:44:56 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 17:44:56 UTC] PHP Stack trace:
+[04-Sep-2026 17:44:56 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:45:29 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 17:45:29 UTC] PHP Stack trace:
+[04-Sep-2026 17:45:29 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 17:58:09 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 17:58:09 UTC] PHP Stack trace:
+[04-Sep-2026 17:58:09 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:02:47 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:02:47 UTC] PHP Stack trace:
+[04-Sep-2026 18:02:47 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:03:09 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:03:09 UTC] PHP Stack trace:
+[04-Sep-2026 18:03:09 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:03:59 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:03:59 UTC] PHP Stack trace:
+[04-Sep-2026 18:03:59 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:16:54 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:16:54 UTC] PHP Stack trace:
+[04-Sep-2026 18:16:54 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:27:21 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:27:21 UTC] PHP Stack trace:
+[04-Sep-2026 18:27:21 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:28:28 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:28:28 UTC] PHP Stack trace:
+[04-Sep-2026 18:28:28 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:29:44 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:29:44 UTC] PHP Stack trace:
+[04-Sep-2026 18:29:44 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:30:26 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:30:26 UTC] PHP Stack trace:
+[04-Sep-2026 18:30:26 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:37:22 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:37:22 UTC] PHP Stack trace:
+[04-Sep-2026 18:37:22 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 18:45:26 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 18:45:26 UTC] PHP Stack trace:
+[04-Sep-2026 18:45:26 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:15:54 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:15:54 UTC] PHP Stack trace:
+[04-Sep-2026 19:15:54 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:18:36 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:18:36 UTC] PHP Stack trace:
+[04-Sep-2026 19:18:36 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:20:03 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:20:03 UTC] PHP Stack trace:
+[04-Sep-2026 19:20:03 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:27:14 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:27:14 UTC] PHP Stack trace:
+[04-Sep-2026 19:27:14 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:28:52 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:28:52 UTC] PHP Stack trace:
+[04-Sep-2026 19:28:52 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:30:08 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:30:08 UTC] PHP Stack trace:
+[04-Sep-2026 19:30:08 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:39:43 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:39:43 UTC] PHP Stack trace:
+[04-Sep-2026 19:39:43 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:44:53 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:44:53 UTC] PHP Stack trace:
+[04-Sep-2026 19:44:53 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 19:46:53 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 19:46:53 UTC] PHP Stack trace:
+[04-Sep-2026 19:46:53 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:01:09 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:01:09 UTC] PHP Stack trace:
+[04-Sep-2026 20:01:09 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:04:05 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:04:05 UTC] PHP Stack trace:
+[04-Sep-2026 20:04:05 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:05:18 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:05:18 UTC] PHP Stack trace:
+[04-Sep-2026 20:05:18 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:05:23 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:05:23 UTC] PHP Stack trace:
+[04-Sep-2026 20:05:23 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:15:00 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:15:00 UTC] PHP Stack trace:
+[04-Sep-2026 20:15:00 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:21:56 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:21:56 UTC] PHP Stack trace:
+[04-Sep-2026 20:21:56 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:24:53 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:24:53 UTC] PHP Stack trace:
+[04-Sep-2026 20:24:53 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:27:40 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:27:40 UTC] PHP Stack trace:
+[04-Sep-2026 20:27:40 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:35:25 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:35:25 UTC] PHP Stack trace:
+[04-Sep-2026 20:35:25 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 20:59:39 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 20:59:39 UTC] PHP Stack trace:
+[04-Sep-2026 20:59:39 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:01:09 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:01:09 UTC] PHP Stack trace:
+[04-Sep-2026 21:01:09 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:02:11 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:02:11 UTC] PHP Stack trace:
+[04-Sep-2026 21:02:11 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:02:43 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:02:43 UTC] PHP Stack trace:
+[04-Sep-2026 21:02:43 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:03:26 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:03:26 UTC] PHP Stack trace:
+[04-Sep-2026 21:03:26 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:05:18 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:05:18 UTC] PHP Stack trace:
+[04-Sep-2026 21:05:18 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:05:50 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:05:50 UTC] PHP Stack trace:
+[04-Sep-2026 21:05:50 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:06:03 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:06:03 UTC] PHP Stack trace:
+[04-Sep-2026 21:06:03 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:07:02 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:07:02 UTC] PHP Stack trace:
+[04-Sep-2026 21:07:02 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:14:32 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:14:32 UTC] PHP Stack trace:
+[04-Sep-2026 21:14:32 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:15:36 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:15:36 UTC] PHP Stack trace:
+[04-Sep-2026 21:15:36 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:16:56 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:16:56 UTC] PHP Stack trace:
+[04-Sep-2026 21:16:56 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:17:40 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:17:40 UTC] PHP Stack trace:
+[04-Sep-2026 21:17:40 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:18:30 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:18:30 UTC] PHP Stack trace:
+[04-Sep-2026 21:18:30 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:19:00 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:19:00 UTC] PHP Stack trace:
+[04-Sep-2026 21:19:00 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:20:03 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:20:03 UTC] PHP Stack trace:
+[04-Sep-2026 21:20:03 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:21:31 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:21:31 UTC] PHP Stack trace:
+[04-Sep-2026 21:21:31 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:22:54 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:22:54 UTC] PHP Stack trace:
+[04-Sep-2026 21:22:54 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:23:39 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:23:39 UTC] PHP Stack trace:
+[04-Sep-2026 21:23:39 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:24:26 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:24:26 UTC] PHP Stack trace:
+[04-Sep-2026 21:24:26 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:25:55 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:25:55 UTC] PHP Stack trace:
+[04-Sep-2026 21:25:55 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:35:14 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:35:14 UTC] PHP Stack trace:
+[04-Sep-2026 21:35:14 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:38:46 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:38:46 UTC] PHP Stack trace:
+[04-Sep-2026 21:38:46 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:39:50 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:39:50 UTC] PHP Stack trace:
+[04-Sep-2026 21:39:50 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:40:55 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:40:55 UTC] PHP Stack trace:
+[04-Sep-2026 21:40:55 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:54:23 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:54:23 UTC] PHP Stack trace:
+[04-Sep-2026 21:54:23 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:55:07 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:55:07 UTC] PHP Stack trace:
+[04-Sep-2026 21:55:07 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:56:02 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:56:02 UTC] PHP Stack trace:
+[04-Sep-2026 21:56:02 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 21:57:33 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 21:57:33 UTC] PHP Stack trace:
+[04-Sep-2026 21:57:33 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 22:10:49 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 22:10:49 UTC] PHP Stack trace:
+[04-Sep-2026 22:10:49 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 22:34:19 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 22:34:19 UTC] PHP Stack trace:
+[04-Sep-2026 22:34:19 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[04-Sep-2026 22:49:50 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[04-Sep-2026 22:49:50 UTC] PHP Stack trace:
+[04-Sep-2026 22:49:50 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0

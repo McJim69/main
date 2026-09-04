@@ -53,8 +53,7 @@
 	<div class="table-responsive project-table">
 		<table class="table text-light">
 			<tr style="border:0;background: linear-gradient(135deg, #6366f1 0%, #3b82f6 50%, #06b6d4 100%)">
-				<th class="text-center">ID</th>
-				<th class="text-center">Cover</th>
+				<th class="text-center">Logo</th>
 				<th class="text-center">Name</th>
 				<th class="text-center">Link</th>
 				<th class="text-center">Action</th>
@@ -62,15 +61,14 @@
 			<tbody id="projectListBody">
 				<?php while ($row = $result->fetch_assoc()) { ?>
 				<tr id="projRow_<?php echo $row['pid']; ?>">
-					<td class="text-center"><?php echo $row['pid']; ?></td>
 					<td class="text-center">
-                        <img src="images/projects/<?php echo htmlspecialchars($row['plink']); ?>/logo.png" style="height:45px;border-radius:5px;" onerror="this.src='images/default.jpg';" />
+                        <img src="images/projects/<?php echo htmlspecialchars($row['plink']); ?>/logo.png" style="height:45px;border-radius:5px;" onerror="this.src='images/favicon.png';" />
                     </td>
 					<td class="text-center"><?php echo htmlspecialchars($row['pname']); ?></td>
 					<td class="text-center"><?php echo htmlspecialchars($row['plink']); ?></td>
 					<td class="text-center">
-                        <button class="btn btn-sm btn-info" onclick="editProject(<?php echo $row['pid']; ?>)">Edit</button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteProject(<?php echo $row['pid']; ?>)">Delete</button>
+                        <button class="btn btn-sm btn-info" onclick="editProject(<?php echo $row['pid']; ?>)" style="width:60px">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteProject(<?php echo $row['pid']; ?>)" style="width:60px">Delete</button>
 					</td>
 				</tr>
 				<?php } $stmt->close(); ?>
@@ -80,7 +78,7 @@
 </div>
 
 <!-- Modal for Add/Edit Project -->
-<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
+<div style="margin-top:100px" class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content bg-dark text-white">
       <div class="modal-header">
@@ -120,7 +118,7 @@
                     </div>
                     <div class="form-group">
                         <label>Cover Image URL / Path</label>
-                        <input type="text" class="form-control" name="pimgUrl" id="pimgUrl" required>
+                        <input type="text" class="form-control" name="pimgUrl" id="pimgUrl" value="images/projects/<?php echo htmlspecialchars($row['plink']); ?>/logo.png" required>
                     </div>
                 </div>
                 

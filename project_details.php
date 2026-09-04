@@ -59,7 +59,7 @@
         <!-- Main Info -->
         <div class="col-md-8">
             <?php ?>
-                <img src="images/projects/<?php echo htmlspecialchars($project['plink']); ?>/logo.png" class="img-fluid rounded mb-4" onerror="this.src='images/default.jpg';" alt="Logo">
+                <img src="images/projects/<?php echo htmlspecialchars($project['plink']); ?>/logo.png" class="img-fluid rounded mb-4" onerror="this.src='images/default.jpg';" alt="Logo" style="height:150px">
 			<?php ?>
             <h3 class="mb-3">Overview</h3>
             <p><?php echo nl2br(htmlspecialchars($project['long_desc'] ?? '')); ?></p>
@@ -75,8 +75,9 @@
             <?php endif; ?>
 
             <div class="mt-5">
-                <a href="../projects/<?php echo htmlspecialchars($project['plink']); ?>/" target="_blank" class="btn btn-primary btn-lg">Try Live Demo</a>
-            </div>
+                <a href="../projects/<?php echo htmlspecialchars($project['plink']); ?>/" target="_blank" class="btn btn-primary btn-lg">Try Live Demo</a> &nbsp;
+                <a href="https://github.com/McJim69/<?php echo htmlspecialchars($project['plink']); ?>" target="_blank" class="btn btn-primary btn-lg">Source Code</a>
+            </div><br>
         </div>
 
         <!-- Sidebar Info -->
