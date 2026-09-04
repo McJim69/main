@@ -33,7 +33,7 @@
     ?>
     <div class="col-md-3" style="border:0;padding:15px">
       <div class="box-cont">
-		<div class='itemno'>
+		<div class="itemno">
 			<b><?php echo $i;?></b>
 		</div>                          
         <a href="../projects/<?php echo $link;?>/" target="_blank" title="Try Demo">
@@ -41,7 +41,7 @@
         </a><br>
         <?php echo $name;?>
         <p class="text-info">Web Application</p>
-        <a class="btn btn-sm buxton" href="<?php echo $link;?>.php">
+        <a class="btn btn-sm buxton" href="project_details.php?id=<?php echo $pidn;?>">
           <small class="text-dark">View Details</small>
         </a>
       </div>

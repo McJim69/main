@@ -29,12 +29,12 @@
 	require("auto-logout.php");
 
 	// --- Database connection ---
-	define('DB_SERVER', 'localhost');
-	define('DB_USERNAME', 'McJim');
-	define('DB_PASSWORD', 'Restricted654123');
-	define('DB_NAME', 'server');
+	define('DB_HOST', 'localhost');
+	define('DB_USER', 'YOUR_DB_USER');
+	define('DB_PASS', 'YOUR_DB_PASS');
+	define('DB_NAME', 'YOUR_DB_NAME');
 
-	$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	if ($conn === false) {
 		die("ERROR: Could not connect. " . mysqli_connect_error());
 	}

@@ -61,7 +61,14 @@
 
 				<!-- Content + Controls -->
 				<div class="blog-content">
-					<?php echo $p['content']; ?>
+					<?php 
+					  $plain_content = trim(strip_tags($p['content'])); 
+					  if (strlen($plain_content) > 0) {
+						echo (strlen($plain_content) > 200) ? htmlspecialchars(mb_substr($plain_content, 0, 100)) . '...' : htmlspecialchars($plain_content); 
+					  } else {
+						echo "No content available.";
+					  }						
+					?>
 					<div class="blog-control d-flex justify-content-center">
 						<button class="filled-button" 
 								onclick="jump('blog_details.php?id=<?php echo $p['id']; ?>')">
