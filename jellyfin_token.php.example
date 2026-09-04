@@ -1,0 +1,5 @@
+<?php
+	define('LOCAL_HOST', 'IP_OR_LOCAL_HOST:8096');
+	define('WEB_HOST', 'YOUR_DOMAIN_HERE');
+	define('API_KEY', 'YOUR_API_KEY');
+?>

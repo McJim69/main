@@ -1,9 +1,10 @@
 <?php 
-	require("connect.php");
-// 	$server = "http://10.0.10.15:8096";
-	$server = "https://media.mcjim-server.com";
-    $apiKey = "93cc2300dbe64aaf98e878aca88813dd";
-
+	require_once("connect.php");
+	require_once("jellyfin_token.php");
+	
+	$server = WEB_HOST;
+    $apiKey = API_KEY;
+	
     // Hybrid cache setup
     if (class_exists('Memcached')) {
         $mem = new Memcached();
@@ -97,7 +98,7 @@
 <script>setActive("media");</script>
 <script>setActive("movies");</script>
 
-<link rel="stylesheet" href="assets/css/movies-owl.css?v=<?= SITE_VERSION ?>">
+<link rel="stylesheet" href="assets/css/movies-owl.css?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>">
 
 <div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center;">
 	<div class="container" style="margin-top:0;margin-bottom:-50px">
@@ -200,8 +201,6 @@
 			margin: 30,
 			stagePadding: 2,
 			autoplay: true,
-		//	nav: true,
-		//	navText: ["<i class='far fa-arrow-alt-circle-left'></i>","<i class='far fa-arrow-alt-circle-right'></i>"],
 			autoplayTimeout: 1500,
 			autoplayHoverPause: true,
 			responsive: {

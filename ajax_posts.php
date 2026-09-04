@@ -22,7 +22,7 @@
 					<div class="col-12 col-md-4 image-wrapper">
 						<a 	class="venobox" 
 							data-gall="post-<?php echo $p['id']; ?>" 
-							data-title="<?php echo htmlspecialchars($post['title']); ?>" 
+							data-title="<?php echo htmlspecialchars($p['title']); ?>" 
 							data-type="image"
 							href="/<?php echo htmlspecialchars($img['image_url']); ?>">
 							<img src="/<?php echo htmlspecialchars($img['image_url']); ?>" alt="Post Image" class="img-fluid"/>
@@ -145,7 +145,7 @@
 		<!-- Sidebar -->
 		<div class="col-md-4">
 		  <div class="blog-card">
-			<div style="margin:10px">
+			<div style="margin:5px">
 				<h4 class="h4">Search Posts</h4>
 				<form id="search_form" name="gs">
 					<div class="input-group">

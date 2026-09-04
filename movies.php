@@ -1,8 +1,9 @@
 <?php 
-	require("connect.php");
-// 	$server = "http://10.0.10.15:8096";
-	$server = "https://media.mcjim-server.com";
-    $apiKey = "93cc2300dbe64aaf98e878aca88813dd";
+	require_once("connect.php");
+	require_once("jellyfin_token.php");
+	
+	$server = WEB_HOST;
+    $apiKey = API_KEY;
 
     // Hybrid cache setup
     if (class_exists('Memcached')) {

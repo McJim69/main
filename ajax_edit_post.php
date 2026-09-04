@@ -1,7 +1,6 @@
 <?php
 // ajax_edit_post.php
 ob_start();
-session_start();
 
 require_once("connect.php");
 require_once("crud_functions.php"); // Crucial: ensure convertAndResizeToWebp() is shared here
@@ -97,7 +96,7 @@ if(isset($_POST['post_id'], $_POST['title'])) {
   }
 
   // Update records utilizing your stable, owner-enforced database function
-  $ok = updateBlogPostWithImages($conn, $post_id, $title, $content, $images, $_SESSION['uno']);
+  $ok = updateBlogPostWithImages($conn, $post_id, $title, $content, $_SESSION['uno'], $images);
   
   if ($ok) {
     echo json_encode(['status'=>'OK', 'id'=>$post_id, 'message'=>'Post updated successfully']);

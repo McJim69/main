@@ -11,7 +11,7 @@
 <!-- Combined with an absolute link structure to prevent relative nesting issues -->
 <script src="/ajax_call_details.js?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>"></script>
 
-<section class="blog" data-post-id="<?php echo $post['id']; ?>">
+<section class="blog blog-details" data-post-id="<?php echo $post['id']; ?>">
   <div class="container">
 	<div class="blog-card">
      <!-- Images -->

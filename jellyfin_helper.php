@@ -1,10 +1,12 @@
 <?php
+	require_once("jellyfin_token.php");
+
 	// ✅ Helper function to call Jellyfin API using stored per-user token
 	function jellyfin_api($endpoint) {
 
-		$token = '93cc2300dbe64aaf98e878aca88813dd';
+		$token = API_KEY;
 
-		$url = "https://media.mcjim-server.com" . $endpoint;
+		$url = WEB_HOST . $endpoint;
 		$headers = [
 			"X-Emby-Authorization: MediaBrowser Client=\"PHP\", Device=\"Web\", DeviceId=\"12345\", Version=\"1.0\", Token=\"$token\""
 		];

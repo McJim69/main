@@ -1,8 +1,13 @@
 <?php
-$username = "Decon123";
-$password = "Decon123";
+require_once("jellyfin_token.php");
 
-$url = "https://media.mcjim-server.com/Users/New";
+$username = "Guest123";
+$password = "Guest123";
+
+$server = WEB_HOST;
+$param  = "Users/New";
+
+$url = "".$server."/".$param."";
 
 // ✅ Build raw JSON string manually (same as CLI)
 $payload = '{
