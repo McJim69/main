@@ -7,10 +7,9 @@
 	
 	// ✅ Start session
 	if (session_status() === PHP_SESSION_NONE) {
-
 		$isLocalhost = isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false);
 		if (!$isLocalhost) {
-			ini_set('session.cookie_domain', '.mcjim-server.com');
+			ini_set('session.cookie_domain', '.[YOUR_DOMAIN]');
 			ini_set('session.cookie_secure', 1);
 		}
 		ini_set('session.cookie_path', '/');
