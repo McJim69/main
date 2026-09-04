@@ -71,12 +71,6 @@
 					<li class="nav-item" id="download">
 						<a class="nav-link" href="downloads.php">Download</a>
 					</li>		
-					<?php if ($_SESSION["access"]=="Admin"){ ?>
-					<li class="nav-item" id="users">
-						<a class="nav-link" href="admin-users.php">Users</a>
-					</li>		
-					<?php } ?>
-
 					<li class="nav-item dropdown" id="user">
 					  <a class="nav-link dropdown-toggle" style="color:#bbb; display:inline-flex; align-items:center;" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					     <?php 
@@ -95,6 +89,14 @@
 						<li class="nav-item" id="meet"><a class="nav-link" href="https://meet.mcjim-server.com" target="_blank">Meet</a></li>	
 						<li class="nav-item" id="chat"><a class="nav-link" href="chat/">Chat</a></li>		
 						<li class="nav-item" id="user"><a class="nav-link" href="user_profile.php">Profile</a></li>
+						<?php if ($_SESSION["access"]=="Admin"){ ?>
+						<li class="nav-item" id="users">
+							<a class="nav-link" href="admin-users.php">Users</a>
+						</li>		
+						<li class="nav-item" id="projects">
+							<a class="nav-link" href="admin-projects.php">Projects</a>
+						</li>		
+						<?php } ?>
 						<li class="nav-item" id="logout"><a class="nav-link" onclick="endSession();" href="#">Logout</a></li>
 					  </ul>
 					</li>
