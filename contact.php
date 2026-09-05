@@ -1,14 +1,13 @@
 <?php
-	require("connect.php");
-	require("header.php");
-	require("menunav.php");
+	require_once("connect.php");
+	require_once("header.php");
+	require_once("menunav.php");
+	require_once("web3forms.php");
 ?>
 
 <script>setActive("contact");</script>
 
-<style>
-@media(max-width:760px){.mobile{padding:0;margin:0}}
-</style>
+<style>@media(max-width:760px){.mobile{padding:0;margin:0}}</style>
 
 <!-- Page Content -->
     <div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center">
@@ -60,7 +59,7 @@
           <div class="col-md-12 mobile">
             <div class="contact-form">
               <form action="https://api.web3forms.com/submit" method="post" role="form">
-			  <input type="hidden" name="access_key" value="2f07fb4b-4d9c-40e3-89a2-ac81d27fad3b">
+			  <input type="hidden" name="access_key" value="<?php echo WEB3FORMS_API; ?>">
                 <div class="row">
                   <div class="col-lg-4 col-md-12 col-sm-12 mobile">
                     <fieldset>
