@@ -1099,3 +1099,9 @@ footer ul.menu-list li a:hover {
     box-shadow: 0 0 6px rgba(56, 189, 248, 0.4), inset 0 0 4px rgba(56, 189, 248, 0.1);
   }
 }
+
+/* Push modals below the fixed menunav */
+.modal-dialog {
+  margin-top: 150px !important;
+}
+
