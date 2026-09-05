@@ -1,94 +1,84 @@
-# McJim Cyberworks — Core IT & Enterprise Infrastructure Platform
+# 🌐 McJim Cyberworks
 
-McJim Cyberworks is an integrated digital ecosystem, software development framework, and cloud deployment workspace built for full-scale freelance IT operations, serverless system automation, and web application management. 
+[![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-4+-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com)
+[![Jitsi](https://img.shields.io/badge/Jitsi-Meet-1D76BA?style=for-the-badge&logo=jitsi&logoColor=white)](https://jitsi.org)
 
-This platform bridges enterprise networking utilities, modern parameter-sanitized web systems, serverless communication hooks, and automated web directory monetization properties under a unified production environment.
+**McJim Cyberworks** is a comprehensive digital ecosystem, software development framework, and cloud deployment workspace. It is designed as a fully integrated platform for freelance IT operations, serverless automation, media streaming, and modern web application management.
 
-## ??? Integrated Services & Architecture
+## ✨ Key Features
 
-The architecture consolidates multiple operational nodes into one cohesive infrastructure:
+### 🔐 Robust User Identity & Access
+*   **Authentication:** Secure registration and login workflows using modern PHP password hashing.
+*   **Profile Management:** Customizable user profiles with avatar uploads and real-time active status tracking.
+*   **Access Control:** Layered permission roles with a dedicated administrative dashboard for managing users.
 
-*   **Cloud Architecture & CDN Edge:** High-performance deployments leveraging Google Cloud Platform (GCP) resources coupled with Cloudflare infrastructure for advanced DNS routing, security filtering, and proactive request monitoring.
-*   **Serverless Communication Pipes:** Native handling of asynchronous client contact records, telemetry vectors, and web form interactions powered entirely via Web3Forms API wrappers—bypassing traditional server-side SMTP overhead.
-*   **Analytics & Verification Layer:** Integrated traffic tracking via the restored Google Analytics `gtag.js` client wrapper alongside continuous public site tracking validation.
-*   **Authorized AdSense Monetization:** Fully compliant and verified Google AdSense integration, publishing real-time ad allocations anchored directly by root-level ownership verification engines.
-*   **Dynamic UI & Media Asset Pipeline:** A modern, sanitized media processing framework integrating native drag-and-drop client staging spaces with hardware-accelerated Lightbox2 front-end rendering engines.
+### 💬 Real-Time Communications (RTC)
+*   **Instant Messaging:** A full-featured chat ecosystem supporting private direct messages (DMs) and group chats.
+*   **Rich Messaging:** Support for file attachments, images, and message reactions.
+*   **WebRTC Integration:** Built-in audio and video calling powered by the Jitsi Meet API, complete with custom ringing overlays and in-app call invitations.
 
-## ?? Environment Requirements
+### 🚀 Dynamic Project Portfolio
+*   **Showcase Grid:** A dynamic, database-driven grid displaying web development projects.
+*   **Deep Dives:** Detailed project pages complete with image galleries, tech stack breakdowns, and live demo links.
+*   **Admin CRUD:** A backend management system allowing administrators to easily add, edit, or remove portfolio items.
 
-*   **Runtime Engine:** PHP 8.0+ *(Strict object-oriented patterns, zero-deprecation standard)*
-*   **Database Management:** MySQL 8.0+ / MariaDB *(InnoDB transactional engine required)*
-*   **Server Stack:** Nginx Reverse-Proxy Configurations *(SSL Enforced via HTTP Strict Transport Security)*
-*   **Core Media Upload Thresholds (`php.ini`):**
-    ```ini
-    max_execution_time = 300
-    max_input_time = 300
-    memory_limit = 512M
-    post_max_size = 120M
-    upload_max_filesize = 120M
-    max_file_uploads = 200
-    ```
+### 📰 Social Feed & Blogging
+*   **Community Posts:** An interactive social feed allowing users to share text, images, and thoughts.
+*   **Engagement:** Real-time commenting, editing, and deletion using asynchronous AJAX handlers.
 
-## ?? Local Installation & Setup
+### 🎬 Media Server Integration
+*   **Jellyfin Ecosystem:** Native integration with a self-hosted Jellyfin media server.
+*   **Automated Provisioning:** Automatic user token generation and integration for seamless media access.
 
-### 1. Initialize the Working Core
-Pull the production codebase cleanly into your default local server directory (`D:\Server\www\`):
-```bash
-git clone https://github.com/McJim69/main.git .
+### ☁️ Cloud & Infrastructure Automation
+*   **Serverless Forms:** Contact channels utilize Web3Forms API wrappers to bypass traditional, vulnerable server-side SMTP overhead.
+*   **Analytics & Monetization:** Ready-to-go Google Analytics `gtag.js` and verified Google AdSense integrations.
+
+## 🛠️ Architecture & Tech Stack
+
+*   **Backend:** Object-Oriented & Procedural PHP (8.0+)
+*   **Database:** MySQL / MariaDB (InnoDB engine)
+*   **Frontend:** HTML5, CSS3, JavaScript (jQuery + AJAX), Bootstrap
+*   **Media Processing:** Hardware-accelerated Lightbox2 and native HTML5 video
+*   **Communication:** Jitsi Meet External API for WebRTC calls
+
+## ⚙️ Environment Requirements
+
+Ensure your server is configured with the following minimums in `php.ini` to support rich media uploads and sustained operations:
+
+```ini
+max_execution_time = 300
+max_input_time = 300
+memory_limit = 512M
+post_max_size = 120M
+upload_max_filesize = 120M
+max_file_uploads = 200
 ```
 
-### 2. Configure Local Environment Secrets
-To keep system credentials completely isolated from public tracking, copy the connection example file and map out your native relational infrastructure credentials:
-```bash
-cp connect.php.example connect.php
-```
+## 🚀 Installation & Setup
 
-Open `connect.php` and configure your environment-specific fields:
-```php
-<?php
-// connect.php - Core Infrastructure & API Ecosystem Tokens
-$dbhost = "YOUR_DB_HOST";
-$dbuser = "YOUR_DB_USER";
-$dbpass = "YOUR_DB_PASS";
-$dbname = "YOUR_DB_NAME";
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/McJim69/main.git .
+   ```
 
-$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+2. **Configure Environment:**
+   Copy the example connection template and input your database credentials:
+   ```bash
+   cp connect.php.example connect.php
+   ```
+   *Edit `connect.php` to include your DB host, user, password, and Web3Forms API keys.*
 
-if ($conn->connect_error) {
-    die("Infrastructure Connection Failure: " . $conn->connect_error);
-}
+3. **Database Initialization:**
+   Run the `setup_db.php` script (or import the provided SQL dumps) to build the required tables for users, chat, projects, and posts.
 
-// Global System API Variables
-define('WEB3FORMS_ACCESS_KEY', 'your-active-api-key-here');
-define('SITE_VERSION', '1.2.0'); 
-```
+4. **Directory Permissions:**
+   Ensure your web server has write access to the `uploads/`, `images/users/`, and `images/posts/` directories for media processing.
 
-### 3. Verification & Ad Crawling Setup
-Ensure your live root directory maps your verified billing profile directly to the crawler. The public verification tree layout requires the following exact mapping in the repository root:
-```text
-google.com, pub-4818333944764715, DIRECT, f08c47fec0942fa0
-```
+## 🛡️ Security & Privacy
+McJim Cyberworks adheres to strict security standards. Sensitive configurations (like `connect.php`, `config.json`, and cloud keys) are strictly ignored in the version control tree via `.gitignore` to prevent credential leakage.
 
-## ?? Version Isolation Security (`.gitignore`)
-The platform explicitly strips environment-specific configurations and backend keys from Git trees to maintain strict data privacy compliance:
-
-```text
-# Local Database & Core System Secrets
-connect.php
-config.json
-*.json.key
-
-# Private Cloud Service Accounts & Access Tokens
-/config/google-service-account.json
-
-# Persistent Staging Vectors & Dynamic Buffers
-uploads/
-images/posts/
-.idea/
-.vscode/
-
-# NOTE: ads.txt and public tracking tags are tracking-active and are NEVER ignored
-```
-
-## ?? Operational License
-Proprietary Corporate Engine — Designed, engineered, and maintained securely under development by McJim Cyberworks. All rights reserved.
+---
+*Designed, engineered, and maintained securely by McJim Cyberworks.*
