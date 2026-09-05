@@ -4,7 +4,7 @@
 	require("menunav.php");
 ?>
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center">
+<div class="page-heading header-text">
 	<div class="container">
 		<h1>Privacy Policy</h1>
 		<span>Last updated: March 01, 2024</span><br>

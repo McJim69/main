@@ -9,7 +9,7 @@ $isAdmin = ($_SESSION["access"] === "Admin");
 $currentUser = $_SESSION['user'];
 
 // Get user ID
-$stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+$stmt = $conn->prepare("SELECT uno as id FROM users WHERE username = ?");
 $stmt->bind_param("s", $currentUser);
 $stmt->execute();
 $uRes = $stmt->get_result()->fetch_assoc();

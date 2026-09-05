@@ -11,7 +11,7 @@
 <script>setActive("support");</script>
 <link href="assets/css/card-grid.css" rel="stylesheet">
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp) no-repeat;background-size:cover;background-position:center center">
+<div class="page-heading header-text">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -66,7 +66,7 @@
     <div class="modal-content" style="background: #111; border: 1px solid #444; color: #fff; border-radius: 12px;">
       <div class="modal-header border-bottom border-secondary">
         <h5 class="modal-title" id="modalTicketSubject">Ticket</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" onclick="$('#ticketModal').modal('hide')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -97,6 +97,8 @@
     </div>
   </div>
 </div>
+
+<?php require("footer.php"); ?>
 
 <script>
     function loadTickets() {
@@ -157,7 +159,7 @@
 
                     let rHtml = '';
                     res.replies.forEach(r => {
-                        let isMe = r.username === '<?php echo $_SESSION["user"]; ?>';
+                        let isMe = r.username.toLowerCase() === '<?php echo strtolower(htmlspecialchars($_SESSION["user"])); ?>';
                         let align = isMe ? 'text-right' : 'text-left';
                         let bg = isMe ? 'background: #0056b3;' : 'background: #333;';
                         let marginClass = isMe ? 'ml-auto' : 'mr-auto';
@@ -245,5 +247,3 @@
         });
     });
 </script>
-
-<?php require("footer.php"); ?>

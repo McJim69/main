@@ -11,7 +11,7 @@ $isAdmin = ($_SESSION["access"] === "Admin");
 $currentUser = $_SESSION['user'];
 
 // Get user ID
-$stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+$stmt = $conn->prepare("SELECT uno as id FROM users WHERE username = ?");
 $stmt->bind_param("s", $currentUser);
 $stmt->execute();
 $uRes = $stmt->get_result()->fetch_assoc();
@@ -32,10 +32,10 @@ if ($action == '') {
 // Fetch Files
 if ($action == 'fetch_files') {
     if ($isAdmin && isset($_GET['all']) && $_GET['all'] == '1') {
-        $query = "SELECT f.*, u.fullname, u.username as uploader_username FROM mcjim_client_files f LEFT JOIN users u ON f.uploader_id = u.id ORDER BY f.uploaded_at DESC";
+        $query = "SELECT f.*, u.fullname, u.username as uploader_username FROM mcjim_client_files f LEFT JOIN users u ON f.uploader_id = u.uno ORDER BY f.uploaded_at DESC";
         $stmt = $conn->prepare($query);
     } else {
-        $query = "SELECT f.*, u.fullname, u.username as uploader_username FROM mcjim_client_files f LEFT JOIN users u ON f.uploader_id = u.id WHERE f.uploader_id = ? ORDER BY f.uploaded_at DESC";
+        $query = "SELECT f.*, u.fullname, u.username as uploader_username FROM mcjim_client_files f LEFT JOIN users u ON f.uploader_id = u.uno WHERE f.uploader_id = ? ORDER BY f.uploaded_at DESC";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $userId);
     }

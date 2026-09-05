@@ -12,7 +12,7 @@ require("header.php");
 require("menunav.php");
 ?>
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center; padding: 100px 0 50px 0;">
+<div class="page-heading header-text">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -57,6 +57,7 @@ require("menunav.php");
   </div>
 </div>
 
+<?php require("footer.php"); ?>
 <script>
 $(document).ready(function() {
     loadFiles();
@@ -134,4 +135,3 @@ function deleteFile(id) {
 }
 </script>
 
-<?php require("footer.php"); ?>

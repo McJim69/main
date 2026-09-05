@@ -134,11 +134,11 @@
     <!-- Additional CSS Files -->
     <link href="/vendor/owlcarousel/css/owl.carousel.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/assets/css/fontawesome.css">
-    <link rel="stylesheet" href="/assets/css/style.css?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>">		
+    <link rel="stylesheet" href="/assets/css/style.css?v=<?= SITE_VERSION ?>">		
 	
 	<!-- Chat Notifications Style & Polling -->
     <?php if (isset($_SESSION['user'])): ?>
-    <link rel="stylesheet" href="/chat/chat_notification.css?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>">
+    <link rel="stylesheet" href="/chat/chat_notification.css?v=<?= SITE_VERSION ?>">
 	<script src="/chat/chat_notification.js"></script>
     <?php endif; ?>
 

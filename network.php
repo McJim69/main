@@ -1,4 +1,4 @@
-<div id="network" class="fun-facts" style="background:url(images/bg.webp?<?php echo time();?>)no-repeat;background-size:cover;background-position:center center">
+<div id="network" class="fun-facts" style="background:url(images/bg.webp?<?= SITE_VERSION ?>)no-repeat;background-size:cover;background-position:center center">
 	<div class="container">
 		<div class="more-info-content">
 			<div class="row">

@@ -11,7 +11,7 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 
 <script>setActive("docs");</script>
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center; padding: 100px 0 50px 0;">
+<div class="page-heading header-text">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -49,6 +49,7 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
   </div>
 </div>
 
+<?php require("footer.php"); ?>
 <script>
 let allArticles = [];
 
@@ -129,4 +130,3 @@ function showArticleList() {
 }
 </script>
 
-<?php require("footer.php"); ?>

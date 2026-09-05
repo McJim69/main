@@ -9,7 +9,7 @@
 ?>
 
 <!-- Combined with an absolute link structure to prevent relative nesting issues -->
-<script src="/ajax_call_details.js?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>"></script>
+<script src="/ajax_call_details.js?v=<?= SITE_VERSION ?>"></script>
 
 <section class="blog blog-details" data-post-id="<?php echo $post['id']; ?>">
   <div class="container">

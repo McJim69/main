@@ -7,7 +7,7 @@
 <script>setActive("about");</script>
 
 <!-- Page Content -->
-    <div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp?<?php echo time();?>)no-repeat;background-size:cover;background-position:center center">
+    <div class="page-heading header-text">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6" style="border:0">
                   <div class="left-image" style="border:0">
-                    <img src="images/network.webp?<?php echo time();?>" alt="McJim Cyberworks" style="border:0">
+                    <img src="images/network.webp?<?= SITE_VERSION ?>" alt="McJim Cyberworks" style="border:0">
                   </div>
                 </div>
               </div>

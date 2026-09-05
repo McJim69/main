@@ -7,7 +7,7 @@
 	$recent = listRecentPosts($conn, 10);
 ?>
 
-<script src="/ajax_call_posts.js?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>"></script>
+<script src="/ajax_call_posts.js?v=<?= SITE_VERSION ?>"></script>
 
 <section class="blog">
   <div class="container">

@@ -4,7 +4,7 @@
 ?>
 
 <!-- Page Content -->
-    <div class="page-heading header-text" style="background:url(/images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center">
+    <div class="page-heading header-text">
       <div class="container">
         <div class="row">
           <div class="col-md-12">

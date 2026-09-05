@@ -112,7 +112,7 @@
 .closebtn:hover{opacity:1.0;}
 </style>
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp) no-repeat; background-size:cover;background-position:center center">
+<div class="page-heading header-text">
 	<div class="container">
 		<div class="row justify-content-center" style="margin-top:-70px">                       
 			<div class="col-lg-5">

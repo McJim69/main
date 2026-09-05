@@ -98,9 +98,9 @@
 <script>setActive("media");</script>
 <script>setActive("movies");</script>
 
-<link rel="stylesheet" href="assets/css/movies-owl.css?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>">
+<link rel="stylesheet" href="assets/css/movies-owl.css?v=<?= SITE_VERSION ?>">
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center;">
+<div class="page-heading header-text">
 	<div class="container" style="margin-top:0;margin-bottom:-50px">
 		<div class="row d-flex justify-content-center align-items-center">
 			<div class="col">

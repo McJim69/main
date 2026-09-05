@@ -6,19 +6,18 @@
 
 <script>setActive("blog");</script>
 
-<link rel="stylesheet" href="/assets/css/blog.css?v=<?= defined('SITE_VERSION') ? SITE_VERSION : time() ?>">	
+<link rel="stylesheet" href="/assets/css/blog.css?v=<?= SITE_VERSION ?>">	
 <link rel="stylesheet" href="/vendor/venobox/venobox.min.css">	
 
 <!-- Heading -->
-<div class="page-heading header-text header" style="background:url(/images/mcjim-cyberworks1.webp?<?php echo time();?>)no-repeat;background-size:cover;background-position:center center">
+<div class="page-heading header-text header">
   <div class="container">
 	<div class="row">
 	  <div class="col-md-12">
 	    <h1>Read Our Blog</h1>
-		  <span>login > create > update > delete
-		  </span><br>
+		  <span style="margin-bottom:20px">login > create > update > delete</span>
 		  <?php if(isset($_SESSION['uno'])): ?>
-		  <button id="btnAddPost">Add New Post</button>
+		  <button style="margin-bottom:-10px" id="btnAddPost">Add New Post</button>
 	    <?php endif; ?>
 	  </div>
     </div>

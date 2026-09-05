@@ -702,11 +702,13 @@ footer ul.menu-list li a:hover {
    PAGE HEADING
    ========================================== */
 .page-heading {
-  background-image: linear-gradient(rgba(3, 7, 18, 0.75), rgba(3, 7, 18, 0.75)), url(assets/images/mcjim-cyberworks.webp);
-  background-position: center center;
-  background-repeat: no-repeat;
-  padding: 160px 0px 100px 0px;
+  background: url(/images/mcjim-cyberworks1.webp) no-repeat center center;
   background-size: cover;
+  padding: 140px 0px 50px 0px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   position: relative;
   color: #fff;

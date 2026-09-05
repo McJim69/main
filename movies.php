@@ -100,7 +100,7 @@
 
 <link rel="stylesheet" href="assets/css/movies.css?v=<?= SITE_VERSION ?>">
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp)no-repeat;background-size:cover;background-position:center center;">
+<div class="page-heading header-text">
 	<div class="container" style="margin-top:0;margin-bottom:-50px">
 		<div class="row d-flex justify-content-center align-items-center">
 			<div class="col">
@@ -170,7 +170,7 @@
 			if (!empty($imgUrl) && filter_var($imgUrl, FILTER_VALIDATE_URL)) {
 				$src = $imgUrl;
 			} else {
-				$src = "images/poster.jpg?" . time();
+				$src = "images/poster.jpg?v=" . SITE_VERSION;
 			}
 		?>
 		<img src="<?php echo $src; ?>" alt="<?php echo htmlspecialchars($item["Name"]); ?>" class="img-fluid rounded shadow-sm" loading="lazy">       

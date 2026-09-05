@@ -374,3 +374,49 @@ Stack trace:
 #0 D:\Server\www\setup_phase2.php(38): mysqli_query(NULL, 'CREATE TABLE IF...')
 #1 {main}
   thrown in D:\Server\www\setup_phase2.php on line 38
+[05-Sep-2026 20:57:55 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in D:\Server\www\admin-invoices.php:17
+Stack trace:
+#0 D:\Server\www\admin-invoices.php(17): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in D:\Server\www\admin-invoices.php on line 17
+[05-Sep-2026 20:58:27 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in D:\Server\www\admin-invoices.php:17
+Stack trace:
+#0 D:\Server\www\admin-invoices.php(17): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in D:\Server\www\admin-invoices.php on line 17
+[05-Sep-2026 21:26:25 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at D:\Server\www\menunav.php:1) in D:\Server\www\admin-projects.php on line 9
+[05-Sep-2026 21:26:25 UTC] PHP Stack trace:
+[05-Sep-2026 21:26:25 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[05-Sep-2026 21:26:25 UTC] PHP   2. header($header = 'Location: index.php') D:\Server\www\admin-projects.php:9
+[05-Sep-2026 21:26:44 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[05-Sep-2026 21:26:44 UTC] PHP Stack trace:
+[05-Sep-2026 21:26:44 UTC] PHP   1. {main}() D:\Server\www\test_admin_projects.php:0
+[05-Sep-2026 21:26:44 UTC] PHP   2. include() D:\Server\www\test_admin_projects.php:9
+[05-Sep-2026 21:29:41 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at D:\Server\www\menunav.php:1) in D:\Server\www\admin-projects.php on line 9
+[05-Sep-2026 21:29:41 UTC] PHP Stack trace:
+[05-Sep-2026 21:29:41 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[05-Sep-2026 21:29:41 UTC] PHP   2. header($header = 'Location: index.php') D:\Server\www\admin-projects.php:9
+[05-Sep-2026 21:38:48 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[05-Sep-2026 21:38:48 UTC] PHP Stack trace:
+[05-Sep-2026 21:38:48 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[05-Sep-2026 22:37:30 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\view-invoice.php:29
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\view-invoice.php on line 29
+[05-Sep-2026 22:37:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\view-invoice.php:29
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\view-invoice.php on line 29
+[05-Sep-2026 22:38:37 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\view-invoice.php:29
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\view-invoice.php on line 29
+[05-Sep-2026 22:39:15 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\view-invoice.php:29
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\view-invoice.php on line 29
+[05-Sep-2026 22:40:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\view-invoice.php:29
+Stack trace:
+#0 D:\Server\www\test_view_invoice.php(11): include()
+#1 {main}
+  thrown in D:\Server\www\view-invoice.php on line 29

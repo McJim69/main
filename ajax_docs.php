@@ -8,7 +8,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 }
 
 $isAdmin = ($_SESSION["access"] === "Admin");
-$action = isset($_GET['action']) ? $_GET['action'] : '';
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 $userId = $_SESSION['id'] ?? 0;
 
 if ($action == '') {
@@ -149,7 +149,7 @@ if ($action == 'create_article') {
     }
     
     // Get user id (if not available in session, we look it up by username)
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt = $conn->prepare("SELECT uno as id FROM users WHERE username = ?");
     $stmt->bind_param("s", $_SESSION['user']);
     $stmt->execute();
     $uRes = $stmt->get_result()->fetch_assoc();

@@ -58,7 +58,7 @@
 						<a class="nav-link" href="contact.php">Contact</a>
 					</li>		
 					<li class="nav-item" id="blog">
-						<a class="nav-link" href="blog.php">blog</a>
+						<a class="nav-link" href="blog.php">Blog</a>
 					</li>		
 					<?php if(!isset($_SESSION['user'])){ ?>
 					<li class="nav-item" id="login">
@@ -68,18 +68,10 @@
 						<a class="nav-link" href="user_register.php">Signup</a>
 					</li>	
 					<?php } else { ?>
-					<li class="nav-item" id="download">
-						<a class="nav-link" href="downloads.php">Download</a>
-					</li>		
-					<li class="nav-item" id="support">
-						<a class="nav-link" href="support.php">Support</a>
+					<li class="nav-item" id="dashboard">
+						<a class="nav-link" href="dashboard.php">Dashboard</a>
 					</li>
-					<li class="nav-item" id="docs">
-						<a class="nav-link" href="docs.php">Wiki</a>
-					</li>
-					<li class="nav-item" id="file-drop">
-						<a class="nav-link" href="file-drop.php">File Drop</a>
-					</li>
+
 					<li class="nav-item dropdown" id="user">
 					  <a class="nav-link dropdown-toggle" style="color:#bbb; display:inline-flex; align-items:center;" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					     <?php 
@@ -111,14 +103,23 @@
 						<li class="nav-item" id="kanban">
 							<a class="nav-link" href="kanban.php">Kanban</a>
 						</li>
+						<li class="nav-item" id="admin-invoices">
+							<a class="nav-link" href="admin-invoices.php">Manage Invoices</a>
+						</li>
 						<li class="nav-item" id="admin-docs">
 							<a class="nav-link" href="admin-docs.php">Manage Wiki</a>
+						</li>
+						<li class="nav-item" id="admin-monitoring">
+							<a class="nav-link" href="admin-monitoring.php">Server Monitor</a>
+						</li>
+						<li class="nav-item" id="admin-tasks">
+							<a class="nav-link" href="admin-tasks.php">Scheduled Tasks</a>
 						</li>		
 						<?php } ?>
 						<li class="nav-item" id="logout"><a class="nav-link" onclick="endSession();" href="#">Logout</a></li>
 					  </ul>
 					</li>
-					<?php } ?>				
+					<?php } ?>	
 				</ul>
 			</div>
 		</div>

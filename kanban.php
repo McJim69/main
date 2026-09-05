@@ -79,21 +79,23 @@
     }
 </style>
 
-<div class="page-heading header-text" style="background:url(images/mcjim-cyberworks1.webp) no-repeat;background-size:cover;background-position:center center; padding: 60px 0 30px;">
+<div class="page-heading header-text">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <h1>Task Management</h1>
         <span>Kanban board for internal tracking</span>
-      </div>
-      <div class="col-md-4 text-right align-self-center">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal"><i class="fas fa-plus"></i> New Task</button>
       </div>
     </div>
   </div>
 </div>
 
 <div class="container-fluid mt-4 mb-5 text-light px-4">
+    <div class="row">
+      <div class="col-md-12 text-right mb-3">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal"><i class="fas fa-plus"></i> New Task</button>
+      </div>
+    </div>
     <div class="kanban-board" id="kanbanBoard">
         <!-- Columns will be rendered here -->
     </div>
@@ -105,7 +107,7 @@
     <div class="modal-content" style="background: #111; border: 1px solid #444; color: #fff; border-radius: 12px;">
       <div class="modal-header border-bottom border-secondary">
         <h5 class="modal-title">Create Task</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" onclick="$('#newTaskModal').modal('hide')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -134,6 +136,7 @@
   </div>
 </div>
 
+<?php require("footer.php"); ?>
 <script>
     const columns = ['To Do', 'In Progress', 'Review', 'Done'];
     
@@ -270,4 +273,3 @@
     });
 </script>
 
-<?php require("footer.php"); ?>

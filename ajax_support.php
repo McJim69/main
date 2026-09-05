@@ -8,18 +8,19 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 }
 
 $currentUser = $_SESSION['user'];
+$currentUserUno = $_SESSION['uno'];
 $isAdmin = ($_SESSION["access"] === "Admin");
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 
 switch ($action) {
     case 'fetch_tickets':
         if ($isAdmin && isset($_GET['all']) && $_GET['all'] == '1') {
-            $query = "SELECT t.*, u.fullname FROM mcjim_tickets t LEFT JOIN users u ON t.username = u.username ORDER BY t.updated_at DESC";
+            $query = "SELECT t.*, u.fullname, u.username FROM mcjim_tickets t LEFT JOIN users u ON t.user_uno = u.uno ORDER BY t.updated_at DESC";
             $stmt = $conn->prepare($query);
         } else {
-            $query = "SELECT t.*, u.fullname FROM mcjim_tickets t LEFT JOIN users u ON t.username = u.username WHERE t.username = ? ORDER BY t.updated_at DESC";
+            $query = "SELECT t.*, u.fullname, u.username FROM mcjim_tickets t LEFT JOIN users u ON t.user_uno = u.uno WHERE t.user_uno = ? ORDER BY t.updated_at DESC";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("s", $currentUser);
+            $stmt->bind_param("i", $currentUserUno);
         }
         $stmt->execute();
         $result = $stmt->get_result();
@@ -43,8 +44,8 @@ switch ($action) {
             exit;
         }
 
-        $stmt = $conn->prepare("INSERT INTO mcjim_tickets (username, subject, description, priority) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $currentUser, $subject, $description, $priority);
+        $stmt = $conn->prepare("INSERT INTO mcjim_tickets (user_uno, subject, description, priority) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("isss", $currentUserUno, $subject, $description, $priority);
         if ($stmt->execute()) {
             echo json_encode(['status' => 'success']);
         } else {
@@ -57,13 +58,13 @@ switch ($action) {
         $ticket_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
         
         // Verify ownership or admin
-        $stmt = $conn->prepare("SELECT t.*, u.fullname, u.imgUrl FROM mcjim_tickets t LEFT JOIN users u ON t.username = u.username WHERE t.id = ?");
+        $stmt = $conn->prepare("SELECT t.*, u.fullname, u.imgUrl, u.username FROM mcjim_tickets t LEFT JOIN users u ON t.user_uno = u.uno WHERE t.id = ?");
         $stmt->bind_param("i", $ticket_id);
         $stmt->execute();
         $ticket = $stmt->get_result()->fetch_assoc();
         $stmt->close();
         
-        if (!$ticket || (!$isAdmin && $ticket['username'] !== $currentUser)) {
+        if (!$ticket || (!$isAdmin && (int)$ticket['user_uno'] !== (int)$currentUserUno)) {
             echo json_encode(['status' => 'error', 'message' => 'Unauthorized or not found']);
             exit;
         }
@@ -71,7 +72,7 @@ switch ($action) {
         $ticket['created_at'] = date('M d, Y h:i A', strtotime($ticket['created_at']));
 
         // Fetch replies
-        $stmt = $conn->prepare("SELECT r.*, u.fullname, u.imgUrl, u.access FROM mcjim_ticket_replies r LEFT JOIN users u ON r.username = u.username WHERE r.ticket_id = ? ORDER BY r.created_at ASC");
+        $stmt = $conn->prepare("SELECT r.*, u.fullname, u.imgUrl, u.access, u.username FROM mcjim_ticket_replies r LEFT JOIN users u ON r.user_uno = u.uno WHERE r.ticket_id = ? ORDER BY r.created_at ASC");
         $stmt->bind_param("i", $ticket_id);
         $stmt->execute();
         $res = $stmt->get_result();
@@ -96,20 +97,20 @@ switch ($action) {
         }
 
         // Verify ticket access
-        $stmt = $conn->prepare("SELECT username, status FROM mcjim_tickets WHERE id = ?");
+        $stmt = $conn->prepare("SELECT user_uno, status FROM mcjim_tickets WHERE id = ?");
         $stmt->bind_param("i", $ticket_id);
         $stmt->execute();
         $ticket = $stmt->get_result()->fetch_assoc();
         $stmt->close();
 
-        if (!$ticket || (!$isAdmin && $ticket['username'] !== $currentUser)) {
+        if (!$ticket || (!$isAdmin && (int)$ticket['user_uno'] !== (int)$currentUserUno)) {
             echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
             exit;
         }
 
         // Add reply
-        $stmt = $conn->prepare("INSERT INTO mcjim_ticket_replies (ticket_id, username, message) VALUES (?, ?, ?)");
-        $stmt->bind_param("iss", $ticket_id, $currentUser, $message);
+        $stmt = $conn->prepare("INSERT INTO mcjim_ticket_replies (ticket_id, user_uno, message) VALUES (?, ?, ?)");
+        $stmt->bind_param("iis", $ticket_id, $currentUserUno, $message);
         if ($stmt->execute()) {
             // Update ticket status if admin replied and it's open
             if ($isAdmin && $ticket['status'] === 'Open') {
