@@ -1,5 +1,5 @@
 <?php 
-	require_once(__DIR__ . "/connect.php"); 
+	require_once(__DIR__ . "/../connect.php"); 
 	require_once(__DIR__ . "/version.php"); 
 
 	// Auth guard — redirect unauthenticated users to login

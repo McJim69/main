@@ -58,9 +58,7 @@
     <div class="row">
         <!-- Main Info -->
         <div class="col-md-8">
-            <?php ?>
-                <img src="images/projects/<?php echo htmlspecialchars($project['plink']); ?>/logo.png" class="img-fluid rounded mb-4" onerror="this.src='images/default.jpg';" alt="Logo" style="height:150px">
-			<?php ?>
+            <img src="images/projects/<?php echo htmlspecialchars($project['plink']); ?>/logo.png" class="img-fluid rounded mb-4" onerror="this.src='images/default.jpg';" alt="Logo" style="height:150px">
             <h3 class="mb-3">Overview</h3>
             <p><?php echo nl2br(htmlspecialchars($project['long_desc'] ?? '')); ?></p>
 
