@@ -76,7 +76,7 @@
 
             <div class="mt-5">
                 <a href="../projects/<?php echo htmlspecialchars($project['plink']); ?>/" target="_blank" class="btn btn-primary btn-lg">Live Demo</a> &nbsp;
-                <a href="https://github.com/McJim69/<?php echo htmlspecialchars($project['plink']); ?>" target="_blank" class="btn btn-primary btn-lg">Git Repo</a>
+                <a href="https://github.com/McJim69/<?php echo htmlspecialchars($project['plink']); ?>" target="_blank" class="btn btn-primary btn-lg">Github Repo</a>
             </div><br>
         </div>
 
