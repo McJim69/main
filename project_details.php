@@ -75,8 +75,8 @@
             <?php endif; ?>
 
             <div class="mt-5">
-                <a href="../projects/<?php echo htmlspecialchars($project['plink']); ?>/" target="_blank" class="btn btn-primary btn-lg">Try Live Demo</a> &nbsp;
-                <a href="https://github.com/McJim69/<?php echo htmlspecialchars($project['plink']); ?>" target="_blank" class="btn btn-primary btn-lg">Source Code</a>
+                <a href="../projects/<?php echo htmlspecialchars($project['plink']); ?>/" target="_blank" class="btn btn-primary btn-lg">Live Demo</a> &nbsp;
+                <a href="https://github.com/McJim69/<?php echo htmlspecialchars($project['plink']); ?>" target="_blank" class="btn btn-primary btn-lg">Git Repo</a>
             </div><br>
         </div>
 
