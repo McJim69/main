@@ -58,8 +58,8 @@
 <header id="hero">
 	<div class="video-container">
 		<video id="introVideo" autoplay muted loop playsinline poster="images/mcjim-cyberworks2.webp">
-			<source src="mcjim-server.com2.mp4" type="video/mp4" media="(max-width: 768px)">
-			<source src="mcjim-server.com1.mp4" type="video/mp4">
+			<source src="/images/mcjim-server.com2.mp4" type="video/mp4" media="(max-width: 768px)">
+			<source src="/images/mcjim-server.com1.mp4" type="video/mp4">
 		</video>
     </div>
 	<canvas id="particles"></canvas>

@@ -334,3 +334,43 @@ Stack trace:
 [05-Sep-2026 16:15:06 UTC] PHP Stack trace:
 [05-Sep-2026 16:15:06 UTC] PHP   1. {main}() D:\Server\www\index.php:0
 [05-Sep-2026 16:15:06 UTC] PHP   2. require() D:\Server\www\index.php:7
+[05-Sep-2026 20:35:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:35:32 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:38:18 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:38:46 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:38:52 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:38:53 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:38:54 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:38:55 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "WEBFORMS_API" in D:\Server\www\contact.php:62
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 20:44:36 UTC] PHP Warning:  Undefined variable $db in D:\Server\www\setup_phase2.php on line 38
+[05-Sep-2026 20:44:36 UTC] PHP Stack trace:
+[05-Sep-2026 20:44:36 UTC] PHP   1. {main}() D:\Server\www\setup_phase2.php:0
+[05-Sep-2026 20:44:36 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in D:\Server\www\setup_phase2.php:38
+Stack trace:
+#0 D:\Server\www\setup_phase2.php(38): mysqli_query(NULL, 'CREATE TABLE IF...')
+#1 {main}
+  thrown in D:\Server\www\setup_phase2.php on line 38
