@@ -326,3 +326,11 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in D:\Server\www\contact.php on line 62
+[05-Sep-2026 15:52:06 UTC] PHP Warning:  Undefined array key "access" in D:\Server\www\menunav.php on line 92
+[05-Sep-2026 15:52:06 UTC] PHP Stack trace:
+[05-Sep-2026 15:52:06 UTC] PHP   1. {main}() D:\Server\www\error_codes.php:0
+[05-Sep-2026 15:52:06 UTC] PHP   2. require() D:\Server\www\error_codes.php:4
+[05-Sep-2026 16:15:06 UTC] PHP Warning:  Undefined array key "access" in D:\Server\www\menunav.php on line 92
+[05-Sep-2026 16:15:06 UTC] PHP Stack trace:
+[05-Sep-2026 16:15:06 UTC] PHP   1. {main}() D:\Server\www\index.php:0
+[05-Sep-2026 16:15:06 UTC] PHP   2. require() D:\Server\www\index.php:7
