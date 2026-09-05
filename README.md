@@ -47,12 +47,12 @@ Open `connect.php` and configure your environment-specific fields:
 ```php
 <?php
 // connect.php - Core Infrastructure & API Ecosystem Tokens
-$host     = "localhost";
-$username = "YOUR_LOCAL_DB_USER";
-$password = "YOUR_LOCAL_DB_PASSWORD";
-$database = "mcjim_cyberworks_db";
+$dbhost = "YOUR_DB_HOST";
+$dbuser = "YOUR_DB_USER";
+$dbpass = "YOUR_DB_PASS";
+$dbname = "YOUR_DB_NAME";
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 
 if ($conn->connect_error) {
     die("Infrastructure Connection Failure: " . $conn->connect_error);
