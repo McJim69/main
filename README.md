@@ -19,10 +19,17 @@
 *   **Rich Messaging:** Support for file attachments, images, and message reactions.
 *   **WebRTC Integration:** Built-in audio and video calling powered by the Jitsi Meet API, complete with custom ringing overlays and in-app call invitations.
 
-### 🚀 Dynamic Project Portfolio
+### 🚀 Dynamic Project Portfolio & Management
 *   **Showcase Grid:** A dynamic, database-driven grid displaying web development projects.
 *   **Deep Dives:** Detailed project pages complete with image galleries, tech stack breakdowns, and live demo links.
 *   **Admin CRUD:** A backend management system allowing administrators to easily add, edit, or remove portfolio items.
+
+### 💼 Business Operations & Admin Dashboard
+*   **Centralized Dashboard:** A unified `dashboard.php` providing a high-level overview of system metrics, active users, and quick links.
+*   **Support Ticket System:** A complete helpdesk module allowing users to create tickets, and admins to reply, close, and manage support requests.
+*   **Kanban Task Management:** A drag-and-drop Kanban board (`kanban.php`) for tracking internal tasks and development progress.
+*   **Invoicing & Billing:** Generate, track, and manage client invoices directly through the admin portal.
+*   **Documentation & File Sharing:** Dedicated modules for managing technical documentation (`docs.php`) and secure file drops (`file-drop.php`).
 
 ### 📰 Social Feed & Blogging
 *   **Community Posts:** An interactive social feed allowing users to share text, images, and thoughts.
@@ -43,6 +50,7 @@
 *   **Frontend:** HTML5, CSS3, JavaScript (jQuery + AJAX), Bootstrap
 *   **Media Processing:** Hardware-accelerated Lightbox2 and native HTML5 video
 *   **Communication:** Jitsi Meet External API for WebRTC calls
+*   **Caching Strategy:** Global dynamic cache-busting driven by `SITE_VERSION` (`version.php`) for seamless CSS/JS updates.
 
 ## ⚙️ Environment Requirements
 
