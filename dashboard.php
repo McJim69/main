@@ -9,7 +9,7 @@
 	require("menunav.php");
 ?>
 
-<script>setActive("home");</script>
+<script>setActive("dashboard");</script>
 
 <style>
 .dashboard-card {

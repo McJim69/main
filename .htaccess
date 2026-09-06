@@ -1,4 +1,4 @@
-ErrorDocument 400  /error_codes.php
+ErrorDocument 400 /error_codes.php
 ErrorDocument 403 /error_codes.php
 ErrorDocument 404 /error_codes.php
 ErrorDocument 408 /error_codes.php

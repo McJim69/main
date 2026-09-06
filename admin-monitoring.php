@@ -25,30 +25,29 @@ require("menunav.php");
     </div>
   </div>
 </div>
-
-<div class="services" style="padding-top: 50px;">
+<div style="margin-top:-80px"> </div>
+<div class="services" style="margin-bottom:20px">
   <div class="container">
-    
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div style="background:var(--bg-card); padding:20px; border-radius:10px; border: 1px solid var(--border-glass);">
             <h4 style="color:#fff; margin-bottom: 20px;">Add Server</h4>
             <form id="serverForm">
                 <input type="hidden" name="action" value="add_server">
                 <div class="mb-3">
                     <label>Server Name / Domain</label>
-                    <input type="text" class="form-control" name="server_name" placeholder="Client A Website" required>
+                    <input type="text" class="form-control" name="server_name" placeholder="Client Website" required>
                 </div>
                 <div class="mb-3">
                     <label>URL (Include http/https)</label>
-                    <input type="url" class="form-control" name="url" placeholder="https://client-a.com" required>
+                    <input type="url" class="form-control" name="url" placeholder="https://client.com" required>
                 </div>
                 <button type="submit" class="btn btn-primary filled-button w-100">Add Server</button>
             </form>
         </div>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-md-9">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 style="color:#fff;">Monitored Servers</h4>
             <button class="btn btn-success" onclick="runAllChecks()" id="runChecksBtn"><i class="fa fa-refresh"></i> Run All Checks</button>
@@ -92,7 +91,7 @@ function loadServers() {
                 $("#serverList").html('<div class="alert alert-info">No servers being monitored.</div>');
                 return;
             }
-            let html = '<table class="table table-dark table-striped"><thead><tr><th>Server</th><th>Status</th><th>Response Time</th><th>Last Checked</th><th>Action</th></tr></thead><tbody>';
+            let html = '<table class="table table-dark table-striped"><thead><tr><th>Server</th><th>Status</th><th>Response</th><th>Last Checked</th><th>Action</th></tr></thead><tbody>';
             response.data.forEach(s => {
                 serverIds.push(s.id);
                 let badge = s.status == 'Online' ? 'success' : (s.status == 'Offline' ? 'danger' : 'secondary');
