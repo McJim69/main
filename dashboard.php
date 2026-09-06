@@ -107,7 +107,7 @@
             <a href="kanban.php" class="dashboard-card">
                 <i class="fa fa-archive fa-4x mb-3 text-danger"></i>
                 <h4 class="text-white">Kanban</h4>
-                <p class="small text-muted mt-2">Manage and improve workflow</p>
+                <p class="small text-muted mt-2">Manage and track workflow</p>
             </a>
         </div>
         <div class="col-md-3 mb-4">

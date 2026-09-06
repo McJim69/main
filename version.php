@@ -1,1 +1,1 @@
-<?php define('SITE_VERSION', '2.4.0'); ?>
+<?php define('SITE_VERSION', '2.4.1'); ?>
