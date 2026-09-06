@@ -54,11 +54,11 @@
 					<li class="nav-item" id="media">
 						<a class="nav-link" href="movies.php">Movies</a>
 					</li>				  
-					<li class="nav-item" id="contact">
-						<a class="nav-link" href="contact.php">Contact</a>
-					</li>		
 					<li class="nav-item" id="blog">
 						<a class="nav-link" href="blog.php">Blog</a>
+					</li>		
+					<li class="nav-item" id="contact">
+						<a class="nav-link" href="contact.php">Contact</a>
 					</li>		
 					<?php if(!isset($_SESSION['user'])){ ?>
 					<li class="nav-item" id="login">
@@ -90,32 +90,6 @@
 						<li class="nav-item" id="meet"><a class="nav-link" href="https://meet.mcjim-server.com" target="_blank">Meet</a></li>	
 						<li class="nav-item" id="chat"><a class="nav-link" href="chat/">Chat</a></li>		
 						<li class="nav-item" id="user"><a class="nav-link" href="user_profile.php">Profile</a></li>
-						<?php if ($_SESSION["access"]=="Admin"){ ?>
-						<li class="nav-item" id="users">
-							<a class="nav-link" href="admin-users.php">Users</a>
-						</li>		
-						<li class="nav-item" id="projects">
-							<a class="nav-link" href="admin-projects.php">Projects</a>
-						</li>		
-						<li class="nav-item" id="tickets">
-							<a class="nav-link" href="admin-support.php">Tickets</a>
-						</li>		
-						<li class="nav-item" id="kanban">
-							<a class="nav-link" href="kanban.php">Kanban</a>
-						</li>
-						<li class="nav-item" id="admin-invoices">
-							<a class="nav-link" href="admin-invoices.php">Manage Invoices</a>
-						</li>
-						<li class="nav-item" id="admin-docs">
-							<a class="nav-link" href="admin-docs.php">Manage Wiki</a>
-						</li>
-						<li class="nav-item" id="admin-monitoring">
-							<a class="nav-link" href="admin-monitoring.php">Server Monitor</a>
-						</li>
-						<li class="nav-item" id="admin-tasks">
-							<a class="nav-link" href="admin-tasks.php">Scheduled Tasks</a>
-						</li>		
-						<?php } ?>
 						<li class="nav-item" id="logout"><a class="nav-link" onclick="endSession();" href="#">Logout</a></li>
 					  </ul>
 					</li>

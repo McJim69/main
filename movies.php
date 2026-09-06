@@ -102,7 +102,7 @@
 
 <div class="page-heading header-text">
 	<div class="container" style="margin-top:0;margin-bottom:-50px">
-		<div class="row d-flex justify-content-center align-items-center">
+		<div class="row d-flex justify-content-center align-items-center" style="margin-top:-50px">
 			<div class="col">
 				<div>
 					<h1>MOVIE GRID</h1>

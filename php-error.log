@@ -420,3 +420,6 @@ Stack trace:
 #0 D:\Server\www\test_view_invoice.php(11): include()
 #1 {main}
   thrown in D:\Server\www\view-invoice.php on line 29
+[06-Sep-2026 01:39:38 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[06-Sep-2026 01:39:38 UTC] PHP Stack trace:
+[06-Sep-2026 01:39:38 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0

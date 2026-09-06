@@ -704,8 +704,8 @@ footer ul.menu-list li a:hover {
 .page-heading {
   background: url(/images/mcjim-cyberworks1.webp) no-repeat center center;
   background-size: cover;
-  padding: 140px 0px 50px 0px;
-  min-height: 320px;
+  padding: 130px 0px 40px 0px;
+  min-height: 330px;
   display: flex;
   flex-direction: column;
   justify-content: center;
