@@ -1,4 +1,6 @@
 var notifiedMaxMsgId = localStorage.getItem('notifiedMaxMsgId') ? parseInt(localStorage.getItem('notifiedMaxMsgId')) : 0;
+var ringInterval = null;
+var ringAudioCtx = null;
 
 function getAvatarUrl(imgUrl) {
 	if (!imgUrl || imgUrl === 'blank.jpg' || imgUrl === '' || imgUrl === 'mcjim.jpg') {
@@ -80,18 +82,121 @@ function showChatNotificationToast(msg) {
 		toast.show();
 	}
 	
-	// Auto hide after 6 seconds
+	// Play notification sound or ringing
+	if (msg.message.indexOf('[CALL:') === 0) {
+		playNotificationRingSound();
+	} else {
+		var audio = new Audio('chat/sounds/notification.mp3');
+		audio.play().catch(function(e) {
+			console.log("Audio play failed: ", e);
+		});
+	}
+
+	// Trigger aggressive desktop notification if browser is out of focus/minimized
+	if ("Notification" in window && Notification.permission === "granted") {
+		// We only want to notify if the document is hidden/unfocused, but for aggressive we can do it anyway
+		// or at least if document is not visible.
+		if (document.hidden || !document.hasFocus()) {
+			var notification = new Notification("New message from " + msg.sender_name, {
+				body: previewMessage,
+				icon: avatarSrc,
+				tag: 'chat-notify-' + msg.room_id // Prevent spamming by grouping by room
+			});
+			notification.onclick = function() {
+				window.focus();
+				window.location.href = 'chat/';
+				this.close();
+			};
+		}
+	}
+	
+	// Auto hide
+	var hideDelay = msg.message.indexOf('[CALL:') === 0 ? 15000 : 6000;
 	setTimeout(function() {
 		toast.fadeOut(300);
-	}, 6000);
+		if (msg.message.indexOf('[CALL:') === 0) {
+			stopNotificationRingSound();
+		}
+	}, hideDelay);
 }
 
 function dismissToast(e) {
 	e.stopPropagation();
 	$('#portalChatToast').fadeOut(300);
+	stopNotificationRingSound();
+}
+
+function playNotificationRingSound() {
+	stopNotificationRingSound();
+	try {
+		var AudioCtx = window.AudioContext || window.webkitAudioContext;
+		if (!AudioCtx) return;
+		ringAudioCtx = new AudioCtx();
+		
+		var playRing = function() {
+			if (!ringAudioCtx) return;
+			if (ringAudioCtx.state === 'suspended') ringAudioCtx.resume();
+			
+			var osc1 = ringAudioCtx.createOscillator();
+			var osc2 = ringAudioCtx.createOscillator();
+			var lfo = ringAudioCtx.createOscillator();
+			var lfoGain = ringAudioCtx.createGain();
+			var mainGain = ringAudioCtx.createGain();
+			
+			osc1.type = 'sine';
+			osc1.frequency.value = 440;
+			osc2.type = 'sine';
+			osc2.frequency.value = 453;
+			
+			lfo.type = 'sine';
+			lfo.frequency.value = 18;
+			lfoGain.gain.value = 15;
+			
+			mainGain.gain.setValueAtTime(0, ringAudioCtx.currentTime);
+			mainGain.gain.linearRampToValueAtTime(0.2, ringAudioCtx.currentTime + 0.1);
+			mainGain.gain.setValueAtTime(0.2, ringAudioCtx.currentTime + 1.4);
+			mainGain.gain.exponentialRampToValueAtTime(0.001, ringAudioCtx.currentTime + 1.5);
+			
+			lfo.connect(lfoGain);
+			lfoGain.connect(osc1.frequency);
+			lfoGain.connect(osc2.frequency);
+			
+			osc1.connect(mainGain);
+			osc2.connect(mainGain);
+			mainGain.connect(ringAudioCtx.destination);
+			
+			osc1.start();
+			osc2.start();
+			lfo.start();
+			
+			osc1.stop(ringAudioCtx.currentTime + 1.5);
+			osc2.stop(ringAudioCtx.currentTime + 1.5);
+			lfo.stop(ringAudioCtx.currentTime + 1.5);
+		};
+		
+		playRing();
+		ringInterval = setInterval(playRing, 3000);
+	} catch(e) {
+		console.error(e);
+	}
+}
+
+function stopNotificationRingSound() {
+	if (ringInterval) clearInterval(ringInterval);
+	if (ringAudioCtx) {
+		try { ringAudioCtx.close(); } catch(e){}
+		ringAudioCtx = null;
+	}
 }
 
 jQuery(document).ready(function($) {
+	// Request desktop notification permission on load if not already granted
+	if ("Notification" in window) {
+		if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+			Notification.requestPermission();
+		}
+	}
+
 	checkChatNotifications();
 	setInterval(checkChatNotifications, 3500);
 });

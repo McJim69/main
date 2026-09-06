@@ -9,7 +9,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 
 $isAdmin = ($_SESSION["access"] === "Admin");
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
-$userId = $_SESSION['id'] ?? 0;
+$currentUser = $_SESSION['user'];
 
 if ($action == '') {
     echo json_encode(['status' => 'error', 'message' => 'No action specified']);
@@ -113,17 +113,36 @@ if ($action == 'create_category') {
     exit;
 }
 
+// Update Category
+if ($action == 'update_category') {
+    $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+    $title = isset($_POST['title']) ? trim($_POST['title']) : '';
+    $description = isset($_POST['description']) ? trim($_POST['description']) : '';
+    if ($id <= 0 || empty($title)) {
+        echo json_encode(['status' => 'error', 'message' => 'ID and Title are required']);
+        exit;
+    }
+    $stmt = $conn->prepare("UPDATE mcjim_wiki_categories SET title = ?, description = ? WHERE id = ?");
+    $stmt->bind_param("ssi", $title, $description, $id);
+    if ($stmt->execute()) {
+        echo json_encode(['status' => 'success', 'message' => 'Category updated successfully']);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to update category']);
+    }
+    exit;
+}
+
 // Delete Category
 if ($action == 'delete_category') {
     $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
     
-    // Check if articles exist in this category
-    $stmt = $conn->prepare("SELECT COUNT(*) as cnt FROM mcjim_wiki_articles WHERE category_id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $res = $stmt->get_result()->fetch_assoc();
-    if ($res['cnt'] > 0) {
-        echo json_encode(['status' => 'error', 'message' => 'Cannot delete category because it contains articles.']);
+    // Check if category has articles
+    $check = $conn->prepare("SELECT COUNT(*) as count FROM mcjim_wiki_articles WHERE category_id = ?");
+    $check->bind_param("i", $id);
+    $check->execute();
+    $res = $check->get_result()->fetch_assoc();
+    if ($res['count'] > 0) {
+        echo json_encode(['status' => 'error', 'message' => 'Cannot delete category. Please remove or reassign its articles first.']);
         exit;
     }
     

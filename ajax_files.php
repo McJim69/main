@@ -71,6 +71,16 @@ if ($action == 'upload') {
     }
     
     $uploadDir = __DIR__ . '/uploads/secure_files/';
+    if (!is_dir($uploadDir)) {
+        if (!mkdir($uploadDir, 0755, true)) {
+            echo json_encode(['status' => 'error', 'message' => 'Upload directory could not be created. Please contact the administrator.']);
+            exit;
+        }
+    }
+    if (!is_writable($uploadDir)) {
+        echo json_encode(['status' => 'error', 'message' => 'Upload directory is not writable. Please contact the administrator.']);
+        exit;
+    }
     // Generate a secure, unique filename to prevent overwriting and guessing
     $secureName = uniqid() . '_' . bin2hex(random_bytes(8)) . '.' . $ext;
     $destPath = $uploadDir . $secureName;
@@ -88,7 +98,9 @@ if ($action == 'upload') {
             echo json_encode(['status' => 'error', 'message' => 'Database error during upload']);
         }
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to move uploaded file']);
+        $error = error_get_last();
+        $errMsg = $error ? $error['message'] : 'Unknown error';
+        echo json_encode(['status' => 'error', 'message' => 'Failed to move uploaded file: ' . $errMsg]);
     }
     exit;
 }

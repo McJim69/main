@@ -1,8 +1,8 @@
 <?php 
 	require_once(__DIR__ . "/../connect.php"); 
-	require_once(__DIR__ . "/version.php"); 
+	require_once(__DIR__ . "/../version.php"); 
 
-	// Auth guard — redirect unauthenticated users to login
+	// Auth guard â€” redirect unauthenticated users to login
 	if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 		header('Location: ../login.php');
 		exit;
@@ -11,6 +11,7 @@
 	// Assign session variables for use in this page
 	$currentUser    = $_SESSION['user'];
 	$currentUserImg = $_SESSION['imgUrl'] ?? 'blank.jpg';
+	$currentUserFullname = $_SESSION['fullname'] ?? $currentUser;
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -23,6 +24,10 @@
 	<link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 	<link href="chat.css?v=<?= SITE_VERSION ?>" rel="stylesheet">	
+	<style>
+		.blink { animation: blinker 1s linear infinite; }
+		@keyframes blinker { 50% { opacity: 0; } }
+	</style>
 </head>
 <body>
 	<!-- Main Workspace -->
@@ -111,15 +116,40 @@
 				<button class="btn btn-link btn-xs text-danger p-0 border-0" onclick="cancelReply()"><i class="fas fa-times"></i></button>
 			</div>
 
+			<!-- Attachment Preview Header -->
+			<div id="attachmentPreviewBar" style="display: none; background: var(--bg-sidebar); border-top: 1px solid var(--border-color); padding: 8px 20px; align-items: center; justify-content: space-between; font-size: 12.5px;">
+				<div class="text-muted d-flex align-items-center gap-2">
+					<i class="fas fa-paperclip"></i>
+					<span>Attached: <b id="attachmentFileName">file.ext</b></span>
+				</div>
+				<button class="btn btn-link btn-xs text-danger p-0 border-0" onclick="cancelAttachment()"><i class="fas fa-times"></i></button>
+			</div>
+
+			<!-- Typing Indicator -->
+			<div id="typingIndicator" style="display: none; padding: 0 20px 8px; font-size: 12px; color: #888; font-style: italic;">
+				Someone is typing...
+			</div>
+
 			<!-- Input Footer -->
 			<div class="chat-pane-footer">
 				<button class="input-action-btn" title="Attach file" onclick="triggerFileUpload()">
 					<i class="fas fa-paperclip"></i>
 				</button>
+				<button class="input-action-btn" title="Voice Memo" id="micBtn" type="button" onclick="toggleVoiceMemo()">
+					<i class="fas fa-microphone"></i>
+				</button>
 				<input type="file" id="attachmentInput" style="display: none;" onchange="handleFileSelected()">
 				
 				<div class="footer-input-wrapper" style="position: relative;">
-					<textarea class="footer-input" id="messageInput" placeholder="Write a message..." rows="1" maxlength="5000" onkeydown="handleInputKeyDown(event)"></textarea>
+					<!-- Recording Overlay -->
+					<div id="recordingOverlay" style="display:none; position:absolute; inset:0; background:var(--bg-input); z-index:10; border-radius:12px; align-items:center; padding:0 15px; justify-content:space-between;">
+					    <div class="d-flex align-items-center gap-2 text-danger">
+					        <i class="fas fa-circle blink"></i> <span id="recordingTime">0:00</span>
+					    </div>
+					    <button class="btn btn-sm btn-danger rounded-circle" style="width:28px; height:28px; padding:0;" onclick="stopVoiceMemo()"><i class="fas fa-stop"></i></button>
+					</div>
+
+					<textarea class="footer-input" id="messageInput" placeholder="Write a message..." rows="1" maxlength="5000" onkeydown="handleInputKeyDown(event)" oninput="autoExpand(this); handleTyping()"></textarea>
 					
 					<!-- Emoji Trigger Button -->
 					<button class="emoji-trigger-btn" id="emojiPickerBtn" title="Insert Emoji" type="button" onclick="toggleEmojiPicker(event)">
@@ -261,6 +291,71 @@
 		</div>
 	</div>
 
+	<!-- Edit Message Modal -->
+	<div class="modal fade" id="editMessageModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content" style="background: var(--bg-sidebar); border: 1px solid var(--border-color); color: #fff; border-radius: 16px;">
+				<div class="modal-header" style="border-bottom: 1px solid var(--border-color);">
+					<h5 class="modal-title font-weight-bold">Edit Message</h5>
+					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" id="editMessageId">
+					<textarea class="form-control text-white" id="editMessageText" rows="3" style="background: var(--bg-card); border-color: var(--border-color); border-radius: 8px;"></textarea>
+				</div>
+				<div class="modal-footer" style="border-top: 1px solid var(--border-color);">
+					<button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal" style="border-radius: 8px;">Cancel</button>
+					<button type="button" class="btn btn-primary font-weight-bold" onclick="submitEditMessage()" style="border-radius: 8px;">Save Changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Delete Message Modal -->
+	<div class="modal fade" id="deleteMessageModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content" style="background: var(--bg-sidebar); border: 1px solid var(--border-color); color: #fff; border-radius: 16px;">
+				<div class="modal-header" style="border-bottom: 1px solid var(--border-color);">
+					<h5 class="modal-title font-weight-bold text-danger">Unsend Message</h5>
+					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to unsend this message for everyone?</p>
+					<input type="hidden" id="deleteMessageId">
+				</div>
+				<div class="modal-footer" style="border-top: 1px solid var(--border-color);">
+					<button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal" style="border-radius: 8px;">Cancel</button>
+					<button type="button" class="btn btn-danger font-weight-bold" onclick="submitUnsendMessage()" style="border-radius: 8px;">Unsend Message</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Delete Group Modal -->
+	<div class="modal fade" id="deleteGroupModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content" style="background: var(--bg-sidebar); border: 1px solid var(--border-color); color: #fff; border-radius: 16px;">
+				<div class="modal-header" style="border-bottom: 1px solid var(--border-color);">
+					<h5 class="modal-title font-weight-bold text-danger">Delete Group Chat</h5>
+					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to delete this group chat? This will remove all members and messages permanently.</p>
+				</div>
+				<div class="modal-footer" style="border-top: 1px solid var(--border-color);">
+					<button type="button" class="btn btn-secondary font-weight-bold" data-dismiss="modal" style="border-radius: 8px;">Cancel</button>
+					<button type="button" class="btn btn-danger font-weight-bold" onclick="submitDeleteGroup()" style="border-radius: 8px;">Delete Group</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Jitsi API JS -->
 	<script src="https://meet.mcjim-server.com/external_api.js"></script>
 	<script src="../vendor/jquery/jquery.min.js"></script>
@@ -269,6 +364,7 @@
 	<script>
 		var myUsername = <?php echo json_encode($currentUser); ?>;
 		var myAvatar = <?php echo json_encode($currentUserImg); ?>;
+		var myFullname = <?php echo json_encode($currentUserFullname); ?>;
 		
 		function getAvatarUrl(imgUrl) {
 			if (!imgUrl || imgUrl === 'blank.jpg' || imgUrl === 'blank.png' || imgUrl === 'mcjim.jpg') {
@@ -389,6 +485,7 @@
 
 		var lastMessagesLength = 0;
 		var lastMessagesJson = "";
+		var lastSeenDataJson = "";
 		function fetchMessages() {
 			if (!activeChatId) return;
 			
@@ -398,17 +495,27 @@
 				dataType: 'json',
 				success: function(res) {
 					if (res.status === 'success') {
+					    // Handle Typing Indicator
+					    if (res.typing_users && res.typing_users.length > 0) {
+					        var ttext = res.typing_users.length === 1 ? res.typing_users[0] + " is typing..." : res.typing_users.join(", ") + " are typing...";
+					        $('#typingIndicator').text(ttext).show();
+					    } else {
+					        $('#typingIndicator').hide();
+					    }
+					
 						var currentJson = JSON.stringify(res.messages);
-						if (currentJson !== lastMessagesJson) {
+						var currentSeenJson = JSON.stringify(res.seen_data);
+						if (currentJson !== lastMessagesJson || currentSeenJson !== lastSeenDataJson) {
 							lastMessagesJson = currentJson;
-							renderMessages(res.messages);
+							lastSeenDataJson = currentSeenJson;
+							renderMessages(res.messages, res.seen_data);
 						}
 					}
 				}
 			});
 		}
 
-		function renderMessages(messages) {
+		function renderMessages(messages, seenData = {}) {
 			var html = '';
 			messages.forEach(function(msg) {
 				var isSelf = msg.sender === myUsername;
@@ -466,6 +573,22 @@
 					reactionBadge += `</div>`;
 				}
 
+				// Read receipts
+				var seenHtml = '';
+				var seenUsers = [];
+				for (var uname in seenData) {
+				    if (seenData[uname].last_seen_message_id === msg.id) {
+				        seenUsers.push(seenData[uname]);
+				    }
+				}
+				if (seenUsers.length > 0) {
+				    seenHtml = `<div class="d-flex ${isSelf ? 'justify-content-end' : ''} gap-1 mt-1">`;
+				    seenUsers.forEach(function(u) {
+				        seenHtml += `<img src="${getAvatarUrl(u.imgUrl)}" class="rounded-circle shadow-sm" style="width:14px; height:14px; object-fit:cover;" title="Seen">`;
+				    });
+				    seenHtml += '</div>';
+				}
+
 				html += `
 					<div class="chat-row ${chatClass}">
 						${!isSelf ? `<img src="${avatarPath}" class="bubble-avatar" alt="Avatar">` : ''}
@@ -478,8 +601,8 @@
 								${!msg.is_unsent ? `
 								<!-- Reaction Hover Bar -->
 								<div class="reaction-hover-bar">
-									<a href="#" onclick="sendReaction(${msg.id}, '👍'); return false;">👍</a>
 									<a href="#" onclick="sendReaction(${msg.id}, '❤️'); return false;">❤️</a>
+									<a href="#" onclick="sendReaction(${msg.id}, '👍'); return false;">👍</a>
 									<a href="#" onclick="sendReaction(${msg.id}, '😂'); return false;">😂</a>
 									<a href="#" onclick="sendReaction(${msg.id}, '😮'); return false;">😮</a>
 									<a href="#" onclick="sendReaction(${msg.id}, '😢'); return false;">😢</a>
@@ -491,6 +614,7 @@
 								<span>${msg.sent_at}</span>
 								${hoverControls}
 							</div>
+							${seenHtml}
 						</div>
 					</div>
 				`;
@@ -522,56 +646,59 @@
 		function parseMessageBody(msgText) {
 			msgText = trim(msgText);
 			
-			// File parsing
-			var fileMatch = msgText.match(/^\[FILE:(.+?)\|(.+?)\]$/);
-			if (fileMatch) {
-				var name = fileMatch[1];
-				var path = fileMatch[2];
+			// Call parsing check first
+			var callMatch = msgText.match(/^\[CALL:(.+?)\|(.+?)\]$/);
+			if (callMatch) {
+				return `Call Ended`;
+			}
+			
+			// Process attachments
+			var fileRegex = /\[FILE:(.+?)\|(.+?)\]/g;
+			var attachmentsHtml = '';
+			var match;
+			
+			while ((match = fileRegex.exec(msgText)) !== null) {
+				var name = match[1];
+				var path = match[2];
 				var ext = name.split('.').pop().toLowerCase();
 				
 				if (['png','jpg','jpeg','gif','webp'].includes(ext)) {
-					return `<img src="${path}" class="img-fluid rounded shadow-xs" style="max-width:240px; cursor:zoom-in;" onclick="openLightbox('${path}', 'image')">`;
-				} else if (['mp4','webm','ogg'].includes(ext)) {
-					return `
-						<div style="position:relative; max-width:240px; border-radius:12px; overflow:hidden;" onclick="openLightbox('${path}', 'video')">
+					attachmentsHtml += `<div class="mt-2"><img src="${path}" class="img-fluid rounded shadow-xs" style="max-width:240px; cursor:zoom-in;" onclick="openLightbox('${path}', 'image')"></div>`;
+				} else if (['mp4','webm','ogg'].includes(ext) && !name.startsWith('voicememo_')) {
+					attachmentsHtml += `
+						<div class="mt-2" style="position:relative; max-width:240px; border-radius:12px; overflow:hidden;" onclick="openLightbox('${path}', 'video')">
 							<video src="${path}#t=0.1" style="width:100%; aspect-ratio:3/2; object-fit:cover; display:block;" preload="auto" muted playsinline></video>
 							<div style="position:absolute; top:0; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); font-size:32px; color:#fff;"><i class="fas fa-play-circle"></i></div>
 						</div>
 					`;
+				} else if (name.startsWith('voicememo_') || ['mp3','wav','m4a','aac'].includes(ext)) {
+					attachmentsHtml += `
+						<div class="mt-2 d-flex align-items-center gap-2" style="background:rgba(255,255,255,0.07); border-radius:12px; padding:8px 12px; max-width:280px;">
+							<i class="fas fa-microphone" style="font-size:16px; color:#aaa;"></i>
+							<audio controls src="${path}" style="flex:1; height:28px; min-width:0;"></audio>
+						</div>
+					`;
 				} else {
-					return `
-						<a href="${path}" download class="btn btn-outline-light btn-sm text-left p-2 d-flex align-items-center gap-2" style="border-radius:12px; background:rgba(255,255,255,0.05);">
+					attachmentsHtml += `
+						<div class="mt-2"><a href="${path}" download class="btn btn-outline-light btn-sm text-left p-2 d-flex align-items-center gap-2" style="border-radius:12px; background:rgba(255,255,255,0.05);">
 							<i class="fas fa-file-download" style="font-size:18px;"></i>
 							<div style="line-height:1.2;">
 								<span class="d-block font-weight-bold" style="font-size:11.5px;">${truncateString(name, 20)}</span>
 								<span class="small text-muted" style="font-size:9.5px;">Click to download</span>
 							</div>
-						</a>
+						</a></div>
 					`;
 				}
 			}
 			
-			// Call parsing
-			var callMatch = msgText.match(/^\[CALL:(.+?)\|(.+?)\]$/);
-			if (callMatch) {
-				var type = callMatch[1];
-				var room = callMatch[2];
-				var title = type === 'video' ? 'Video Call' : 'Audio Call';
-				var icon = type === 'video' ? 'fa-video' : 'fa-phone';
-				
-				return `
-					<div class="p-3 border mt-1 shadow-sm text-center" style="background:#111e2e; border-color:#1e3a5f; color:#fff; border-radius:16px; min-width:200px; max-width:240px;">
-						<div class="mb-2 text-primary" style="font-size:22px;"><i class="fas ${icon}"></i></div>
-						<h6 class="font-weight-bold mb-1" style="font-size:13px; color:#fff;">${title}</h6>
-						<p class="text-muted small mb-3" style="font-size:9.5px;">Click below to join the call room.</p>
-						<button class="btn btn-success btn-sm btn-block font-weight-bold py-1.5" style="border-radius:8px;" onclick="joinJitsiCall('${escapeHtml(room)}', '${escapeHtml(type)}'); return false;">
-							<i class="fas fa-phone-volume mr-1"></i> Join Call
-						</button>
-					</div>
-				`;
+			// Remove attachment tags from text
+			var textPart = msgText.replace(/\[FILE:.+?\|.+?\]/g, '').trim();
+			var finalHtml = '';
+			if (textPart !== '') {
+			    finalHtml += formatLinks(escapeHtml(textPart).replace(/\n/g, '<br>'));
 			}
-			
-			return escapeHtml(msgText);
+			finalHtml += attachmentsHtml;
+			return finalHtml;
 		}
 
 		// Send operations
@@ -600,9 +727,10 @@
 				success: function(res) {
 					if (res.status === 'success') {
 						$('#messageInput').val('');
+						$('#messageInput').css('height', 'auto');
 						$('#attachmentInput').val('');
-						replyToMsgId = null;
-						$('#replyPreviewBar').hide();
+						cancelReply();
+						cancelAttachment();
 						fetchMessages();
 						refreshConversations();
 					} else {
@@ -613,13 +741,20 @@
 		}
 
 		function unsendMessage(msgId) {
-			if (!confirm("Are you sure you want to unsend this message?")) return;
+			$('#deleteMessageId').val(msgId);
+			$('#deleteMessageModal').modal('show');
+		}
+
+		function submitUnsendMessage() {
+			var msgId = $('#deleteMessageId').val();
 			$.ajax({
 				url: 'chat_actions.php?action=unsend_message',
 				type: 'POST',
 				data: { message_id: msgId },
+				dataType: 'json',
 				success: function(res) {
 					if (res.status === 'success') {
+						$('#deleteMessageModal').modal('hide');
 						fetchMessages();
 						refreshConversations();
 					}
@@ -628,15 +763,25 @@
 		}
 
 		function editMessage(msgId, oldText) {
-			var newText = prompt("Edit your message:", oldText);
-			if (newText === null || newText.trim() === '') return;
+			$('#editMessageId').val(msgId);
+			$('#editMessageText').val(oldText);
+			$('#editMessageModal').modal('show');
+		}
+
+		function submitEditMessage() {
+			var msgId = $('#editMessageId').val();
+			var newText = $('#editMessageText').val().trim();
+			
+			if (newText === '') return;
 			
 			$.ajax({
 				url: 'chat_actions.php?action=edit_message',
 				type: 'POST',
 				data: { message_id: msgId, message: newText },
+				dataType: 'json',
 				success: function(res) {
 					if (res.status === 'success') {
+						$('#editMessageModal').modal('hide');
 						fetchMessages();
 					}
 				}
@@ -730,10 +875,10 @@
 
 		function deleteGroupChat() {
 			if (!activeChatId) return;
-			if (!confirm("Are you sure you want to delete this group chat? This will remove all members and messages permanently.")) {
-				return;
-			}
-			
+			$('#deleteGroupModal').modal('show');
+		}
+
+		function submitDeleteGroup() {
 			$.ajax({
 				url: 'chat_actions.php?action=delete_group',
 				type: 'POST',
@@ -741,6 +886,7 @@
 				dataType: 'json',
 				success: function(res) {
 					if (res.status === 'success') {
+						$('#deleteGroupModal').modal('hide');
 						activeChatId = null;
 						isGroupChat = 0;
 						$('#chatActivePane').hide();
@@ -892,6 +1038,9 @@
 						width: '100%',
 						height: '100%',
 						parentNode: document.getElementById('jitsiIframeContainer'),
+						userInfo: {
+							displayName: myFullname
+						},
 						configOverwrite: {
 							prejoinPageEnabled: false,
 							prejoinConfig: {
@@ -918,6 +1067,13 @@
 					activeJitsiAPI.addEventListener('participantJoined', function() {
 						stopOutboundRingSound();
 						$('#outboundCallOverlay').hide();
+					});
+
+					activeJitsiAPI.addEventListener('participantLeft', function() {
+						// In a 1-on-1 chat, if the other person leaves, close the call automatically
+						if (isGroupChat === 0) {
+							hangupJitsiCall();
+						}
 					});
 					
 					var iframe = document.querySelector('#jitsiIframeContainer iframe');
@@ -1197,8 +1353,16 @@
 		function handleFileSelected() {
 			var input = $('#attachmentInput')[0];
 			if (input.files.length > 0) {
-				sendMessage();
+				$('#attachmentFileName').text(input.files[0].name);
+				$('#attachmentPreviewBar').css('display', 'flex');
+			} else {
+				cancelAttachment();
 			}
+		}
+
+		function cancelAttachment() {
+			$('#attachmentInput').val('');
+			$('#attachmentPreviewBar').hide();
 		}
 
 		function handleInputKeyDown(event) {
@@ -1206,6 +1370,117 @@
 				event.preventDefault();
 				sendMessage();
 			}
+		}
+		
+		var typingTimer;
+		var isTyping = false;
+		function handleTyping() {
+			if (!activeChatId) return;
+			
+			if (!isTyping) {
+				isTyping = true;
+				$.post('ajax_typing.php', { action: 'set_typing', room_id: activeChatId, is_typing: 1 });
+			}
+			
+			clearTimeout(typingTimer);
+			typingTimer = setTimeout(function() {
+				isTyping = false;
+				$.post('ajax_typing.php', { action: 'set_typing', room_id: activeChatId, is_typing: 0 });
+			}, 3000);
+		}
+		
+		var mediaRecorder;
+		var audioChunks = [];
+		var recordingInterval;
+		var recordingSeconds = 0;
+		
+		async function toggleVoiceMemo() {
+			if (!activeChatId) return;
+			if (mediaRecorder && mediaRecorder.state === 'recording') {
+				stopVoiceMemo();
+				return;
+			}
+			
+			try {
+				const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+				mediaRecorder = new MediaRecorder(stream);
+				audioChunks = [];
+				
+				mediaRecorder.ondataavailable = event => {
+					audioChunks.push(event.data);
+				};
+				
+				mediaRecorder.onstop = () => {
+					const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+					sendVoiceMemo(audioBlob);
+					
+					// Cleanup
+					stream.getTracks().forEach(track => track.stop());
+					$('#recordingOverlay').hide();
+					clearInterval(recordingInterval);
+				};
+				
+				mediaRecorder.start();
+				$('#recordingOverlay').css('display', 'flex');
+				recordingSeconds = 0;
+				$('#recordingTime').text('0:00');
+				
+				recordingInterval = setInterval(() => {
+					recordingSeconds++;
+					var m = Math.floor(recordingSeconds / 60);
+					var s = recordingSeconds % 60;
+					$('#recordingTime').text(m + ':' + (s < 10 ? '0' : '') + s);
+				}, 1000);
+				
+			} catch (err) {
+				alert('Could not access microphone: ' + err.message);
+			}
+		}
+		
+		function stopVoiceMemo() {
+			if (mediaRecorder && mediaRecorder.state === 'recording') {
+				mediaRecorder.stop();
+			}
+		}
+		
+		function sendVoiceMemo(blob) {
+			var formData = new FormData();
+			formData.append('room_id', activeChatId);
+			formData.append('message', '');
+			
+			var file = new File([blob], 'voicememo_' + Date.now() + '.webm', { type: 'audio/webm' });
+			formData.append('file', file);
+			
+			if (replyToMsgId) {
+				formData.append('reply_to', replyToMsgId);
+			}
+			
+			$.ajax({
+				url: 'chat_actions.php?action=send_message',
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(res) {
+					if (res.status === 'success') {
+						cancelReply();
+						$('#attachmentInput').val('');
+						fetchMessages();
+					} else {
+						alert('Error: ' + res.message);
+					}
+				}
+			});
+		}
+		function autoExpand(field) {
+			field.style.height = 'inherit';
+			var computed = window.getComputedStyle(field);
+			var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
+					   + parseInt(computed.getPropertyValue('padding-top'), 10)
+					   + field.scrollHeight
+					   + parseInt(computed.getPropertyValue('padding-bottom'), 10)
+					   + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+			field.style.height = Math.min(height, 80) + 'px';
 		}
 
 		function scrollToBottom() {
@@ -1232,10 +1507,17 @@
 		}
 
 		function trim(str) {
+			if (!str) return '';
 			return str.replace(/^\s+|\s+$/g, '');
 		}
 
+		function formatLinks(text) {
+			if (!text) return '';
+			return text.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#6ec6ff; word-break:break-all;">$1</a>');
+		}
+
 		function escapeJsonString(str) {
+			if (!str) return '';
 			return str
 				.replace(/\\/g, '\\\\')
 				.replace(/'/g, "\\'")
@@ -1271,10 +1553,10 @@
 			
 			// Populate Emoji Grid
 			var emojis = [
-				"😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕",
-				"👋", "🤚", "🖐️", "✋", "🖖", "👌", "🤌", "🤏", "✌️", "🤞", "🤟", "🤘", "🤙", "👈", "👉", "👆", "🖕", "👇", "☝️", "👍", "👎", "✊", "👊", "🤛", "🤜", "👏", "🙌", "👐", "🤲", "🤝", "🙏", "✍️", "💅", "🤳", "💪", "🦾", "🦿", "🦵", "🦶", "👂", "🦻", "👃", "🧠", "🫀", "🫁", "🦷", "🦴", "👀", "👁️", "👅", "👄",
-				"❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💔", "❤️‍🔥", "❤️‍🩹", "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟",
-				"🔥", "✨", "🌟", "⭐", "💫", "💥", "💨", "💦", "💯", "🎉", "🎊", "🎂", "🎈", "🎁", "🎗️", "🎟️", "🎫", "🏆", "🏅", "🥇", "🥈", "🥉", "⚽", "🏀", "🏈", "⚾", "🎾", "🎮", "🕹️", "🎲", "🎯", "🎭", "🎨", "🎬", "🎤", "🎧", "📱", "💻", "⌨️", "🖥️", "📸", "📷", "📽️", "🎬", "📺", "🔍", "🔎", "💡", "🔦", "🕯️", "💵", "🪙", "💳", "✉️", "📦", "✏️", "✒️", "🔑", "🔒", "🔓", "🛠️", "⚙️", "🛡️", "🏹", "🛰️", "🛸", "🚀", "🚗", "🚲", "✈️", "🚢", "🗺️", "⏰", "⌛"
+				"\u{1F600}","\u{1F603}","\u{1F604}","\u{1F601}","\u{1F606}","\u{1F605}","\u{1F602}","\u{1F923}","\u{1F60A}","\u{1F607}","\u{1F642}","\u{1F643}","\u{1F609}","\u{1F60C}","\u{1F60D}","\u{1F970}","\u{1F618}","\u{1F617}","\u{1F619}","\u{1F61A}","\u{1F60B}","\u{1F61B}","\u{1F61D}","\u{1F61C}","\u{1F92A}","\u{1F928}","\u{1F9D0}","\u{1F913}","\u{1F60E}","\u{1F929}","\u{1F973}","\u{1F60F}","\u{1F612}","\u{1F61E}","\u{1F614}","\u{1F61F}","\u{1F615}","\u{1F641}","\u2639\uFE0F","\u{1F623}","\u{1F616}","\u{1F62B}","\u{1F629}","\u{1F97A}","\u{1F622}","\u{1F62D}","\u{1F624}","\u{1F620}","\u{1F621}","\u{1F92C}","\u{1F92F}","\u{1F633}","\u{1F975}","\u{1F976}","\u{1F631}","\u{1F628}","\u{1F630}","\u{1F625}","\u{1F613}","\u{1F917}","\u{1F914}","\u{1F92D}","\u{1F92B}","\u{1F925}","\u{1F636}","\u{1F610}","\u{1F611}","\u{1F62C}","\u{1F644}","\u{1F62F}","\u{1F626}","\u{1F627}","\u{1F62E}","\u{1F632}","\u{1F971}","\u{1F634}","\u{1F924}","\u{1F62A}","\u{1F635}","\u{1F910}","\u{1F974}","\u{1F922}","\u{1F92E}","\u{1F927}","\u{1F637}","\u{1F912}","\u{1F915}",
+				"\u{1F44B}","\u{1F91A}","\u{1F590}\uFE0F","\u270B","\u{1F596}","\u{1F44C}","\u{1F90C}","\u{1F90F}","\u270C\uFE0F","\u{1F91E}","\u{1F91F}","\u{1F918}","\u{1F919}","\u{1F448}","\u{1F449}","\u{1F446}","\u{1F595}","\u{1F447}","\u261D\uFE0F","\u{1F44D}","\u{1F44E}","\u270A","\u{1F44A}","\u{1F91B}","\u{1F91C}","\u{1F44F}","\u{1F64C}","\u{1F450}","\u{1F932}","\u{1F91D}","\u{1F64F}","\u270D\uFE0F","\u{1F485}","\u{1F933}","\u{1F4AA}",
+				"\u2764\uFE0F","\u{1F9E1}","\u{1F49B}","\u{1F49A}","\u{1F499}","\u{1F49C}","\u{1F5A4}","\u{1F90D}","\u{1F90E}","\u{1F494}","\u2763\uFE0F","\u{1F495}","\u{1F49E}","\u{1F493}","\u{1F497}","\u{1F496}","\u{1F498}","\u{1F489}",
+				"\u{1F525}","\u2728","\u{1F31F}","\u2B50","\u{1F4AB}","\u{1F4A5}","\u{1F4A8}","\u{1F4A6}","\u{1F4AF}","\u{1F389}","\u{1F38A}","\u{1F382}","\u{1F388}","\u{1F381}","\u{1F3C6}","\u{1F947}","\u{1F948}","\u{1F949}","\u26BD","\u{1F3C0}","\u{1F3C8}","\u26BE","\u{1F3BE}","\u{1F3AE}","\u{1F579}\uFE0F","\u{1F3B2}","\u{1F3AF}","\u{1F3A8}","\u{1F3A4}","\u{1F3A7}","\u{1F4F1}","\u{1F4BB}","\u2328\uFE0F","\u{1F5A5}\uFE0F","\u{1F4F8}","\u{1F4F7}","\u{1F4FA}","\u{1F50D}","\u{1F4A1}","\u{1F4E6}","\u{1F56F}\uFE0F","\u{1F4B5}","\u{1F4B3}","\u2709\uFE0F","\u270F\uFE0F","\u2712\uFE0F","\u{1F4DD}","\u{1F511}","\u{1F512}","\u{1F513}","\u{1F6E0}\uFE0F","\u2699\uFE0F","\u{1F6E1}\uFE0F","\u{1F680}","\u{1F697}","\u{1F6B2}","\u2708\uFE0F","\u{1F6A2}","\u{1F5FA}\uFE0F","\u23F0","\u231B"
 			];
 			var gridHtml = '';
 			emojis.forEach(function(em) {
@@ -1304,3 +1586,4 @@
 	</script>
 </body>
 </html>
+

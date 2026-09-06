@@ -423,3 +423,65 @@ Stack trace:
 [06-Sep-2026 01:39:38 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
 [06-Sep-2026 01:39:38 UTC] PHP Stack trace:
 [06-Sep-2026 01:39:38 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[06-Sep-2026 10:53:49 UTC] PHP Warning:  require_once(D:\Server\www\chat/version.php): Failed to open stream: No such file or directory in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:53:49 UTC] PHP Stack trace:
+[06-Sep-2026 10:53:49 UTC] PHP   1. {main}() D:\Server\www\chat\index.php:0
+[06-Sep-2026 10:53:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'D:\Server\www\chat/version.php' (include_path='.;C:\php\pear') in D:\Server\www\chat\index.php:3
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:53:52 UTC] PHP Warning:  require_once(D:\Server\www\chat/version.php): Failed to open stream: No such file or directory in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:53:52 UTC] PHP Stack trace:
+[06-Sep-2026 10:53:52 UTC] PHP   1. {main}() D:\Server\www\chat\index.php:0
+[06-Sep-2026 10:53:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'D:\Server\www\chat/version.php' (include_path='.;C:\php\pear') in D:\Server\www\chat\index.php:3
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:54:37 UTC] PHP Warning:  require_once(D:\Server\www\chat/version.php): Failed to open stream: No such file or directory in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:54:37 UTC] PHP Stack trace:
+[06-Sep-2026 10:54:37 UTC] PHP   1. {main}() D:\Server\www\chat\index.php:0
+[06-Sep-2026 10:54:37 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'D:\Server\www\chat/version.php' (include_path='.;C:\php\pear') in D:\Server\www\chat\index.php:3
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:58:00 UTC] PHP Warning:  require_once(D:\Server\www\chat/version.php): Failed to open stream: No such file or directory in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:58:00 UTC] PHP Stack trace:
+[06-Sep-2026 10:58:00 UTC] PHP   1. {main}() D:\Server\www\chat\index.php:0
+[06-Sep-2026 10:58:00 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'D:\Server\www\chat/version.php' (include_path='.;C:\php\pear') in D:\Server\www\chat\index.php:3
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:58:01 UTC] PHP Warning:  require_once(D:\Server\www\chat/version.php): Failed to open stream: No such file or directory in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:58:01 UTC] PHP Stack trace:
+[06-Sep-2026 10:58:01 UTC] PHP   1. {main}() D:\Server\www\chat\index.php:0
+[06-Sep-2026 10:58:01 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'D:\Server\www\chat/version.php' (include_path='.;C:\php\pear') in D:\Server\www\chat\index.php:3
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:58:08 UTC] PHP Warning:  require_once(D:\Server\www\chat/version.php): Failed to open stream: No such file or directory in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 10:58:09 UTC] PHP Stack trace:
+[06-Sep-2026 10:58:09 UTC] PHP   1. {main}() D:\Server\www\chat\index.php:0
+[06-Sep-2026 10:58:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'D:\Server\www\chat/version.php' (include_path='.;C:\php\pear') in D:\Server\www\chat\index.php:3
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\chat\index.php on line 3
+[06-Sep-2026 13:35:33 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in D:\Server\www\test_fetch.php on line 3
+[06-Sep-2026 13:35:33 UTC] PHP Stack trace:
+[06-Sep-2026 13:35:33 UTC] PHP   1. {main}() D:\Server\www\test_fetch.php:0
+[06-Sep-2026 13:35:33 UTC] PHP   2. session_start() D:\Server\www\test_fetch.php:3
+[06-Sep-2026 13:36:01 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in D:\Server\www\test_fetch.php on line 3
+[06-Sep-2026 13:36:01 UTC] PHP Stack trace:
+[06-Sep-2026 13:36:01 UTC] PHP   1. {main}() D:\Server\www\test_fetch.php:0
+[06-Sep-2026 13:36:01 UTC] PHP   2. session_start() D:\Server\www\test_fetch.php:3
+[06-Sep-2026 13:36:09 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in D:\Server\www\test_fetch.php on line 3
+[06-Sep-2026 13:36:09 UTC] PHP Stack trace:
+[06-Sep-2026 13:36:09 UTC] PHP   1. {main}() D:\Server\www\test_fetch.php:0
+[06-Sep-2026 13:36:09 UTC] PHP   2. session_start() D:\Server\www\test_fetch.php:3
+[06-Sep-2026 13:36:27 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in D:\Server\www\test_fetch.php on line 3
+[06-Sep-2026 13:36:27 UTC] PHP Stack trace:
+[06-Sep-2026 13:36:27 UTC] PHP   1. {main}() D:\Server\www\test_fetch.php:0
+[06-Sep-2026 13:36:27 UTC] PHP   2. session_start() D:\Server\www\test_fetch.php:3
+[06-Sep-2026 13:37:45 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in D:\Server\www\test_fetch.php on line 3
+[06-Sep-2026 13:37:45 UTC] PHP Stack trace:
+[06-Sep-2026 13:37:45 UTC] PHP   1. {main}() D:\Server\www\test_fetch.php:0
+[06-Sep-2026 13:37:45 UTC] PHP   2. session_start() D:\Server\www\test_fetch.php:3

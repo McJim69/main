@@ -50,6 +50,9 @@
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<?php if (isset($_SESSION['user'])): ?>
+<script src="/chat/chat_notification.js?v=<?= SITE_VERSION ?>"></script>
+<?php endif; ?>
 
 <!-- Additional Scripts -->
 <script src="assets/js/slick.js"></script>

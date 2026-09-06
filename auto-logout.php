@@ -9,12 +9,12 @@
 	if (isset($_SESSION['last_activity'])) {
 		$elapsed_time = time() - $_SESSION['last_activity'];
 
-		if ($elapsed_time > $inactive_time) {
-			session_unset();
-			session_destroy();
-			header("Location: landing.php?timeout");
-			exit();
-		}
+		// if ($elapsed_time > $inactive_time) {
+		// 	session_unset();
+		// 	session_destroy();
+		// 	header("Location: landing.php?timeout");
+		// 	exit();
+		// }
 	}
 
 	// Update timestamp only if user is logged in

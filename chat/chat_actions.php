@@ -182,7 +182,28 @@
 				];
 			}
 			$stmt->close();
-			echo json_encode(['status' => 'success', 'messages' => $messages]);
+			
+			// Fetch typing users and seen data
+			$metaQuery = "SELECT m.username, last_seen_message_id, (last_typing > DATE_SUB(NOW(), INTERVAL 5 SECOND)) as is_typing, u.imgUrl FROM mcjim_chat_room_members m INNER JOIN users u ON m.username = u.username WHERE room_id = ? AND m.username != ?";
+			$metaStmt = $conn->prepare($metaQuery);
+			$metaStmt->bind_param("is", $room_id, $currentUser);
+			$metaStmt->execute();
+			$metaRes = $metaStmt->get_result();
+			
+			$typing_users = [];
+			$seen_data = [];
+			while ($mrow = $metaRes->fetch_assoc()) {
+				if ($mrow['is_typing']) {
+					$typing_users[] = $mrow['username'];
+				}
+				$seen_data[$mrow['username']] = [
+				    'last_seen_message_id' => intval($mrow['last_seen_message_id']),
+				    'imgUrl' => !empty($mrow['imgUrl']) ? $mrow['imgUrl'] : 'blank.jpg'
+				];
+			}
+			$metaStmt->close();
+			
+			echo json_encode(['status' => 'success', 'messages' => $messages, 'typing_users' => $typing_users, 'seen_data' => $seen_data]);
 			break;
 
 		case 'send_message':
@@ -222,7 +243,8 @@
 				$webPath = 'uploads/' . $tempName;
 				
 				if (move_uploaded_file($_FILES['file']['tmp_name'], $targetPath)) {
-					$message = "[FILE:{$fileName}|{$webPath}]";
+					$fileTag = "[FILE:{$fileName}|{$webPath}]";
+					$message = empty($message) ? $fileTag : $message . "\n\n" . $fileTag;
 				} else {
 					echo json_encode(['status' => 'error', 'message' => 'File upload failed']);
 					exit;

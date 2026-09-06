@@ -139,7 +139,6 @@
 	<!-- Chat Notifications Style & Polling -->
     <?php if (isset($_SESSION['user'])): ?>
     <link rel="stylesheet" href="/chat/chat_notification.css?v=<?= SITE_VERSION ?>">
-	<script src="/chat/chat_notification.js"></script>
     <?php endif; ?>
 
 	<!-- SweetAlert2 & Quill -->

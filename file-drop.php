@@ -27,7 +27,7 @@ require("menunav.php");
   <div class="container">
     
     <div class="row">
-      <div class="col-md-4 mb-4">
+      <div class="col-md-3 mb-4">
         <div style="background:var(--bg-card); padding:20px; border-radius:10px; border: 1px solid var(--border-glass);">
             <h4 style="color:#fff; margin-bottom: 20px;">Upload File</h4>
             <form id="uploadForm">
@@ -46,7 +46,7 @@ require("menunav.php");
         </div>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-md-9">
         <h4 style="color:#fff; margin-bottom: 20px;"><?php echo $isAdmin ? 'All Uploaded Files' : 'Your Uploaded Files'; ?></h4>
         <div id="fileList">
              <div class="text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</div>

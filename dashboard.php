@@ -83,9 +83,9 @@
         </div>
         <div class="col-md-3 mb-4">
             <a href="user_profile.php" class="dashboard-card">
-                <i class="fa fa-comments fa-4x mb-3 text-success"></i>
-                <h4 class="text-white">Profile</h4>
-                <p class="small text-muted mt-2">View your profile and update</p>
+                <i class="fa fa-user fa-4x mb-3 text-success"></i>
+                <h4 class="text-white">Your Profile</h4>
+                <p class="small text-muted mt-2">View profile details & update </p>
             </a>
         </div>		
 	  <?php if ($_SESSION["access"]=="Admin"){ ?>
