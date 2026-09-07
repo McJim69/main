@@ -1,7 +1,7 @@
 <?php
 /**
  * ZAMBOANGA DEL SUR KALIPI-RIC WOMEN FEDERATION, INC.
- * Backend REST API (MySQL PDO) + Remote Data Sync
+ * Backend REST API (MySQL PDO) + Remote Data Sync & Photo Storage
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -38,6 +38,37 @@ try {
         'message' => 'Database connection failed: ' . $e->getMessage()
     ]);
     exit();
+}
+
+/**
+ * Saves Base64 image payload to images/photos/ directory and returns relative URL
+ */
+function processAndSavePhoto($imageInput) {
+    if (empty($imageInput)) return '';
+
+    // Check if it is a Data URL (base64)
+    if (preg_match('/^data:image\/(\w+);base64,/', $imageInput, $typeMatch)) {
+        $base64Data = substr($imageInput, strpos($imageInput, ',') + 1);
+        $extension = strtolower($typeMatch[1]);
+        if ($extension === 'jpeg') $extension = 'jpg';
+        if (!in_array($extension, ['jpg', 'png', 'webp', 'gif', 'svg+xml'])) {
+            $extension = 'png';
+        }
+
+        $decodedData = base64_decode($base64Data);
+        if ($decodedData !== false) {
+            $photosDir = __DIR__ . '/images/photos';
+            if (!file_exists($photosDir)) {
+                mkdir($photosDir, 0755, true);
+            }
+            $filename = 'photo_' . time() . '_' . substr(md5(uniqid()), 0, 8) . '.' . $extension;
+            $fullPath = $photosDir . '/' . $filename;
+            file_put_contents($fullPath, $decodedData);
+            return 'images/photos/' . $filename;
+        }
+    }
+
+    return $imageInput;
 }
 
 $action = $_GET['action'] ?? 'get_all';
@@ -131,9 +162,10 @@ try {
             $contactNo = trim($input['contactNo'] ?? '');
             $remarks = trim($input['remarks'] ?? '');
             
-            // Support avatar, imgUrl, avatar_url, img_url input field names
-            $avatar = trim($input['imgUrl'] ?? $input['img_url'] ?? $input['avatar'] ?? $input['avatar_url'] ?? '');
-            
+            // Support avatar, imgUrl, avatar_url, img_url input field names & process base64 photo upload
+            $rawAvatar = trim($input['imgUrl'] ?? $input['img_url'] ?? $input['avatar'] ?? $input['avatar_url'] ?? '');
+            $avatar = processAndSavePhoto($rawAvatar);
+
             $id = $input['id'] ?? null;
             $dbId = isset($input['dbId']) ? intval($input['dbId']) : (is_numeric($id) ? intval($id) : null);
 
@@ -193,7 +225,8 @@ try {
                 'message' => 'Profile saved successfully.',
                 'id' => (string)$savedId,
                 'computedAge' => $age,
-                'imgUrl' => $avatar
+                'imgUrl' => $avatar,
+                'avatar' => $avatar
             ]);
             break;
 
@@ -202,6 +235,20 @@ try {
             $dbId = isset($input['dbId']) ? intval($input['dbId']) : (is_numeric($id) ? intval($id) : null);
 
             if ($dbId) {
+                // Optional: remove old photo file if stored in images/photos/
+                $stmtSelect = $pdo->prepare("SELECT img_url, avatar_url FROM women_profiles WHERE id = :id");
+                $stmtSelect->execute([':id' => $dbId]);
+                $row = $stmtSelect->fetch();
+                if ($row) {
+                    $photoPath = $row['img_url'] ?: $row['avatar_url'];
+                    if ($photoPath && strpos($photoPath, 'images/photos/') === 0) {
+                        $fullFile = __DIR__ . '/' . $photoPath;
+                        if (file_exists($fullFile)) {
+                            @unlink($fullFile);
+                        }
+                    }
+                }
+
                 $stmt = $pdo->prepare("DELETE FROM women_profiles WHERE id = :id");
                 $stmt->execute([':id' => $dbId]);
                 echo json_encode(['status' => 'success', 'message' => 'Profile deleted successfully.']);
@@ -277,7 +324,8 @@ try {
                         } catch (\Exception $e) {}
                     }
 
-                    $img = $p['imgUrl'] ?? $p['img_url'] ?? $p['avatar'] ?? $p['avatar_url'] ?? '';
+                    $rawImg = $p['imgUrl'] ?? $p['img_url'] ?? $p['avatar'] ?? $p['avatar_url'] ?? '';
+                    $img = processAndSavePhoto($rawImg);
 
                     $stmtIns->execute([
                         ':name' => $p['name'],
