@@ -47,11 +47,11 @@
 								<span class="small text-muted" style="font-size:10.5px;">Active Session</span>
 							</div>
 							<div class="dropdown-divider" style="border-color: var(--border-color);"></div>
-							<a class="dropdown-item d-flex align-items-center gap-2 rounded text-light" style="font-size:12.5px; padding: 8px 12px;" href="../home.php">
-								<i class="fas fa-home text-muted"></i> Return to Portal
+							<a class="home-link dropdown-item d-flex align-items-center gap-2 rounded text-primary" style="font-size:12.5px; padding: 8px 12px;" href="../home.php">
+								<i class="fas fa-home"></i> &nbsp; HOME
 							</a>
 							<a class="dropdown-item d-flex align-items-center gap-2 rounded text-danger" style="font-size:12.5px; padding: 8px 12px;" href="../logout.php">
-								<i class="fas fa-sign-out-alt"></i> Logout
+								<i class="fas fa-sign-out-alt"></i> &nbsp; LOGOUT
 							</a>
 						</div>
 						<h3 class="sidebar-title" style="font-size: 21px; font-weight:800; margin:0;">Chats</h3>

@@ -158,7 +158,15 @@ if(isset($_POST['title'], $_POST['content'])) {
   // Pass variables directly down to database abstraction utility
   $post_id = createBlogPost($conn, $_SESSION['uno'], $title, $content, $images);
 
-  echo json_encode($post_id ? ['status'=>'OK','id'=>$post_id] : ['status'=>'ERROR','message'=>'Insert failed']);
+  echo json_encode($post_id ? [
+    'status'    => 'OK',
+    'id'        => $post_id,
+    'post_id'   => $post_id,
+    'posted_id' => $post_id
+  ] : [
+    'status'    => 'ERROR',
+    'message'   => 'Insert failed'
+  ]);
 } else {
   echo json_encode(['status'=>'ERROR','message'=>'Missing title or content']);
 }

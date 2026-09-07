@@ -1,7 +1,7 @@
 /* Glassmorphic Toast Notification */
 .portal-chat-toast {
 	position: fixed;
-	bottom: 24px;
+	bottom: 70px;
 	right: 24px;
 	width: 320px;
 	background: rgba(15, 23, 42, 0.95);

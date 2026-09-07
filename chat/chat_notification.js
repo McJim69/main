@@ -19,17 +19,24 @@ function checkChatNotifications() {
 		dataType: 'json',
 		success: function(res) {
 			if (res.status === 'success') {
-				// 1. Update the chat badge in the navigation menu
+				// 1. Update the chat badge in the navigation menu & sticky button
 				var unreadCount = parseInt(res.unread_count);
 				var badge = $('#chatMenuBadge');
+				var stickyBadge = $('#chatStickyBadge');
 				if (unreadCount > 0) {
 					if (badge.length === 0) {
 						$('#chat a.nav-link').append('<span id="chatMenuBadge" class="chat-badge">' + unreadCount + '</span>');
 					} else {
 						badge.text(unreadCount).show();
 					}
+					if (stickyBadge.length === 0) {
+						$('#chatStickyBtn').append('<span id="chatStickyBadge" class="chat-badge" style="margin-left:4px;">' + unreadCount + '</span>');
+					} else {
+						stickyBadge.text(unreadCount).show();
+					}
 				} else {
 					badge.remove();
+					stickyBadge.remove();
 				}
 				
 				// 2. Display toast if there is a new unread message

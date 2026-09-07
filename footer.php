@@ -47,6 +47,11 @@
 	</div>
 </div>
 
+<!-- Sticky Bottom-Right Chat Pill Button -->
+<a href="/chat/" id="chatStickyBtn" class="btn btn-sm rounded-pill sticky-chat-pill">
+	<i class="fa fa-comments"></i> <span>Chat</span>
+</a>
+
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

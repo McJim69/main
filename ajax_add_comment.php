@@ -17,7 +17,12 @@ if (isset($_POST['post_id'], $_POST['comment'])) {
     $inserted_id = createComment($conn, $post_id, $_SESSION['uno'], $comment);
 
     if ($inserted_id) {
-        echo json_encode(['status' => 'OK', 'id' => $inserted_id]);
+        echo json_encode([
+            'status'     => 'OK',
+            'id'         => $inserted_id,
+            'comment_id' => $inserted_id,
+            'post_id'    => $post_id
+        ]);
     } else {
         echo json_encode(['status' => 'ERROR', 'message' => 'Insert failed']);
     }

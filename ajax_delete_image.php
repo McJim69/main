@@ -24,7 +24,7 @@
 	  }
 
 	  // Authorization check: only Admin or owner
-	  if($user_access === 'Admin' || $user_uno === $image_owner) {
+	  if($user_access === 'Admin' || (int)$user_uno === (int)$image_owner) {
 		$ok = deletePostImage($conn, $image_id);
 		echo json_encode($ok ? ['status'=>'OK'] : ['status'=>'ERROR','message'=>'Delete failed']);
 	  } else {

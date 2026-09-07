@@ -1,1 +1,4 @@
-<?php define('SITE_VERSION', '2.4.1'); ?>
+<?php 
+// Dynamic Cache-Buster Site Version
+define('SITE_VERSION', time()); 
+?>

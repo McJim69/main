@@ -16,9 +16,9 @@
 		$seo_desc = "Official website of McJim Cyberworks, Pagadian City Philippines. Free Video Conference, Free Media Streams, Free Instant Messenger, Free Mail Services and Open Blogs.";
 		$seo_keywords = "McJim Cyberworks, McJim Server, McJim Meet, McJim Mail, McJim Blogs";
 		$seo_robots = "index, follow";
-	} else if ($current_file === 'blog.php') {
+	} else if ($current_file === 'blog.php' || $current_file === 'blog_details.php') {
 		$seo_title = "Blogs | McJim Cyberworks";
-		$seo_desc = "Interactive public and logged users for blogging and for any other informations.";
+		$seo_desc = "Interactive public and logged users for blogging and for any other information.";
 		$seo_keywords = "McJim Blogs, My Blogs, @mcjimblogs";
 		$seo_robots = "index, follow";
 	} else if ($current_file === 'movies.php') {

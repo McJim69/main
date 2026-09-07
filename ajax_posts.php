@@ -14,7 +14,7 @@
 	 <div class="row">
 		<div class="col-md-8">
 		  <?php foreach($posts as $p): ?>
-			<div class="blog-card">
+			<div class="blog-card" data-post-id="<?php echo $p['id']; ?>">
 				<!-- Images -->
 				<?php if (!empty($p['images'])): ?>
 				<div class="d-flex flex-wrap justify-content-center">
@@ -24,8 +24,8 @@
 							data-gall="post-<?php echo $p['id']; ?>" 
 							data-title="<?php echo htmlspecialchars($p['title']); ?>" 
 							data-type="image"
-							href="/<?php echo htmlspecialchars($img['image_url']); ?>">
-							<img src="/<?php echo htmlspecialchars($img['image_url']); ?>" alt="Post Image" class="img-fluid"/>
+							href="/<?php echo htmlspecialchars($img['image_url']); ?>?v=<?= SITE_VERSION ?>">
+							<img src="/<?php echo htmlspecialchars($img['image_url']); ?>?v=<?= SITE_VERSION ?>" alt="Post Image" class="img-fluid"/>
 						</a>
 
 						<?php 
@@ -74,11 +74,11 @@
 								onclick="jump('blog_details.php?id=<?php echo $p['id']; ?>')">
 							More
 						</button> &nbsp;
-						<?php if(isset($_SESSION['uno']) && $_SESSION['uno'] == $p['user_uno']): ?>
+						<?php if(isset($_SESSION['uno']) && (($_SESSION['access'] ?? '') === 'Admin' || $_SESSION['uno'] == $p['user_uno'])): ?>
 						<button class="filled-button edit-btn"
 								data-id="<?php echo $p['id']; ?>"
-								data-title="<?php echo htmlspecialchars($p['title'], ENT_QUOTES); ?>"
-								data-content="<?php echo htmlspecialchars($p['content'], ENT_QUOTES); ?>">
+								data-title="<?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?>"
+								data-content="<?php echo htmlspecialchars($p['content'], ENT_QUOTES, 'UTF-8'); ?>">
 							Edit
 						</button> &nbsp;
 						<button class="filled-button delete-post-btn"
@@ -108,7 +108,7 @@
 							<?php echo htmlspecialchars($c['comment']); ?> &nbsp;      
 				
 							<!-- Authorization Actions -->
-							<?php if(isset($_SESSION['uno']) && $_SESSION['uno'] == $c['user_uno']): ?>           
+							<?php if(isset($_SESSION['uno']) && (($_SESSION['access'] ?? '') === 'Admin' || $_SESSION['uno'] == $c['user_uno'])): ?>           
 							<span class="text-truncate">            
 								<button type="button" class="btn-link edit-comment-btn p-0 border-0 align-baseline"                      
 										data-comment-id="<?php echo (int)$c['id']; ?>"                     

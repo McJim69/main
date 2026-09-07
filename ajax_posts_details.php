@@ -4,12 +4,26 @@
 	require_once("crud_functions.php");
 
 	$post = null; 
-	$post_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-	$post = readBlogPost($conn, $post_id); // single post object
+	$post_id = isset($_GET['id']) ? (int)$_GET['id'] : (isset($_GET['post_id']) ? (int)$_GET['post_id'] : (isset($_GET['posted_id']) ? (int)$_GET['posted_id'] : 0));
+	if ($post_id > 0) {
+		$post = readBlogPost($conn, $post_id); // single post object
+	}
 ?>
 
 <!-- Combined with an absolute link structure to prevent relative nesting issues -->
 <script src="/ajax_call_details.js?v=<?= SITE_VERSION ?>"></script>
+
+<?php if (!$post): ?>
+<section class="blog blog-details" data-post-id="0">
+  <div class="container">
+	<div class="blog-card text-center py-5">
+      <h3 style="color:#ffffff;">Post Not Found</h3>
+      <p style="color:#aaaaaa;">The requested blog post does not exist or has been removed.</p>
+      <a href="blog.php" class="filled-button mt-3">Back to Blog</a>
+    </div>
+  </div>
+</section>
+<?php exit; endif; ?>
 
 <section class="blog blog-details" data-post-id="<?php echo $post['id']; ?>">
   <div class="container">
@@ -24,8 +38,8 @@
              data-gall="post-<?php echo $post['id']; ?>" 
              data-title="<?php echo htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8'); ?>" 
              data-type="image"
-             href="/<?php echo htmlspecialchars($img['image_url']); ?>">
-            <img src="/<?php echo htmlspecialchars($img['image_url']); ?>" alt="Post Image" class="img-fluid"/>
+             href="/<?php echo htmlspecialchars($img['image_url']); ?>?v=<?= SITE_VERSION ?>">
+            <img src="/<?php echo htmlspecialchars($img['image_url']); ?>?v=<?= SITE_VERSION ?>" alt="Post Image" class="img-fluid"/>
           </a>
           <?php 
             $userUno    = $_SESSION['uno']    ?? null;
@@ -58,7 +72,7 @@
       <div class="blog-content mt-3">
         <?php echo $post['content']; ?>
         <div class="blog-control mt-2">
-          <?php if(isset($_SESSION['uno']) && $_SESSION['uno'] == $post['user_uno']): ?>
+          <?php if(isset($_SESSION['uno']) && (($_SESSION['access'] ?? '') === 'Admin' || $_SESSION['uno'] == $post['user_uno'])): ?>
           <!-- FIXED: Hardened attribute data outputs to ensure complex Quill HTML doesn't break script bindings -->
           <button type="button" class="filled-button edit-btn"
                   data-id="<?php echo $post['id']; ?>"
@@ -91,7 +105,7 @@
           <div class="col-md-11" style="width:90%">        
             <strong><?php echo htmlspecialchars($c['fullname']); ?>:</strong>          
             <?php echo htmlspecialchars($c['comment']); ?> &nbsp;      
-            <?php if(isset($_SESSION['uno']) && $_SESSION['uno'] == $c['user_uno']): ?>           
+            <?php if(isset($_SESSION['uno']) && (($_SESSION['access'] ?? '') === 'Admin' || $_SESSION['uno'] == $c['user_uno'])): ?>           
             <span class="text-truncate">            
               <button type="button" class="btn btn-sm btn-link edit-comment-btn p-0 border-0 align-baseline"                      
                       data-comment-id="<?php echo (int)$c['id']; ?>"                     

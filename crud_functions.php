@@ -19,29 +19,110 @@ function createBlogPost($conn, $user_uno, $title, $content, $images = []) {
     $post_id = $stmt->insert_id;
     $stmt->close();
 
-	if (!empty($images) && is_array($images)) {
-		// FIXED: Formatted the SQL structure to align flawlessly with your phpMyAdmin schema columns
-		$sqlImg = "INSERT INTO post_images (post_id, uploaded_by, image_url, uploaded_at) VALUES (?, ?, ?, NOW())";
-		$stmtImg = $conn->prepare($sqlImg);
-		
-		if ($stmtImg) {
-			foreach ($images as $img) {
-				// "iis" maps perfectly to:
-				// 1st (?) -> integer: $post_id
-				// 2nd (?) -> integer: $user_uno (the user tracking identity)
-				// 3rd (?) -> string:  $img (the clean relative asset path)
-				$stmtImg->bind_param("iis", $post_id, $user_uno, $img);
-				$stmtImg->execute();
-			}
-			$stmtImg->close();
-		}
-	}
+    if (!empty($images) && is_array($images)) {
+        $sqlImg = "INSERT INTO post_images (post_id, uploaded_by, image_url, uploaded_at) VALUES (?, ?, ?, NOW())";
+        $stmtImg = $conn->prepare($sqlImg);
+        
+        if ($stmtImg) {
+            foreach ($images as $img) {
+                $stmtImg->bind_param("iis", $post_id, $user_uno, $img);
+                $stmtImg->execute();
+            }
+            $stmtImg->close();
+        }
+    }
     return $post_id;
+}
+
+// -------------------- IMAGE HELPER FUNCTIONS --------------------
+if (!function_exists('cleanPath')) {
+    function cleanPath($path) {
+        return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
+    }
+}
+
+if (!function_exists('convertAndResizeToWebp')) {
+    function convertAndResizeToWebp($sourcePath, $maxWidth = 1920, $maxHeight = 1920, $quality = 80) {
+        if (!function_exists('imagecreatetruecolor')) {
+            return $sourcePath;
+        }
+
+        $info = @getimagesize($sourcePath);
+        if (!$info) return $sourcePath;
+
+        $mime = $info['mime'];
+        switch ($mime) {
+            case 'image/jpeg': 
+            case 'image/jpg':
+                $srcImage = @imagecreatefromjpeg($sourcePath); 
+                break;
+            case 'image/png':  
+                $srcImage = @imagecreatefrompng($sourcePath); 
+                break;
+            case 'image/gif':  
+                $srcImage = @imagecreatefromgif($sourcePath); 
+                break;
+            case 'image/webp': 
+                if (function_exists('imagecreatefromwebp')) {
+                    $srcImage = @imagecreatefromwebp($sourcePath); 
+                } else {
+                    return $sourcePath;
+                }
+                break;
+            default: return $sourcePath;
+        }
+
+        if (!$srcImage) return $sourcePath;
+
+        $origWidth  = imagesx($srcImage);
+        $origHeight = imagesy($srcImage);
+
+        $ratio = $origWidth / $origHeight;
+        $newWidth  = $origWidth;
+        $newHeight = $origHeight;
+
+        if ($newWidth > $maxWidth) {
+            $newWidth  = $maxWidth;
+            $newHeight = round($newWidth / $ratio);
+        }
+
+        if ($newHeight > $maxHeight) {
+            $newHeight = $maxHeight;
+            $newWidth  = round($newHeight * $ratio);
+        }
+
+        $finalImage = imagecreatetruecolor($newWidth, $newHeight);
+
+        if ($mime == 'image/png' || $mime == 'image/webp' || $mime == 'image/gif') {
+            imagealphablending($finalImage, false);
+            imagesavealpha($finalImage, true);
+        }
+
+        imagecopyresampled($finalImage, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
+
+        $pathInfo = pathinfo($sourcePath);
+        $webpPath = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.webp';
+
+        if (function_exists('imagewebp')) {
+            if (imagewebp($finalImage, $webpPath, $quality)) {
+                imagedestroy($srcImage);
+                imagedestroy($finalImage);
+
+                if (cleanPath($sourcePath) !== cleanPath($webpPath) && file_exists($sourcePath)) {
+                    @unlink($sourcePath);
+                }
+                return $webpPath;
+            }
+        }
+
+        imagedestroy($srcImage);
+        imagedestroy($finalImage);
+        return $sourcePath;
+    }
 }
 
 // -------------------- READ SINGLE --------------------
 function readBlogPost($conn, $id) {
-    // If ID is 0 or negative, don't waste a database query
     if ($id <= 0) return null;
 
     $sql = "SELECT bp.*, u.username, u.fullname, u.imgUrl 
@@ -59,7 +140,6 @@ function readBlogPost($conn, $id) {
 
     if (!$post) return null;
 
-    // Fixed: Added a check for getPostImages in case it doesn't exist
     if (function_exists('getPostImages')) {
         $post['images'] = getPostImages($conn, $id);
     } else {
@@ -85,7 +165,6 @@ function listBlogPosts($conn, $limit = 10) {
 
     if (empty($posts)) return [];
 
-    // FIXED: Replaced the N+1 loop with a single aggregate mapping pass
     $postIds = array_column($posts, 'id');
     $inClause = implode(',', array_fill(0, count($postIds), '?'));
     
@@ -98,7 +177,6 @@ function listBlogPosts($conn, $limit = 10) {
         $allImages = $stmtImg->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmtImg->close();
 
-        // Map images to their respective posts efficiently
         $imageMap = [];
         foreach ($allImages as $img) {
             $imageMap[$img['post_id']][] = [
@@ -117,33 +195,30 @@ function listBlogPosts($conn, $limit = 10) {
 }
 
 // -------------------- UPDATE --------------------
-function updateBlogPostWithImages($conn, $post_id, $title, $content, $user_uno, $images = []) {
-    // SECURITY ENFORCEMENT: Ensure the active user actually owns the post they are trying to update
-    $sql = "UPDATE blog_posts SET title=?, content=?, updated_at=NOW() WHERE id=? AND user_uno=?";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) return false;
-
-    $stmt->bind_param("ssii", $title, $content, $post_id, $user_uno);
+function updateBlogPostWithImages($conn, $post_id, $title, $content, $user_uno, $images = [], $user_access = '') {
+    if ($user_access === 'Admin') {
+        $sql = "UPDATE blog_posts SET title=?, content=?, updated_at=NOW() WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("ssi", $title, $content, $post_id);
+    } else {
+        $sql = "UPDATE blog_posts SET title=?, content=?, updated_at=NOW() WHERE id=? AND user_uno=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("ssii", $title, $content, $post_id, $user_uno);
+    }
     
-    // Execute the statement securely
     $executed = $stmt->execute();
     $stmt->close();
 
-    // If the database query itself crashes (syntax error/connection drop), abort
     if (!$executed) return false;
 
-    // Proceed to process the images array
     if (!empty($images) && is_array($images)) {
-        // Aligned perfectly with your physical phpMyAdmin schema columns: (post_id, uploaded_by, image_url)
         $sqlImg = "INSERT INTO post_images (post_id, uploaded_by, image_url, uploaded_at) VALUES (?, ?, ?, NOW())";
         $stmtImg = $conn->prepare($sqlImg);
         
         if ($stmtImg) {
             foreach ($images as $img) {
-                // "iis" perfectly maps to: 
-                // 1st (?) -> integer: $post_id
-                // 2nd (?) -> integer: $user_uno
-                // 3rd (?) -> string:  $img
                 $stmtImg->bind_param("iis", $post_id, $user_uno, $img);
                 $stmtImg->execute();
             }
@@ -151,13 +226,11 @@ function updateBlogPostWithImages($conn, $post_id, $title, $content, $user_uno, 
         }
     }
     
-    // Always return true if the query executed, even if the text wasn't modified!
     return true; 
 }
 
 // -------------------- DELETE SINGLE IMAGE --------------------
 function deletePostImage($conn, $image_id) {
-    // 1. Locate and erase physical asset off disk first
     $sqlSelect = "SELECT image_url FROM post_images WHERE id=?";
     $stmtSel = $conn->prepare($sqlSelect);
     if ($stmtSel) {
@@ -167,7 +240,6 @@ function deletePostImage($conn, $image_id) {
         $stmtSel->close();
         
         if ($res && !empty($res['image_url'])) {
-            // FIXED: Using direct __DIR__ linking context to ensure accurate web-root asset targets
             $physicalPath = __DIR__ . '/' . ltrim($res['image_url'], '/');
             if (file_exists($physicalPath)) {
                 @unlink($physicalPath);
@@ -175,7 +247,6 @@ function deletePostImage($conn, $image_id) {
         }
     }
 
-    // 2. Erase the database record line row entry
     $sql = "DELETE FROM post_images WHERE id=?";
     $stmt = $conn->prepare($sql);
     if (!$stmt) return false;
@@ -187,32 +258,40 @@ function deletePostImage($conn, $image_id) {
 }
 
 // -------------------- DELETE POST WITH CASCADE IMAGES --------------------
-function deleteBlogPost($conn, $post_id) {
-    // 1. Fetch all matching sub-table entries linked to this post
+function deleteBlogPost($conn, $post_id, $user_uno = 0, $user_access = '') {
     $images = getPostImages($conn, $post_id);
     foreach ($images as $img) {
-        // FIXED: Explicit root pathing resolution context
         $physicalPath = __DIR__ . '/' . ltrim($img['image_url'], '/');
         if (file_exists($physicalPath)) {
-            @unlink($physicalPath); // Erases raw physical webp file from disk space
+            @unlink($physicalPath);
         }
     }
 
-    // 2. Wipe image records from sub-table rows
-    $sqlDelImg = "DELETE FROM post_images WHERE post_id=?";
-    $stmtDelImg = $conn->prepare($sqlDelImg);
+    $stmtDelImg = $conn->prepare("DELETE FROM post_images WHERE post_id=?");
     if ($stmtDelImg) {
         $stmtDelImg->bind_param("i", $post_id);
         $stmtDelImg->execute();
         $stmtDelImg->close();
     }
+    
+    $stmtDelCom = $conn->prepare("DELETE FROM blog_comments WHERE post_id=?");
+    if ($stmtDelCom) {
+        $stmtDelCom->bind_param("i", $post_id);
+        $stmtDelCom->execute();
+        $stmtDelCom->close();
+    }
 
-    // 3. Drop primary post parent entry from blog_posts table rows securely
-    $sql = "DELETE FROM blog_posts WHERE id=?";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) return false;
-
-    $stmt->bind_param("i", $post_id);
+    if ($user_access === 'Admin' || $user_uno == 0) {
+        $sql = "DELETE FROM blog_posts WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("i", $post_id);
+    } else {
+        $sql = "DELETE FROM blog_posts WHERE id=? AND user_uno=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("ii", $post_id, $user_uno);
+    }
     $ok = $stmt->execute();
     $stmt->close();
     return $ok;
@@ -250,27 +329,31 @@ function listRecentPosts($conn, $limit = 10) {
 // Blog Comments CRUD Functions
 // =========================================================================
 
-// Create Comment
 function createComment($conn, $post_id, $user_uno, $comment) {
     $sql = "INSERT INTO blog_comments (post_id, user_uno, comment, created_at) VALUES (?, ?, ?, NOW())";
     $stmt = $conn->prepare($sql);
+    if (!$stmt) return false;
     $stmt->bind_param("iis", $post_id, $user_uno, $comment);
-    return $stmt->execute() ? $conn->insert_id : false;
+    $ok = $stmt->execute();
+    $insert_id = $stmt->insert_id;
+    $stmt->close();
+    return $ok ? $insert_id : false;
 }
 
-// Read Single Comment
 function readComment($conn, $id) {
     $sql = "SELECT bc.*, u.username, u.fullname, u.imgUrl 
             FROM blog_comments bc 
             JOIN users u ON bc.user_uno = u.uno 
             WHERE bc.id = ?";
     $stmt = $conn->prepare($sql);
+    if (!$stmt) return null;
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    return $stmt->get_result()->fetch_assoc();
+    $comment = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+    return $comment;
 }
 
-// List Comments by Post
 function listCommentsByPost($conn, $post_id) {
     $sql = "SELECT bc.*, u.username, u.fullname, u.imgUrl 
             FROM blog_comments bc 
@@ -278,24 +361,45 @@ function listCommentsByPost($conn, $post_id) {
             WHERE bc.post_id = ? 
             ORDER BY bc.created_at ASC";
     $stmt = $conn->prepare($sql);
+    if (!$stmt) return [];
     $stmt->bind_param("i", $post_id);
     $stmt->execute();
-    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $comments = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+    return $comments;
 }
 
-// Update Comment
-function updateComment($conn, $comment_id, $comment) {
-	$sql = "UPDATE blog_comments SET comment=?, created_at=NOW() WHERE id=?";
-	$stmt = $conn->prepare($sql);
-	$stmt->bind_param("si", $comment, $comment_id);
-	return $stmt->execute();
+function updateComment($conn, $comment_id, $comment, $user_uno = 0, $user_access = '') {
+    if ($user_access === 'Admin' || $user_uno == 0) {
+        $sql = "UPDATE blog_comments SET comment=?, created_at=NOW() WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("si", $comment, $comment_id);
+    } else {
+        $sql = "UPDATE blog_comments SET comment=?, created_at=NOW() WHERE id=? AND user_uno=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("sii", $comment, $comment_id, $user_uno);
+    }
+    $ok = $stmt->execute();
+    $stmt->close();
+    return $ok;
 }
 
-// Delete Comment with Authorization Check
-function deleteComment($conn, $comment_id, $user_uno) {
-    $sql = "DELETE FROM blog_comments WHERE id=? AND user_uno=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $comment_id, $user_uno);
-    return $stmt->execute();
+function deleteComment($conn, $comment_id, $user_uno = 0, $user_access = '') {
+    if ($user_access === 'Admin' || $user_uno == 0) {
+        $sql = "DELETE FROM blog_comments WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("i", $comment_id);
+    } else {
+        $sql = "DELETE FROM blog_comments WHERE id=? AND user_uno=?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) return false;
+        $stmt->bind_param("ii", $comment_id, $user_uno);
+    }
+    $ok = $stmt->execute();
+    $stmt->close();
+    return $ok;
 }
 ?>
