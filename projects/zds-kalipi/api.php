@@ -75,13 +75,14 @@ try {
             $rawProfiles = $stmtProf->fetchAll();
 
             $profiles = array_map(function($p) {
-                // Compute age from birthdate if age is not present or 0
                 $computedAge = (int)$p['age'];
                 if (!empty($p['birthdate'])) {
                     $bDate = new DateTime($p['birthdate']);
                     $today = new DateTime();
                     $computedAge = $today->diff($bDate)->y;
                 }
+
+                $img = !empty($p['img_url']) ? $p['img_url'] : $p['avatar_url'];
 
                 return [
                     'id' => (string)$p['id'],
@@ -94,7 +95,10 @@ try {
                     'position' => $p['position'],
                     'contactNo' => $p['contact_number'],
                     'remarks' => $p['remarks'],
-                    'avatar' => $p['avatar_url']
+                    'avatar' => $img,
+                    'imgUrl' => $img,
+                    'avatar_url' => $img,
+                    'img_url' => $img
                 ];
             }, $rawProfiles);
 
@@ -110,7 +114,6 @@ try {
             $birthdate = trim($input['birthdate'] ?? '');
             $age = intval($input['age'] ?? 0);
 
-            // Compute age from birthdate if birthdate provided
             if ($birthdate) {
                 try {
                     $bDate = new DateTime($birthdate);
@@ -127,7 +130,10 @@ try {
             $position = $input['position'] ?? 'Member';
             $contactNo = trim($input['contactNo'] ?? '');
             $remarks = trim($input['remarks'] ?? '');
-            $avatar = trim($input['avatar'] ?? '');
+            
+            // Support avatar, imgUrl, avatar_url, img_url input field names
+            $avatar = trim($input['imgUrl'] ?? $input['img_url'] ?? $input['avatar'] ?? $input['avatar_url'] ?? '');
+            
             $id = $input['id'] ?? null;
             $dbId = isset($input['dbId']) ? intval($input['dbId']) : (is_numeric($id) ? intval($id) : null);
 
@@ -146,7 +152,8 @@ try {
                     position = :position,
                     contact_number = :contactNo,
                     remarks = :remarks,
-                    avatar_url = :avatar
+                    avatar_url = :avatar,
+                    img_url = :imgUrl
                     WHERE id = :id");
                 $stmt->execute([
                     ':name' => $name,
@@ -158,13 +165,14 @@ try {
                     ':contactNo' => $contactNo,
                     ':remarks' => $remarks,
                     ':avatar' => $avatar,
+                    ':imgUrl' => $avatar,
                     ':id' => $dbId
                 ]);
                 $savedId = $dbId;
             } else {
                 $stmt = $pdo->prepare("INSERT INTO women_profiles 
-                    (association_id, full_name, birthdate, age, civil_status, occupation, position, contact_number, remarks, avatar_url)
-                    VALUES (1, :name, :birthdate, :age, :civilStatus, :occupation, :position, :contactNo, :remarks, :avatar)");
+                    (association_id, full_name, birthdate, age, civil_status, occupation, position, contact_number, remarks, avatar_url, img_url)
+                    VALUES (1, :name, :birthdate, :age, :civilStatus, :occupation, :position, :contactNo, :remarks, :avatar, :imgUrl)");
                 $stmt->execute([
                     ':name' => $name,
                     ':birthdate' => $birthdate ?: null,
@@ -174,7 +182,8 @@ try {
                     ':position' => $position,
                     ':contactNo' => $contactNo,
                     ':remarks' => $remarks,
-                    ':avatar' => $avatar
+                    ':avatar' => $avatar,
+                    ':imgUrl' => $avatar
                 ]);
                 $savedId = $pdo->lastInsertId();
             }
@@ -183,7 +192,8 @@ try {
                 'status' => 'success',
                 'message' => 'Profile saved successfully.',
                 'id' => (string)$savedId,
-                'computedAge' => $age
+                'computedAge' => $age,
+                'imgUrl' => $avatar
             ]);
             break;
 
@@ -255,8 +265,8 @@ try {
             if (isset($input['profiles']) && is_array($input['profiles'])) {
                 $pdo->exec("DELETE FROM women_profiles");
                 $stmtIns = $pdo->prepare("INSERT INTO women_profiles 
-                    (association_id, full_name, birthdate, age, civil_status, occupation, position, contact_number, remarks, avatar_url) 
-                    VALUES (1, :name, :birthdate, :age, :civilStatus, :occupation, :position, :contactNo, :remarks, :avatar)");
+                    (association_id, full_name, birthdate, age, civil_status, occupation, position, contact_number, remarks, avatar_url, img_url) 
+                    VALUES (1, :name, :birthdate, :age, :civilStatus, :occupation, :position, :contactNo, :remarks, :avatar, :imgUrl)");
 
                 foreach ($input['profiles'] as $p) {
                     $bdate = $p['birthdate'] ?? null;
@@ -267,6 +277,8 @@ try {
                         } catch (\Exception $e) {}
                     }
 
+                    $img = $p['imgUrl'] ?? $p['img_url'] ?? $p['avatar'] ?? $p['avatar_url'] ?? '';
+
                     $stmtIns->execute([
                         ':name' => $p['name'],
                         ':birthdate' => $bdate ?: null,
@@ -276,7 +288,8 @@ try {
                         ':position' => $p['position'] ?? 'Member',
                         ':contactNo' => $p['contactNo'] ?? '',
                         ':remarks' => $p['remarks'] ?? '',
-                        ':avatar' => $p['avatar'] ?? ''
+                        ':avatar' => $img,
+                        ':imgUrl' => $img
                     ]);
                 }
             }
@@ -304,6 +317,7 @@ try {
                     'doleRegNo' => $assoc['dole_registration_no']
                 ],
                 'profiles' => array_map(function($p) {
+                    $img = !empty($p['img_url']) ? $p['img_url'] : $p['avatar_url'];
                     return [
                         'name' => $p['full_name'],
                         'birthdate' => $p['birthdate'],
@@ -313,7 +327,8 @@ try {
                         'position' => $p['position'],
                         'contactNo' => $p['contact_number'],
                         'remarks' => $p['remarks'],
-                        'avatar' => $p['avatar_url']
+                        'avatar' => $img,
+                        'imgUrl' => $img
                     ];
                 }, $rawProfiles)
             ];
