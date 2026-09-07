@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/version.php';
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -8,8 +11,8 @@
     <meta name="description" content="Official Barangay Women's Profiling System CY 2026 for Zamboanga del Sur KALIPI-RIC Women Federation, Inc. Management, CRUD, Cards, Table, Analytics, and Printing.">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=1.0.2">
+    <!-- Stylesheet with Cache Busting -->
+    <link rel="stylesheet" href="<?php echo asset_url('css/style.css'); ?>">
 </head>
 <body>
 
@@ -18,10 +21,10 @@
         <!-- Header Navigation Bar -->
         <nav class="navbar" id="topNavbar">
             <div class="brand-wrapper">
-                <img src="images/logo.jpg" alt="ZDS KALIPI Logo" class="brand-logo" id="mainLogo">
+                <img src="<?php echo asset_url('images/logo.jpg'); ?>" alt="ZDS KALIPI Logo" class="brand-logo" id="mainLogo">
                 <div class="brand-info">
                     <h1>Zamboanga del Sur KALIPI-RIC Women Federation, Inc.</h1>
-                    <p><i class="fa-solid fa-users-rectangle"></i> Barangay Women's Profiling System &bull; CY 2026</p>
+                    <p><i class="fa-solid fa-users-rectangle"></i> Barangay Women's Profiling System &bull; CY 2026 (v<?php echo APP_VERSION; ?>)</p>
                 </div>
             </div>
             <div class="nav-actions">
@@ -408,8 +411,8 @@
     <!-- Floating Toast Notification -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- Scripts -->
-    <script src="js/sample-data.js?v=1.0.2"></script>
-    <script src="js/app.js?v=1.0.2"></script>
+    <!-- Scripts with Cache Busting -->
+    <script src="<?php echo asset_url('js/sample-data.js'); ?>"></script>
+    <script src="<?php echo asset_url('js/app.js'); ?>"></script>
 </body>
 </html>
