@@ -485,3 +485,455 @@ Stack trace:
 [06-Sep-2026 13:37:45 UTC] PHP Stack trace:
 [06-Sep-2026 13:37:45 UTC] PHP   1. {main}() D:\Server\www\test_fetch.php:0
 [06-Sep-2026 13:37:45 UTC] PHP   2. session_start() D:\Server\www\test_fetch.php:3
+[07-Sep-2026 06:58:46 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at D:\Server\www\menunav.php:1) in D:\Server\www\user_profile.php on line 7
+[07-Sep-2026 06:58:46 UTC] PHP Stack trace:
+[07-Sep-2026 06:58:46 UTC] PHP   1. {main}() D:\Server\www\user_profile.php:0
+[07-Sep-2026 06:58:46 UTC] PHP   2. header($header = 'location:login.php') D:\Server\www\user_profile.php:7
+[07-Sep-2026 06:58:49 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at D:\Server\www\menunav.php:1) in D:\Server\www\user_profile.php on line 7
+[07-Sep-2026 06:58:49 UTC] PHP Stack trace:
+[07-Sep-2026 06:58:49 UTC] PHP   1. {main}() D:\Server\www\user_profile.php:0
+[07-Sep-2026 06:58:49 UTC] PHP   2. header($header = 'location:login.php') D:\Server\www\user_profile.php:7
+[07-Sep-2026 06:58:50 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at D:\Server\www\menunav.php:1) in D:\Server\www\user_profile.php on line 7
+[07-Sep-2026 06:58:50 UTC] PHP Stack trace:
+[07-Sep-2026 06:58:50 UTC] PHP   1. {main}() D:\Server\www\user_profile.php:0
+[07-Sep-2026 06:58:50 UTC] PHP   2. header($header = 'location:login.php') D:\Server\www\user_profile.php:7
+[07-Sep-2026 09:14:58 UTC] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in D:\Server\www\user_register.php:88
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\user_register.php on line 88
+[07-Sep-2026 09:36:23 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 09:41:13 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 09:45:48 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 09:46:45 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 09:52:24 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 09:53:57 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 09:56:53 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 09:56:58 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:00:18 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:03:39 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:10:00 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:15:44 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:18:45 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:19:26 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:20:46 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:21:42 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:24:20 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:25:23 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:26:59 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:27:30 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:27:58 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:28:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:33:33 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:33:47 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:36:19 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:36:25 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:36:30 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:36:38 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:39:29 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:40:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:40:35 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:40:50 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:40:57 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:12
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 12
+[07-Sep-2026 10:41:17 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:42:27 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:42:34 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:42:44 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:42:51 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:42:54 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:43:43 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:43:50 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:43:57 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:44:03 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:44:07 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:47:17 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:47:22 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:47:31 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:47:44 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:47:51 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:51:47 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:51:59 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:52:09 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:52:19 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:55:00 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:55:14 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:55:19 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:55:23 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 10:58:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 10:58:36 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:03:58 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:03:58 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:03:59 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:03 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:03 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:06 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:15 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:30 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:30 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:31 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:04:54 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:05:00 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:05:06 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:06:13 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:06:13 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:06:14 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:06:25 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:06:25 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:06:26 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:07:32 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:07:33 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:07:38 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:07:38 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:07:45 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:07:45 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:09:01 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:09:01 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:09:12 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:09:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:09:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:09:21 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:12:35 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:12:36 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:13:06 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:13:06 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:13:11 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:13:11 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:13:39 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:13:40 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts.php:10
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts.php on line 10
+[07-Sep-2026 11:13:56 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:14:00 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:15:15 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:16:09 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:16:13 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:16:15 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:16:18 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:16:21 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:16:27 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[07-Sep-2026 11:16:31 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
