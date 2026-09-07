@@ -282,6 +282,23 @@ require_once __DIR__ . '/version.php';
                             <input type="url" id="inputAvatar" class="form-input" placeholder="https://...">
                         </div>
 
+                        <div class="form-group">
+                            <label class="form-label">Photo Upload / Live Preview</label>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <input type="file" id="inputAvatarFile" accept="image/*" style="display: none;">
+                                <button type="button" class="btn btn-secondary" id="browseAvatarBtn" style="padding: 9px 12px; font-size: 0.8rem; flex: 1; justify-content: center;">
+                                    <i class="fa-solid fa-camera"></i> Choose Photo
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-icon-only" id="clearAvatarBtn" title="Clear / Remove Photo" style="padding: 9px; display: none;">
+                                    <i class="fa-solid fa-trash-can" style="color: #ef4444;"></i>
+                                </button>
+                                <div id="avatarPreviewBox" title="Click or Drag & Drop image here to update photo" style="width: 44px; height: 44px; border-radius: 50%; background: var(--bg-input); border: 2px solid var(--primary-500); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; cursor: pointer; transition: transform 0.2s ease;">
+                                    <i class="fa-solid fa-user" id="avatarPreviewIcon" style="color: var(--text-muted); font-size: 1.1rem;"></i>
+                                    <img id="avatarPreviewImg" src="" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group full-width">
                             <label class="form-label" for="inputRemarks">Remarks / Notes</label>
                             <textarea id="inputRemarks" class="form-textarea" placeholder="e.g. Active in Livelihood Project, Crafts Coordinator..."></textarea>

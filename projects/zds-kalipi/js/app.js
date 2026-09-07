@@ -44,9 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const printReportBtn = document.getElementById('printReportBtn');
     const importModalBtn = document.getElementById('importModalBtn');
 
-    // Form Elements
+    // Form & Photo Elements
     const inputBirthdate = document.getElementById('inputBirthdate');
     const inputAge = document.getElementById('inputAge');
+    const inputAvatar = document.getElementById('inputAvatar');
+    const inputAvatarFile = document.getElementById('inputAvatarFile');
+    const browseAvatarBtn = document.getElementById('browseAvatarBtn');
+    const clearAvatarBtn = document.getElementById('clearAvatarBtn');
+    const avatarPreviewBox = document.getElementById('avatarPreviewBox');
+    const avatarPreviewIcon = document.getElementById('avatarPreviewIcon');
+    const avatarPreviewImg = document.getElementById('avatarPreviewImg');
 
     // Modals
     const memberModal = document.getElementById('memberModal');
@@ -78,9 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Helper Functions ---
 
-    /**
-     * Compute exact age from birthdate string (YYYY-MM-DD)
-     */
     function calculateAge(birthdateStr) {
         if (!birthdateStr) return '';
         const birthDate = new Date(birthdateStr);
@@ -94,14 +98,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return age >= 0 ? age : 0;
     }
 
-    /**
-     * Format birthdate nicely (e.g. 1985-09-30 -> Sep 30, 1985)
-     */
     function formatDateNice(dateStr) {
         if (!dateStr) return '';
         const d = new Date(dateStr);
         if (isNaN(d.getTime())) return dateStr;
         return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function updateAvatarPreview(url) {
+        if (url && url.trim()) {
+            avatarPreviewImg.src = url.trim();
+            avatarPreviewImg.style.display = 'block';
+            avatarPreviewIcon.style.display = 'none';
+            if (clearAvatarBtn) clearAvatarBtn.style.display = 'inline-flex';
+        } else {
+            avatarPreviewImg.src = '';
+            avatarPreviewImg.style.display = 'none';
+            avatarPreviewIcon.style.display = 'block';
+            if (clearAvatarBtn) clearAvatarBtn.style.display = 'none';
+        }
+    }
+
+    function handleSelectedImageFile(file) {
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const dataUrl = event.target.result;
+                inputAvatar.value = dataUrl;
+                updateAvatarPreview(dataUrl);
+            };
+            reader.readAsDataURL(file);
+        }
     }
 
     // Auto-calculate Age on Birthdate Change
@@ -111,6 +138,61 @@ document.addEventListener('DOMContentLoaded', () => {
             if (computedAge !== '') {
                 inputAge.value = computedAge;
             }
+        });
+    }
+
+    // Photo Upload, Update, Drag-and-Drop & Preview Logic
+    if (browseAvatarBtn && inputAvatarFile) {
+        browseAvatarBtn.addEventListener('click', () => {
+            inputAvatarFile.click();
+        });
+
+        if (avatarPreviewBox) {
+            avatarPreviewBox.addEventListener('click', () => {
+                inputAvatarFile.click();
+            });
+
+            // Drag and Drop support
+            avatarPreviewBox.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                avatarPreviewBox.style.borderColor = 'var(--gold-400)';
+                avatarPreviewBox.style.transform = 'scale(1.1)';
+            });
+
+            avatarPreviewBox.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                avatarPreviewBox.style.borderColor = 'var(--primary-500)';
+                avatarPreviewBox.style.transform = 'scale(1)';
+            });
+
+            avatarPreviewBox.addEventListener('drop', (e) => {
+                e.preventDefault();
+                avatarPreviewBox.style.borderColor = 'var(--primary-500)';
+                avatarPreviewBox.style.transform = 'scale(1)';
+                if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    handleSelectedImageFile(e.dataTransfer.files[0]);
+                }
+            });
+        }
+
+        inputAvatarFile.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                handleSelectedImageFile(e.target.files[0]);
+            }
+        });
+    }
+
+    if (clearAvatarBtn) {
+        clearAvatarBtn.addEventListener('click', () => {
+            inputAvatar.value = '';
+            inputAvatarFile.value = '';
+            updateAvatarPreview('');
+        });
+    }
+
+    if (inputAvatar) {
+        inputAvatar.addEventListener('input', () => {
+            updateAvatarPreview(inputAvatar.value);
         });
     }
 
@@ -254,7 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     if (data.profiles && Array.isArray(data.profiles)) {
                         profiles = data.profiles;
-                        // Calculate ages dynamically if birthdates present
                         profiles.forEach(p => {
                             if (p.birthdate) {
                                 p.age = calculateAge(p.birthdate);
@@ -585,11 +666,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('inputPosition').value = m.position;
                 document.getElementById('inputContact').value = m.contactNo || '';
                 document.getElementById('inputAvatar').value = m.avatar || '';
+                updateAvatarPreview(m.avatar);
+
                 document.getElementById('inputRemarks').value = m.remarks || '';
             }
         } else {
             document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-user-plus"></i> Add Woman Profile';
             document.getElementById('memberId').value = '';
+            updateAvatarPreview('');
         }
         openModal(memberModal);
     }
@@ -618,6 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (id) {
             const index = profiles.findIndex(p => p.id === id);
             if (index !== -1) {
+                payload.dbId = profiles[index].dbId || profiles[index].id;
                 profiles[index] = { ...profiles[index], ...payload };
             }
         } else {
@@ -809,7 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
         const downloadAnchor = document.createElement('a');
-        downloadAnchor.setAttribute("href", downloadAnchor);
+        downloadAnchor.setAttribute("href", dataStr);
         downloadAnchor.setAttribute("download", `ZDS_KALIPI_Backup_${associationInfo.barangay}.json`);
         document.body.appendChild(downloadAnchor);
         downloadAnchor.click();
@@ -874,7 +959,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (type === 'success') iconClass = 'fa-circle-check';
         if (type === 'danger') iconClass = 'fa-circle-exclamation';
 
-        toast.innerHTML = `<i class="fa-solid ${iconClass}"></i> <span>${message}</span>`;
+        toast.innerHTML = `<i class="fa-solid fa-${iconClass}"></i> <span>${message}</span>`;
         toastContainer.appendChild(toast);
 
         setTimeout(() => {
