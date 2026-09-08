@@ -997,3 +997,15 @@ Stack trace:
 [08-Sep-2026 11:54:50 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
 [08-Sep-2026 11:54:50 UTC] PHP Stack trace:
 [08-Sep-2026 11:54:50 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[08-Sep-2026 12:01:15 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[08-Sep-2026 12:01:15 UTC] PHP Stack trace:
+[08-Sep-2026 12:01:15 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[08-Sep-2026 12:03:49 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[08-Sep-2026 12:03:49 UTC] PHP Stack trace:
+[08-Sep-2026 12:03:49 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[08-Sep-2026 12:04:35 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[08-Sep-2026 12:04:35 UTC] PHP Stack trace:
+[08-Sep-2026 12:04:35 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[08-Sep-2026 12:05:41 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[08-Sep-2026 12:05:41 UTC] PHP Stack trace:
+[08-Sep-2026 12:05:41 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
