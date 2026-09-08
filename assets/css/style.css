@@ -23,13 +23,12 @@ html {
 
 body {
   font-family: 'Poppins', 'Inter', sans-serif;
-  background: #121212 url('/images/body-bg.webp') no-repeat; background-size:cover; background-position: center center !important;
+  background: #121212 url('/images/body-bg.webp') no-repeat; background-size: cover;background-position: center center !important;
   color: var(--text-main);
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
