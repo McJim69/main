@@ -1009,3 +1009,48 @@ Stack trace:
 [08-Sep-2026 12:05:41 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
 [08-Sep-2026 12:05:41 UTC] PHP Stack trace:
 [08-Sep-2026 12:05:41 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[10-Sep-2026 21:32:18 UTC] PHP Warning:  include(projects/$plink/README.md): Failed to open stream: No such file or directory in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:18 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:18 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 21:32:18 UTC] PHP Warning:  include(): Failed opening 'projects/$plink/README.md' for inclusion (include_path='.;C:\php\pear') in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:18 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:18 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 21:32:26 UTC] PHP Warning:  include(projects/$plink/README.md): Failed to open stream: No such file or directory in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:26 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:26 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 21:32:26 UTC] PHP Warning:  include(): Failed opening 'projects/$plink/README.md' for inclusion (include_path='.;C:\php\pear') in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:26 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:26 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 21:32:30 UTC] PHP Warning:  include(projects/$plink/README.md): Failed to open stream: No such file or directory in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:30 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:30 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 21:32:30 UTC] PHP Warning:  include(): Failed opening 'projects/$plink/README.md' for inclusion (include_path='.;C:\php\pear') in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:30 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:30 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 21:32:43 UTC] PHP Warning:  include(projects/$plink/README.md): Failed to open stream: No such file or directory in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:43 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:43 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 21:32:43 UTC] PHP Warning:  include(): Failed opening 'projects/$plink/README.md' for inclusion (include_path='.;C:\php\pear') in D:\Server\www\project_details.php on line 59
+[10-Sep-2026 21:32:43 UTC] PHP Stack trace:
+[10-Sep-2026 21:32:43 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 22:41:30 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
+[10-Sep-2026 22:41:30 UTC] PHP Stack trace:
+[10-Sep-2026 22:41:30 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 22:42:32 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
+[10-Sep-2026 22:42:32 UTC] PHP Stack trace:
+[10-Sep-2026 22:42:32 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 22:43:07 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
+[10-Sep-2026 22:43:07 UTC] PHP Stack trace:
+[10-Sep-2026 22:43:07 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 22:45:32 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
+[10-Sep-2026 22:45:32 UTC] PHP Stack trace:
+[10-Sep-2026 22:45:32 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 22:47:13 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
+[10-Sep-2026 22:47:13 UTC] PHP Stack trace:
+[10-Sep-2026 22:47:13 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 22:47:14 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
+[10-Sep-2026 22:47:14 UTC] PHP Stack trace:
+[10-Sep-2026 22:47:14 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[10-Sep-2026 22:47:29 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
+[10-Sep-2026 22:47:29 UTC] PHP Stack trace:
+[10-Sep-2026 22:47:29 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0

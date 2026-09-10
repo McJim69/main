@@ -43,7 +43,9 @@
 
 <script>setActive("projects");</script>
 
-<div class="page-heading header-text">
+<link href="assets/css/parsedown.css" rel="stylesheet">   
+
+<div class="page-heading header-text" style="z-index:1">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -54,69 +56,59 @@
   </div>
 </div>
 
-<div class="container mt-5 mb-5 text-light">
-    <div class="row">
-        <!-- Main Info -->
-        <div class="col-md-8">
-            <img src="images/projects/<?php echo htmlspecialchars($project['plink']); ?>/logo.png" class="img-fluid rounded mb-4" onerror="this.src='images/default.jpg';" alt="Logo" style="height:150px">
-            <h3 class="mb-3">Overview</h3>
-            <p><?php echo nl2br(htmlspecialchars($project['long_desc'] ?? '')); ?></p>
+<?php
+	// Fetch Project Link
+	$proj_stmt = $conn->prepare("SELECT plink FROM projects WHERE pid = ?");
+	$proj_stmt->bind_param("i", $pid);
+	$proj_stmt->execute();
+	$proj_res = $proj_stmt->get_result();
 
-            <?php if (!empty($project['how_itworks'])): ?>
-                <h4 class="mt-4 text-info">How It Works</h4>
-                <p><?php echo nl2br(htmlspecialchars($project['how_itworks'])); ?></p>
-            <?php endif; ?>
+	$plink = [];
+	while ($proj_row = $proj_res->fetch_assoc()) {
+		$plink[] = $proj_row['plink'];
+	}
+	$proj_stmt->close();
 
-            <?php if (!empty($project['features'])): ?>
-                <h4 class="mt-4 text-info">Key Features</h4>
-                <p><?php echo nl2br(htmlspecialchars($project['features'])); ?></p>
-            <?php endif; ?>
+	$path         = 'projects';
+	$readme       = 'README.md'; // ✅ semicolon
+	$project      = $plink[0];   // ✅ get first plink
+	$readme_path  = $path . '/' . $project . '/' . $readme;
+	$html_content = '';
 
-            <div class="mt-5">
-                <a href="../projects/<?php echo htmlspecialchars($project['plink']); ?>/" target="_blank" class="btn btn-primary btn-lg">Live Demo</a> &nbsp;
-                <a href="https://github.com/McJim69/<?php echo htmlspecialchars($project['plink']); ?>" target="_blank" class="btn btn-primary btn-lg">Github Repo</a>
-            </div><br>
+	if (file_exists($readme_path)) {
+		// Include the standalone lightweight markdown parser engine
+		require_once 'Parsedown.php';
+		
+		// Read the raw text strings out of your markdown asset
+		$markdown_text = file_get_contents($readme_path);
+		
+		// Convert text blocks straight into HTML layout structures
+		$parsedown = new Parsedown();
+		$html_content = $parsedown->text($markdown_text);
+	} else {
+		$html_content = "<div class='alert alert-danger'><i class='fa fa-exclamation-triangle me-2'></i>System Error: README.md file is missing from the project directory.</div>";
+	}
+?>
+
+<div class="container mt-5 main-content pt-4">
+  <div class="row justify-content-center" style="margin-top:-100px">
+    <div class="col-lg-12">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body p-5 text-start markdown-body">
+            <?= $html_content ?>
         </div>
-
-        <!-- Sidebar Info -->
-        <div class="col-md-4">
-            <div class="p-4" style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; border: 1px solid #444;">
-                <h4 class="mb-3 border-bottom pb-2">Tech Stack</h4>
-                <?php 
-                    $techs = explode(',', $project['tech_used'] ?? '');
-                    foreach ($techs as $tech) {
-                        $tech = trim($tech);
-                        if (!empty($tech)) {
-                            echo "<span class='badge badge-info mr-1 mb-1 p-2'>".htmlspecialchars($tech)."</span>";
-                        }
-                    }
-                ?>
-                
-                <h4 class="mt-4 mb-3 border-bottom pb-2">Management Features</h4>
-                <?php if (!empty($project['management'])): ?>
-                    <strong>General:</strong><br>
-                    <p class="small"><?php echo nl2br(htmlspecialchars($project['management'])); ?></p>
-                <?php endif; ?>
-                
-                <?php if (!empty($project['mgt_public'])): ?>
-                    <strong class="text-success">Public/User Facing:</strong><br>
-                    <p class="small"><?php echo nl2br(htmlspecialchars($project['mgt_public'])); ?></p>
-                <?php endif; ?>
-                
-                <?php if (!empty($project['mgt_admin'])): ?>
-                    <strong class="text-danger">Admin Facing:</strong><br>
-                    <p class="small"><?php echo nl2br(htmlspecialchars($project['mgt_admin'])); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <!-- Gallery Section -->
-    <?php if (count($images) > 0): ?>
+<!-- Gallery Section -->
+<?php if (count($images) > 0): ?>
     
-    <!-- Venobox CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.4/venobox.min.css" type="text/css" media="screen" />
-    
+<!-- Venobox CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.4/venobox.min.css" type="text/css" media="screen" />    
+
+<div class="container mt-5">
     <div class="row mt-5">
         <div class="col-md-12">
             <h3 class="border-bottom pb-2 mb-4">Project Screenshots</h3>
@@ -131,21 +123,22 @@
             </div>
         </div>
     </div>
-    
-    <!-- Venobox JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.4/venobox.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            new VenoBox({
-                selector: '.venobox',
-                numeratio: true,
-                infinigall: true,
-                share: false,
-                spinner: 'rotating-plane'
-            });
-        });
-    </script>
-    <?php endif; ?>
+</div>
+
+<!-- Venobox JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.4/venobox.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		new VenoBox({
+			selector: '.venobox',
+			numeratio: true,
+			infinigall: true,
+			share: false,
+			spinner: 'rotating-plane'
+		});
+	});
+</script>
+<?php endif; ?>
 
 </div>
 

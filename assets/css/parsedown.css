@@ -1,0 +1,46 @@
+  .card{border-radius:15px;background:#121212}
+  .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    font-weight: 700;
+    color: #f1f5f9; /* light text */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #334155; /* darker border */
+    padding-bottom: 0.4rem;
+  }
+  .markdown-body p {
+    color: #e2e8f0; /* softer light gray */
+    line-height: 1.6;
+  }
+  .markdown-body code {
+    background-color: #1e293b; /* dark background */
+    color: #facc15; /* highlight yellow */
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 85%;
+  }
+  .markdown-body pre {
+    background: #0f172a; /* very dark */
+    color: #f8fafc; /* light text */
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  .markdown-body pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+  .markdown-body table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+  }
+  .markdown-body th, .markdown-body td {
+    border: 1px solid #334155; /* dark border */
+    padding: 0.75rem;
+    color: #e2e8f0; /* light text */
+  }
+  .markdown-body th {
+    background-color: #1e293b; /* dark header */
+    color: #f1f5f9;
+  }
