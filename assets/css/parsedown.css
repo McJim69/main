@@ -1,4 +1,16 @@
-  .card{border-radius:15px;background:#121212}
+  .card{
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(15, 23, 42, 0.6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+  .card:hover {
+    color: #fff;
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0px 10px 25px rgba(56, 189, 248, 0.3);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+  }	
   .markdown-body h1, .markdown-body h2, .markdown-body h3 {
     font-weight: 700;
     color: #f1f5f9; /* light text */

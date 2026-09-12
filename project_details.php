@@ -96,6 +96,10 @@
       <div class="card shadow-sm border-0 rounded-3">
         <div class="card-body p-5 text-start markdown-body">
             <?= $html_content ?>
+		  <div align="center" style="margin:20px 0 -20px 0">
+			<a href="projects/<?php echo $project ?>" class="filled-button" target="_blank"><i class="fa fa-eye"></i> Live Demo</a>
+			<a href="https:/github.com/McJim69/<?php echo $project ?>" class="filled-button" target="_blank"><i class="fa fa-github"></i> Github</a>
+		  </div>
         </div>
       </div>
     </div>
@@ -108,10 +112,9 @@
 <!-- Venobox CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/2.0.4/venobox.min.css" type="text/css" media="screen" />    
 
-<div class="container mt-5">
-    <div class="row mt-5">
+<div class="container">
+    <div class="row">
         <div class="col-md-12">
-            <h3 class="border-bottom pb-2 mb-4">Project Screenshots</h3>
             <div class="row">
                 <?php foreach ($images as $img): ?>
                     <div class="col-md-3 col-sm-6 mb-4">

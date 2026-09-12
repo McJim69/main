@@ -1054,3 +1054,57 @@ Stack trace:
 [10-Sep-2026 22:47:29 UTC] PHP Warning:  Undefined variable $plink in D:\Server\www\project_details.php on line 58
 [10-Sep-2026 22:47:29 UTC] PHP Stack trace:
 [10-Sep-2026 22:47:29 UTC] PHP   1. {main}() D:\Server\www\project_details.php:0
+[11-Sep-2026 01:08:05 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 01:08:05 UTC] PHP Stack trace:
+[11-Sep-2026 01:08:05 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 01:25:50 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[11-Sep-2026 01:25:50 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[11-Sep-2026 01:25:53 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[11-Sep-2026 01:25:55 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[11-Sep-2026 01:26:38 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[11-Sep-2026 01:26:38 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[11-Sep-2026 01:27:13 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 01:27:13 UTC] PHP Stack trace:
+[11-Sep-2026 01:27:13 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 01:28:57 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 01:28:57 UTC] PHP Stack trace:
+[11-Sep-2026 01:28:57 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 01:29:21 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 01:29:21 UTC] PHP Stack trace:
+[11-Sep-2026 01:29:21 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 01:29:32 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 01:29:32 UTC] PHP Stack trace:
+[11-Sep-2026 01:29:32 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 01:30:49 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 01:30:49 UTC] PHP Stack trace:
+[11-Sep-2026 01:30:49 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 01:31:10 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 01:31:10 UTC] PHP Stack trace:
+[11-Sep-2026 01:31:10 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 19:50:35 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 19:50:35 UTC] PHP Stack trace:
+[11-Sep-2026 19:50:35 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 19:52:28 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 19:52:28 UTC] PHP Stack trace:
+[11-Sep-2026 19:52:28 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[11-Sep-2026 19:54:00 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[11-Sep-2026 19:54:00 UTC] PHP Stack trace:
+[11-Sep-2026 19:54:00 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
