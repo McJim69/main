@@ -98,7 +98,7 @@
             <?= $html_content ?>
 		  <div align="center" style="margin:20px 0 -20px 0">
 			<a href="projects/<?php echo $project ?>" class="filled-button" target="_blank"><i class="fa fa-eye"></i> Live Demo</a>
-			<a href="https:/github.com/McJim69/<?php echo $project ?>" class="filled-button" target="_blank"><i class="fa fa-github"></i> Github</a>
+			<a href="https://github.com/McJim69/<?php echo $project ?>" class="filled-button" target="_blank"><i class="fa fa-github"></i> Github</a>
 		  </div>
         </div>
       </div>

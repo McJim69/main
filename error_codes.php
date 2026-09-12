@@ -32,8 +32,8 @@
 		$error = "<div><h1>E R R O R</h1></div>";
 		$erowc = "</div>";
 		$erbtn = "<div class='row justify-content-center'><button class='btn btn-dark' onclick=\"jump('index.php')\"><i class='fa fa-home'></i> Back to Home</button></div>";
-		$ertop = "<div style='margin-top: 30px'></div>";
-		$erbot = "<div style='margin-bottom:-50px'></div>";
+		$ertop = "<div style='margin-top: 20px'></div>";
+		$erbot = "<div style='margin-bottom:-20px'></div>";
 		if ($code == 400) { 
 			echo $erowo; echo $error; echo $erowc; echo $erowo;
 			echo "<div class='error'>400</div>";   echo $erowc; echo $ertop; echo $erowo;
