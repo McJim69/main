@@ -1,8 +1,8 @@
 jellyfin_token.php
 !images/projects/
-mail_config.php
 webforms.php
 language.php
 connect.php
+config.php
 projects/
 upload/cache/
