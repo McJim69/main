@@ -42,6 +42,22 @@
 							// 🔒 Secure session
 							session_regenerate_id(true);
 
+							// --- JELLYFIN SSO ---
+							require_once("jellyfin_helper.php");
+							$jellyfinToken = get_jellyfin_token($user, $pass);
+							if ($jellyfinToken) {
+								// Update DB with fresh token
+								$updateStmt = $conn->prepare("UPDATE users SET jellyfin=? WHERE uno=?");
+								$updateStmt->bind_param("si", $jellyfinToken, $rs["uno"]);
+								$updateStmt->execute();
+								$updateStmt->close();
+								
+								// Set cookie for Nginx to read (HttpOnly MUST be false so JS can read it)
+								setcookie("jellyfin_auth", $jellyfinToken, time()+86400, "/", ".mcjim-server.com", false, false);
+								$rs["jellyfin"] = $jellyfinToken; // update session state
+							}
+							// --------------------
+
 							// Set session variables
 							$_SESSION["uno"]      = $rs["uno"];
 							$_SESSION["user"]     = $rs["username"];
@@ -51,8 +67,9 @@
 							$_SESSION["jellyfin"] = $rs["jellyfin"]; 				
 							
 							session_write_close();
-							// Redirect to dashboard
-							header("Location: dashboard.php");
+							// Redirect to return url or dashboard
+                            $return_url = $_GET['return'] ?? 'dashboard.php';
+							header("Location: " . $return_url);
 							exit();
 							
 						} else {

@@ -109,7 +109,7 @@
 				</div>
 				<div style="margin-top:-10px;margin-bottom:20px">
 					<small>More Media Libraries <i class="fa fa-arrow-right text-success"></i> 
-						<a href="https://media.mcjim-server.com" target="_blank">media.mcjim-server.com</a>
+						<a href="https://media.mcjim-server.com/sso" target="_blank">media.mcjim-server.com</a>
 					</small>
 				</div>
 				<form method="GET">
@@ -144,7 +144,7 @@
 					<div class="col-md-4" style="width:100%;margin-bottom:10px">		
 						<a  style="width:32%" class="btn btn-sm btn-success" href="movies.php"><i class="fa fa-refresh"></i> Refresh</a>
 						<a  style="width:32%" href="movies_owl.php" class="btn btn-sm btn-warning btn-rounded-pill"><i class="fa fa-sliders"></i> Slides</a>
-						<a  style="width:32%" href="https://media.mcjim-server.com" target="_blank" class="btn btn-sm btn-info btn-rounded-pill"><i class="fa fa-archive"></i> Libraries</a>
+						<a  style="width:32%" href="https://media.mcjim-server.com/sso" target="_blank" class="btn btn-sm btn-info btn-rounded-pill"><i class="fa fa-archive"></i> Libraries</a>
 					</div>
 				</div>	
 			</div>

@@ -143,10 +143,10 @@
         </div>
 
         <div class="col-md-3 mb-4">
-            <a href="downloads.php" class="dashboard-card">
+            <a href="https://media.mcjim-server.com/sso" class="dashboard-card">
                 <span class="dashboard-badge badge-danger"><?= $count_downloads > 0 ? $count_downloads . ' Assets' : 'Active' ?></span>
                 <i class="fa fa-download fa-4x mb-3 text-danger"></i>
-                <h4 class="text-white">Downloads Hub</h4>
+                <h4 class="text-white">Go to Media Server</h4>
                 <p class="small text-muted mt-2">Download software and assets</p>
             </a>
         </div>

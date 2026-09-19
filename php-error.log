@@ -1138,3 +1138,14 @@ Stack trace:
 [19-Sep-2026 15:35:17 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
 [19-Sep-2026 15:35:17 UTC] PHP Stack trace:
 [19-Sep-2026 15:35:17 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "REQUEST_METHOD" in D:\Server\www\login.php on line 8
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in D:\Server\www\header.php on line 90
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "REQUEST_URI" in D:\Server\www\header.php on line 90
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in D:\Server\www\header.php on line 93
+[19-Sep-2026 18:58:29 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in D:\Server\www\header.php on line 93
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in D:\Server\www\header.php on line 96
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "REQUEST_URI" in D:\Server\www\header.php on line 96
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in D:\Server\www\header.php on line 99
+[19-Sep-2026 18:58:29 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in D:\Server\www\header.php on line 99
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in D:\Server\www\header.php on line 101
+[19-Sep-2026 18:58:29 UTC] PHP Warning:  Undefined array key "REQUEST_URI" in D:\Server\www\header.php on line 101
