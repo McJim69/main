@@ -46,6 +46,11 @@
 		$seo_desc = "McJim Cyberworks Contact Information.";
 		$seo_keywords = "McJim Contact, Contact Us, McJim Contact Informations";
 		$seo_robots = "index, follow";
+	} else if ($current_file === 'mail_index.php') {
+		$seo_title = "Mail | McJim Cyberworks";
+		$seo_desc = "McJim Cyberworks Mail Services.";
+		$seo_keywords = "McJim Mail, Create Free Mail Services, McJim Mail Services";
+		$seo_robots = "index, follow";
 	} else if ($current_file === 'user_register.php') {
 		$seo_title = "Signup | McJim Cyberworks";
 		$seo_desc = "Join Us on McJim Cyberworks. Signup for Us";

@@ -26,12 +26,17 @@
                 <div class="col-md-6 align-self-center" style="border:0">
                   <div class="right-content" style="border:0">
 					<h2 class="text-secondary">McJim Cyberworks</h2>
-					<p style="color:#bbb">
-						McJim Cyberworks specialize in delivering cutting-edge IT solutions tailored to the 
-						unique needs of businesses. With a dedicated team of experts, we offer a comprehensive 
-						range of services, including cloud computing, cybersecurity, software development, and 
-						IT consultancy. Our mission is to empower organizations to thrive in the digital age by 
-						providing innovative, reliable, and scalable technology solutions. 					
+					<p>
+						McJim Cyberworks delivers tailored IT solutions for businesses, 
+						offering cloud computing, cybersecurity, software development, and consultancy.
+					</p>
+					<p>
+						<h5>MISSION</h5>
+						Our mission is to empower organizations in the digital age with innovative, reliable, and scalable technology.
+					</p>
+					<p>
+						<h5>GOAL</h5>
+						Our main objective in undertaking this business is to provide Information Technology (IT) sales and services to marginalized communities, particularly those in distant areas, since they are less fortunate in accessing modern services.
 					</p>
                   </div>
                 </div>

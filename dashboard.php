@@ -174,11 +174,11 @@
         </div>
 
         <div class="col-md-3 mb-4">
-            <a href="user_profile.php" class="dashboard-card">
-                <span class="dashboard-badge badge-success">Active</span>
-                <i class="fa fa-user fa-4x mb-3 text-success"></i>
-                <h4 class="text-white">Your Profile</h4>
-                <p class="small text-muted mt-2">View profile details & update </p>
+            <a href="webmail" class="dashboard-card">
+                <span class="dashboard-badge badge-success">Online</span>
+                <i class="fa fa-envelope fa-4x mb-3 text-success"></i>
+                <h4 class="text-white">Mail Services</h4>
+                <p class="small text-muted mt-2">Free 20GB of Mailbox Storage</p>
             </a>
         </div>		
 

@@ -1108,3 +1108,24 @@ Stack trace:
 [11-Sep-2026 19:54:00 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
 [11-Sep-2026 19:54:00 UTC] PHP Stack trace:
 [11-Sep-2026 19:54:00 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[18-Sep-2026 17:53:48 UTC] PHP Warning:  Undefined array key "access" in D:\Server\www\dashboard.php on line 185
+[18-Sep-2026 17:53:48 UTC] PHP Stack trace:
+[18-Sep-2026 17:53:48 UTC] PHP   1. {main}() D:\Server\www\dashboard.php:0
+[18-Sep-2026 17:53:52 UTC] PHP Warning:  Undefined array key "access" in D:\Server\www\dashboard.php on line 185
+[18-Sep-2026 17:53:52 UTC] PHP Stack trace:
+[18-Sep-2026 17:53:52 UTC] PHP   1. {main}() D:\Server\www\dashboard.php:0
+[18-Sep-2026 17:53:53 UTC] PHP Warning:  Undefined array key "access" in D:\Server\www\dashboard.php on line 185
+[18-Sep-2026 17:53:53 UTC] PHP Stack trace:
+[18-Sep-2026 17:53:53 UTC] PHP   1. {main}() D:\Server\www\dashboard.php:0
+[18-Sep-2026 17:54:13 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[18-Sep-2026 17:54:13 UTC] PHP Stack trace:
+[18-Sep-2026 17:54:13 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[18-Sep-2026 17:55:26 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[18-Sep-2026 17:55:26 UTC] PHP Stack trace:
+[18-Sep-2026 17:55:26 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[18-Sep-2026 17:55:42 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[18-Sep-2026 17:55:42 UTC] PHP Stack trace:
+[18-Sep-2026 17:55:42 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[18-Sep-2026 23:04:37 UTC] PHP Warning:  Undefined array key "access" in D:\Server\www\dashboard.php on line 185
+[18-Sep-2026 23:04:37 UTC] PHP Stack trace:
+[18-Sep-2026 23:04:37 UTC] PHP   1. {main}() D:\Server\www\dashboard.php:0
