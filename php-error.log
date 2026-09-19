@@ -1129,3 +1129,12 @@ Stack trace:
 [18-Sep-2026 23:04:37 UTC] PHP Warning:  Undefined array key "access" in D:\Server\www\dashboard.php on line 185
 [18-Sep-2026 23:04:37 UTC] PHP Stack trace:
 [18-Sep-2026 23:04:37 UTC] PHP   1. {main}() D:\Server\www\dashboard.php:0
+[19-Sep-2026 15:34:10 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[19-Sep-2026 15:34:10 UTC] PHP Stack trace:
+[19-Sep-2026 15:34:10 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[19-Sep-2026 15:34:55 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[19-Sep-2026 15:34:55 UTC] PHP Stack trace:
+[19-Sep-2026 15:34:55 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0
+[19-Sep-2026 15:35:17 UTC] PHP Warning:  Trying to access array offset on value of type null in D:\Server\www\admin-projects.php on line 121
+[19-Sep-2026 15:35:17 UTC] PHP Stack trace:
+[19-Sep-2026 15:35:17 UTC] PHP   1. {main}() D:\Server\www\admin-projects.php:0

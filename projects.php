@@ -37,7 +37,7 @@
 			<b><?php echo $i;?></b>
 		</div>                          
         <a href="../projects/<?php echo $link;?>/" target="_blank" title="Try Demo">
-          <img src="images/projects/<?php echo $link;?>/logo.png">
+          <img src="images/projects/<?php echo $link;?>/logo.png?<?= time();?>">
         </a><br>
         <?php echo $name;?>
         <p class="text-info">Web Application</p>
