@@ -133,13 +133,13 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 
-    <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">   
-
+    <!-- Bootstrap core CSS --> 
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Additional CSS Files -->
-    <link href="/vendor/owlcarousel/css/owl.carousel.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/assets/css/fontawesome.css">
-    <link rel="stylesheet" href="/assets/css/style.css?v=<?= SITE_VERSION ?>">		
+    <link href="/assets/owlcarousel/css/owl.carousel.min.css" rel="stylesheet" type="text/css">
+	<link href="/assets/fontawesome/css/all.min.css" rel="stylesheet">
+	<link href="/assets/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css?v=<?= SITE_VERSION ?>" rel="stylesheet" >		
 	
 	<!-- Chat Notifications Style & Polling -->
     <?php if (isset($_SESSION['user'])): ?>
@@ -147,9 +147,16 @@
     <?php endif; ?>
 
 	<!-- SweetAlert2 & Quill -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+	<link href="/assets/sweetalert2/dist/sweetalert2.css" rel="stylesheet">
+	<link href="/assets/quill/quill.snow.css" rel="stylesheet">
+	<script src="/assets/quill/quill.js"></script>
+
+	<!-- JQUERY -->
+	<script src="/assets/jquery/jquery.min.js"></script>
+	
+	<!-- Paypal Gateway -->
+	<script src="assets/fontawesome/js/all.min.js"></script>
+	<script src="https://www.paypal.com/web-sdk/v6/core"></script>
 </head>
 
 <body>

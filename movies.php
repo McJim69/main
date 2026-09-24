@@ -116,7 +116,7 @@
 				<div class="row">
 					<div class="col-md-4" style="width:100%;margin-bottom:10px">
 						<input  style="width:74%" type="text" name="q" placeholder="Search movies..." value="<?php echo htmlspecialchars($searchTerm); ?>">
-						<button  style="width:24%" class="btn btn-sm btn-outline-warning" type="submit"><i class="fa fa-search"></i> Go!</button>
+						<button  style="width:24%" class="btn btn-sm btn-outline-warning" type="submit"><i class="fa fa-search"></i></button>
 					</div>
 					<div class="col-md-4" style="width:100%;margin-bottom:10px">
 						<select class="btn btn-sm btn-outline-warning text-left" name="genre"  style="width:49%">
@@ -142,9 +142,9 @@
 					</div>
 					</form>
 					<div class="col-md-4" style="width:100%;margin-bottom:10px">		
-						<a  style="width:32%" class="btn btn-sm btn-success" href="movies.php"><i class="fa fa-refresh"></i> Refresh</a>
+						<a  style="width:32%" class="btn btn-sm btn-success" href="movies.php"><i class="fa fa-refresh"></i></a>
 						<a  style="width:32%" href="movies_owl.php" class="btn btn-sm btn-warning btn-rounded-pill"><i class="fa fa-sliders"></i> Slides</a>
-						<a  style="width:32%" href="https://media.mcjim-server.com/sso" target="_blank" class="btn btn-sm btn-info btn-rounded-pill"><i class="fa fa-archive"></i> Libraries</a>
+						<a  style="width:32%" href="https://media.mcjim-server.com/sso" target="_blank" class="btn btn-sm btn-info btn-rounded-pill">Libraries</a>
 					</div>
 				</div>	
 			</div>

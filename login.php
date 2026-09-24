@@ -63,6 +63,7 @@
 							$_SESSION["user"]     = $rs["username"];
 							$_SESSION["fullname"] = $rs["fullname"];
 							$_SESSION["access"]   = $rs["access"];
+							$_SESSION["email"]    = $rs["email"];
 							$_SESSION["imgUrl"]   = $rs["imgUrl"];
 							$_SESSION["jellyfin"] = $rs["jellyfin"]; 				
 							

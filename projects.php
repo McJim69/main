@@ -10,8 +10,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1>WebDev Projects</h1>
-        <span>Web Development Projects</span>
+        <h1>Deployed Projects</h1>
+        <span>Deployed Web Development Projects</span>
       </div>
     </div>
   </div>

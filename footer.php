@@ -1,35 +1,57 @@
+<style>
+.pp-A7U93SR9K428N{
+	text-align:center;
+	border:none;
+	border-radius:1.5rem;
+	width:auto !important;
+	padding:0 2rem;
+	height:2rem;
+	font-weight:bold;
+	background:var(--primary-gradient);
+	font-family:"Helvetica Neue",Arial,sans-serif;
+	font-size:0.875rem;
+	line-height:1.125rem;
+	cursor:pointer;
+}
+</style>
+
 <!-- Footer Starts Here -->
 <footer>
-	<div class="container">
+	<div class="container d-flex justify-content-center align-items-betwen">
 		<div class="row">
-			<div class="col-md-3 footer-item"><h4 class="text-muted">McJim Cyberworks</h4>
+			<div class="col-md-3 footer-item"><h4 class="text-muted">🌐 McJim Cyberworks</h4>
 				<p style="color:#bbb">Empowering Digital Transformation with Tailored IT Solutions.</p>
 				<ul class="social-icons">
-					<li><a style="background:#545454" href="https://facebook.com/mcjimserver" target="_blank"><i class="fa fa-facebook text-white"></i></a></li>
-					<li><a style="background:#545454" href="https://github.com/McJim69" target="_blank"><i class="fa fa-github text-white"></i></a></li>
-					<li><a style="background:#545454" href="https://www.linkedin.com" target="_blank"><i class="fa fa-linkedin text-white"></i></a></li>
+					<li><a style="background:#545454" href="https://facebook.com/mcjimserver" target="_blank"><i class="fab fa-facebook-f text-white"></i></a></li>
+					<li><a style="background:#545454" href="https://github.com/McJim69" target="_blank"><i class="fab fa-github text-white"></i></a></li>
+					<li><a style="background:#545454" href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in text-white"></i></a></li>
 				</ul>
 			</div>
-			<div class="col-md-3 footer-item"><h4 class="text-muted">Terms & Policy</h4>
+			<div class="col-md-3 footer-item"><h4 class="text-muted">📜 Legal Terms</h4>
 				<ul class="menu-list">
-					<li><a style="color:#bbb" href="disclaimer.php"><i class="fa fa-exclamation-triangle"></i> Disclaimer</a></li>
-					<li><a style="color:#bbb" href="terms.php"><i class="fa fa-file"></i> Terms of Use</a></li>
-					<li><a style="color:#bbb" href="privacy.php"><i class="fa fa-shield"></i> Privacy Statement</a></li>
+					<li><a style="color:#bbb" href="disclaimer.php"><i class="fas fa-triangle-exclamation"></i> Disclaimer</a></li>
+					<li><a style="color:#bbb" href="terms.php"><i class="fas fa-file"></i> Terms of Use</a></li>
+					<li><a style="color:#bbb" href="privacy.php"><i class="fas fa-shield-halved"></i> Privacy Statement</a></li>
 				</ul>
 			</div>
-			<div class="col-md-3 footer-item"><h4 class="text-muted">Page Links</h4>
+			<div class="col-md-3 footer-item"><h4 class="text-muted">👩‍💼 Contact Info</h4>
 				<ul class="menu-list">
-					<li><a style="color:#bbb" href="index.php"><i class="fa fa-home"></i> Home</a></li>
-					<li><a style="color:#bbb" href="about.php"><i class="fa fa-info-circle"></i> About Us</a></li>
-					<li><a style="color:#bbb" href="contact.php"><i class="fa fa-book"></i> Contact Us</a></li>		
+					<li><a style="color:#bbb" href="contact.php"><i class="fas fa-globe"></i> Contact Us</a></li>
+					<li><a style="color:#bbb" href="https://facebook.com/mcjimserver" target="_blank"><i class="fab fa-facebook-f"></i> facebook/mcjimserver</a></li>
+					<li><a style="color:#bbb" href="#"><i class="fas fa-envelope"></i> info@mcjim-server.com</a></li>
 				</ul>
 			</div>
-			<div class="col-md-3 footer-item last-item"><h4 class="text-muted">Contact Info</h4>
-				<ul class="menu-list">
-					<li><a style="color:#bbb" href="#"><i class="text-center fa fa-phone"></i> 09776848642</a></li>	
-					<li><a style="color:#bbb" href="https://facebook.com/mcjimserver" target="_blank"><i class="text-center fa fa-facebook"></i> facebook/mcjimserver</a></li>	
-					<li><a style="color:#bbb" href="#"><i class="fa fa-envelope text-center"></i> info@mcjim-server.com</a></li>
-				</ul>
+			<div class="col-md-3 footer-item last-item"><h4 class="text-muted">🌱 Small Act, Big Help  </h4>
+				<div style="margin-top:-20px;"><small>
+				We’re grateful to share our services freely, 
+				hoping they bring value to you. &nbsp; If you feel useful, 
+				a small donation would mean so much.</small>
+				</div>
+				<div class="mt-2">
+				  <form action="https://www.paypal.com/ncp/payment/A7U93SR9K428N" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+					<button class="pp-A7U93SR9K428N text-dark" type="submit"><i class="fab fa-paypal text-dark"></i> Donate Now</button>
+				  </form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -49,14 +71,14 @@
 
 <!-- Sticky Bottom-Right Chat Pill Button -->
 <a href="/chat/" id="chatStickyBtn" class="btn btn-sm rounded-pill sticky-chat-pill">
-	<i class="fa fa-comments"></i> <span>Chat</span>
+	<i class="fas fa-comments"></i> <span>Chat</span>
 </a>
 
 <!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/jquery/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <?php if (isset($_SESSION['user'])): ?>
-<script src="/chat/chat_notification.js?v=<?= SITE_VERSION ?>"></script>
+<script src="/chat/chat_notification.js?v=<?=SITE_VERSION?>"></script>
 <?php endif; ?>
 
 <!-- Additional Scripts -->

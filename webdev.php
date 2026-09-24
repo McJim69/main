@@ -60,7 +60,7 @@
 			</div>				
 		</div>
 		<div style="text-align:center"><br>
-			<a href="projects.php" class="filled-button">View WebDev Projects</a>
+			<a href="projects.php" class="filled-button">Deployed Projects</a>
 		</div>		
 	</div>
 </div>

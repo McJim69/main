@@ -1,10 +1,12 @@
 <?php
 	// user_register.php
 	require("connect.php");
+	require("credentials.php");
 	require("header.php");
 	require("menunav.php");
 
 	if ($_SERVER["REQUEST_METHOD"] === "POST") {
+		$emdomain = "@mcjim-server.com";
 		$fullname = trim($_POST['fullname']);
 		$access   = $_POST['access'] ?? 'User';
 		$username = trim($_POST['username']);
@@ -37,6 +39,7 @@
 			exit();
 		}
 
+		
 		$new_image_name = uniqid('user_', true) . '.' . $extension;
 		$upload_path    = "images/users/" . $new_image_name;
 
@@ -45,13 +48,19 @@
 			exit();
 		}
 
+		$emdomain = "@mcjim-server.com";
+		$username = strtolower(
+			trim(preg_replace('/[^a-zA-Z0-9._-]/', '', $username))
+		);
+		$emailadd = $username . $emdomain;
+
 		try {
 			// ✅ Step 1: Insert into local DB
 			$stmt = $conn->prepare(
-				"INSERT INTO users (fullname, access, jellyfin, username, password, imgUrl, status, last_active, validity) 
-				 VALUES (?, ?, ?, ?, ?, ?, 'active', NOW(), DATE_ADD(CURDATE(), INTERVAL 1 YEAR))"
+				"INSERT INTO users (fullname, access, email, jellyfin, username, password, imgUrl, status, last_active, validity) 
+				 VALUES (?, ?, ?, ?, ?, ?, ?, 'active', NOW(), DATE_ADD(CURDATE(), INTERVAL 1 YEAR))"
 			);
-			$stmt->bind_param("ssssss", $fullname, $access, $jeltoken, $username, $hashed_password, $new_image_name);
+			$stmt->bind_param("sssssss", $fullname, $access, $emailadd, $jeltoken, $username, $hashed_password, $new_image_name);
 
 			if ($stmt->execute()) {
 				$uno = $stmt->insert_id;
@@ -89,6 +98,55 @@
 					$updateStmt->execute();
 					$updateStmt->close();
 				}
+
+				// ✅ Step 4: Create Email Account via Mailcow API
+				require_once("webmail/config.php");
+				
+				$mailcowData = [
+					'local_part' => $username,
+					'domain' => MAILCOW_DOMAIN,
+					'password' => $password,
+					'password2' => $password,
+					'active' => 1,
+					'name' => $fullname,
+					'quota' => 3072
+				];
+
+				$chMail = curl_init(MAILCOW_API_URL . '/add/mailbox');
+				curl_setopt($chMail, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($chMail, CURLOPT_POST, true);
+				curl_setopt($chMail, CURLOPT_POSTFIELDS, json_encode($mailcowData));
+				curl_setopt($chMail, CURLOPT_HTTPHEADER, [
+					'Content-Type: application/json',
+					'X-API-Key: ' . MAILCOW_API_KEY
+				]);
+				curl_setopt($chMail, CURLOPT_SSL_VERIFYPEER, false); 
+				curl_exec($chMail);
+				curl_close($chMail);
+
+				// ✅ Step 5: Create FOSSBilling Account via SSO Bridge
+				$sharedSecret = FOSSBILLING_SSO_SECRET;
+				$payload = [
+					'action' => 'create_client',
+					'email' => $emailadd,
+					'fullname' => $fullname,
+					'username' => $username,
+					'password' => $password,
+					'time' => time()
+				];
+				$payloadJson = json_encode($payload);
+				$signature = hash_hmac('sha256', $payloadJson, $sharedSecret);
+
+				$chFB = curl_init("https://billing.mcjim-server.com/sso_receiver.php");
+				curl_setopt($chFB, CURLOPT_POST, true);
+				curl_setopt($chFB, CURLOPT_POSTFIELDS, http_build_query([
+					'payload' => base64_encode($payloadJson),
+					'signature' => $signature
+				]));
+				curl_setopt($chFB, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($chFB, CURLOPT_SSL_VERIFYPEER, false);
+				curl_exec($chFB);
+				curl_close($chFB);
 
 				echo "<script>alert('User account successfully created.'); window.location='login.php';</script>";
 			} else {

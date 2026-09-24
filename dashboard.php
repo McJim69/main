@@ -125,6 +125,15 @@
         </div>
 
         <div class="col-md-3 mb-4">
+            <a href="billing_sso.php" class="dashboard-card" target="_blank">
+                <span class="dashboard-badge badge-primary">Portal</span>
+                <i class="fa fa-credit-card fa-4x mb-3 text-primary"></i>
+                <h4 class="text-white">Billing Portal</h4>
+                <p class="small text-muted mt-2">Manage hosting & billing</p>
+            </a>
+        </div>
+
+        <div class="col-md-3 mb-4">
             <a href="file-drop.php" class="dashboard-card">
                 <span class="dashboard-badge badge-warning"><?= $count_user_files ?> Files</span>
                 <i class="fa fa-cloud-upload fa-4x mb-3 text-warning"></i>
@@ -143,9 +152,9 @@
         </div>
 
         <div class="col-md-3 mb-4">
-            <a href="https://media.mcjim-server.com/sso" class="dashboard-card">
+            <a href="https://media.mcjim-server.com/sso" class="dashboard-card" target="_blank">
                 <span class="dashboard-badge badge-success">Online</span>
-                <i class="fa fa-film fa-4x mb-3 text-danger"></i>
+                <i class="fa fa-play fa-4x mb-3 text-danger"></i>
                 <h4 class="text-white">Media Server</h4>
                 <p class="small text-muted mt-2">Watch your favorite shows</p>
             </a>
@@ -169,12 +178,12 @@
                 <span class="dashboard-badge badge-info">Live</span>
                 <i class="fa fa-users fa-4x mb-3 text-info"></i>
                 <h4 class="text-white">McJim Meet</h4>
-                <p class="small text-muted mt-2">Free video conference in instant</p>
+                <p class="small text-muted mt-2">Free video conference</p>
             </a>
         </div>
 
         <div class="col-md-3 mb-4">
-            <a href="webmail" class="dashboard-card">
+            <a href="https://mail.mcjim-server.com" class="dashboard-card" target="_blank">
                 <span class="dashboard-badge badge-success">Online</span>
                 <i class="fa fa-envelope fa-4x mb-3 text-success"></i>
                 <h4 class="text-white">Mail Services</h4>

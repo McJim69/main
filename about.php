@@ -30,13 +30,11 @@
 						McJim Cyberworks delivers tailored IT solutions for businesses, 
 						offering cloud computing, cybersecurity, software development, and consultancy.
 					</p>
-					<p>
-						<h5>MISSION</h5>
+					<p><h5>MISSION</h5>
 						Our mission is to empower organizations in the digital age with innovative, reliable, and scalable technology.
 					</p>
-					<p>
-						<h5>GOAL</h5>
-						Our main objective in undertaking this business is to provide Information Technology (IT) sales and services to marginalized communities, particularly those in distant areas, since they are less fortunate in accessing modern services.
+					<p><h5>GOAL</h5>
+						Our main objective in undertaking this project is to provide free Information Technology (IT) services to marginalized communities, particularly those in distant areas, since they are less fortunate in accessing modern services.
 					</p>
                   </div>
                 </div>

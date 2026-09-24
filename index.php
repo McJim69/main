@@ -16,6 +16,8 @@
 	require("network.php");
 	require("media-server.php");
 	require("meet-server.php");
+	require("mail-services.php");
+	require("webhost-section.php");
 	require("footer.php");
 	ob_end_flush();
 ?>

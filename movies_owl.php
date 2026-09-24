@@ -102,7 +102,7 @@
 
 <div class="page-heading header-text">
 	<div class="container" style="margin-top:0;margin-bottom:-50px">
-		<div class="row d-flex justify-content-center align-items-center" style="margin-top:-50px">>
+		<div class="row d-flex justify-content-center align-items-center" style="margin-top:-50px">
 			<div class="col">
 				<div>
 					<h1>MOVIE GRID</h1>
@@ -116,7 +116,7 @@
 				<div class="row">
 					<div class="col-md-4" style="width:100%;margin-bottom:10px">
 						<input  style="width:74%" type="text" name="q" placeholder="Search movies..." value="<?php echo htmlspecialchars($searchTerm); ?>">
-						<button  style="width:24%" class="btn btn-sm btn-outline-warning" type="submit"><i class="fa fa-search"></i> Go!</button>
+						<button  style="width:24%" class="btn btn-sm btn-outline-warning" type="submit"><i class="fa fa-search"></i></button>
 					</div>
 					<div class="col-md-4" style="width:100%;margin-bottom:10px">
 						<select class="btn btn-sm btn-outline-warning text-left" name="genre"  style="width:49%">
@@ -142,9 +142,9 @@
 					</div>
 					</form>
 					<div class="col-md-4" style="width:100%;margin-bottom:10px">		
-						<a  style="width:32%" class="btn btn-sm btn-success" href="movies_owl.php"><i class="fa fa-refresh"></i> Refresh</a>
+						<a  style="width:32%" class="btn btn-sm btn-success" href="movies_owl.php"><i class="fa fa-refresh"></i></a>
 						<a  style="width:32%" href="movies.php" class="btn btn-sm btn-warning btn-rounded-pill"><i class="fa fa-th"></i> Grid</a>
-						<a  style="width:32%" href="https://media.mcjim-server.com/sso" target="_blank" class="btn btn-sm btn-info btn-rounded-pill"><i class="fa fa-archive"></i> Libraries</a>
+						<a  style="width:32%" href="https://media.mcjim-server.com/sso" target="_blank" class="btn btn-sm btn-info btn-rounded-pill">Libraries</a>
 					</div>
 				</div>		
 			</div>
@@ -191,7 +191,7 @@
 
 <?php require("footer.php"); ?>
 
-<script src="vendor/owlcarousel/js/owl.carousel.min.js"></script>
+<script src="assets/owlcarousel/js/owl.carousel.min.js"></script>
 
 <script>	
 	function slider_carouselInit() {

@@ -20,6 +20,21 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
   #viewContent blockquote { border-left: 4px solid #5e5e5e; padding-left: 12px; color: #aaa; }
   #viewContent pre { background: #1a1a2e; border-radius: 6px; padding: 12px; color: #e0e0e0; }
   #viewContent a { color: #6ec6ff; }
+  
+  #categoryList .list-group-item {
+      background-color: var(--bg-card, #1a1a2e);
+      color: #e0e0e0;
+      border-color: #2b2b40;
+  }
+  #categoryList .list-group-item:hover {
+      background-color: #2a2a4e;
+      color: #fff;
+  }
+  #categoryList .list-group-item.active {
+      background-color: #007bff;
+      color: #fff;
+      border-color: #007bff;
+  }
 </style>
 
 <div class="page-heading header-text">

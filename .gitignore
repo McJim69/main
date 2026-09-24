@@ -4,5 +4,8 @@ webforms.php
 language.php
 connect.php
 config.php
+credentials.php
 projects/
-upload/cache/
+upload/
+cache/
+webmail/config.php

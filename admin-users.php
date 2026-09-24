@@ -80,10 +80,10 @@ td.desk {
 				<?php while ($row = $result->fetch_assoc()) { ?>
 				<tr class="user-row">
 					<td class="text-center"><button class="btn btn-sm btn-outline-light" style="font-size:12px;width:40px"><?php echo $row['uno']; ?></button></td>
-					<td class="text-center" style="padding:0;margin:0"><img src="images/users/<?php echo htmlspecialchars($row['imgUrl']); ?>" style="border-radius:50%;height:45px;margin-top:5px;border:1px solid #545454;aspect-ratio:2/2" /></td>
+					<td class="text-center" style="padding:0;margin:0"><img src="images/users/<?php echo htmlspecialchars($row['imgUrl']); ?>?<?=time()?>" style="border-radius:50%;height:45px;margin-top:5px;border:1px solid #545454;aspect-ratio:2/2" /></td>
 					<td class="text-center"><button class="btn btn-sm btn-outline-light" style="width:170px;overflow:hidden"><?php echo htmlspecialchars($row['fullname']); ?></button></td>
 					<td class="text-center"><button class="btn btn-sm btn-outline-light" style="width:90px;overflow:hidden"><?php echo htmlspecialchars($row['username']); ?></button></td>
-					<td class="text-center text-muted"><button class="btn btn-sm btn-outline-light" style="width:160px;overflow:hidden"><?php echo htmlspecialchars($row['last_active']); ?></button></td>
+					<td class="text-center text-muted"><button class="btn btn-sm btn-outline-light" style="width:165px;overflow:hidden"><?php echo htmlspecialchars($row['last_active']); ?></button></td>
 					<td class="text-center">
 						<select class="btn btn-sm" style="font-size:12px;color:#fff;width:90px;background:<?php echo $row['access']=='Admin'?'blue':'magenta'; ?>"
 								id="access_<?php echo $row['uno']; ?>"
