@@ -33,7 +33,9 @@ $payload = [
     'fullname' => $fullname,
     'username' => $username,
     'email'    => $email,
-    'time'     => time()
+    'time'     => time(),
+    'return'   => $_GET['return'] ?? '/',
+    'query'    => $_SERVER['QUERY_STRING'] // Pass all query params
 ];
 
 $payloadJson = json_encode($payload);

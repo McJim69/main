@@ -1,89 +1,55 @@
 <?php
-/**
- * CyberPanel SSO Bridge for FOSSBilling
- */
-
-if (!isset($_GET['token'])) {
-    die("Invalid or missing SSO token.");
+$token = $_GET['token'] ?? '';
+if (empty($token)) {
+    die('Invalid or missing SSO token.');
 }
 
-$token = preg_replace('/[^a-zA-Z0-9]/', '', $_GET['token']);
-$tokenFile = __DIR__ . '/data/cache/sso_' . $token;
+$token = preg_replace('/[^a-zA-Z0-9]/', '', $token);
+$cacheDir = __DIR__ . '/../library/Server/Manager/cache/';
+$tokenFile = $cacheDir . 'sso_' . $token;
 
 if (!file_exists($tokenFile)) {
-    die("SSO token expired or invalid.");
+    die('Token expired or invalid.');
 }
 
-// Retrieve credentials
 $data = json_decode(file_get_contents($tokenFile), true);
+if (!$data) {
+    die('Invalid token data.');
+}
+
 $host = $data['host'];
 $username = $data['username'];
 $password = $data['password'];
-
-// Invalidate token immediately for security
-unlink($tokenFile);
-
-$actionUrl = rtrim($host, '/') . '/api/loginAPI';
-
+$actionUrl = $host . '/api/loginAPI';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Logging into CyberPanel...</title>
     <style>
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-        }
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.1);
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f5f7; }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            border-left-color: #58a6ff;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+            margin: 20px auto;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        h2 { font-weight: 500; font-size: 18px; }
     </style>
 </head>
 <body onload="document.getElementById('ssoForm').submit();">
-
-    <div class="spinner"></div>
-    <h2>Authenticating you into CyberPanel securely...</h2>
-    <p id="status" style="font-size:13px;color:#8b949e;margin-top:8px;"></p>
-
+    <h2>Securely logging you in to your hosting account...</h2>
+    <div class="loader"></div>
     <form id="ssoForm" action="<?php echo htmlspecialchars($actionUrl); ?>" method="POST" style="display: none;">
         <input type="hidden" name="username" value="<?php echo htmlspecialchars($username); ?>">
         <input type="hidden" name="password" value="<?php echo htmlspecialchars($password); ?>">
         <input type="hidden" name="languageSelection" value="english">
     </form>
-
-    <script>
-        // Timeout fallback: if we're still on this page after 5s, show an error
-        setTimeout(function () {
-            var el = document.getElementById('status');
-            if (el) el.textContent = 'Redirecting to CyberPanel…';
-        }, 1500);
-        setTimeout(function () {
-            var el = document.getElementById('status');
-            if (el && document.title.includes('Logging')) {
-                el.style.color = '#f85149';
-                el.textContent = 'Login failed. Please try again from the client area.';
-            }
-        }, 5000);
-    </script>
 </body>
 </html>

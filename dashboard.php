@@ -112,19 +112,6 @@
         </div>
 
         <div class="col-md-3 mb-4">
-            <a href="invoices.php" class="dashboard-card">
-                <?php if ($count_user_invoices > 0): ?>
-                    <span class="dashboard-badge badge-warning"><?= $count_user_invoices ?> Unpaid</span>
-                <?php else: ?>
-                    <span class="dashboard-badge badge-success">Paid</span>
-                <?php endif; ?>
-                <i class="fa fa-file-text fa-4x mb-3 text-success"></i>
-                <h4 class="text-white">Invoices</h4>
-                <p class="small text-muted mt-2">View and track your billing</p>
-            </a>
-        </div>
-
-        <div class="col-md-3 mb-4">
             <a href="billing_sso.php" class="dashboard-card" target="_blank">
                 <span class="dashboard-badge badge-primary">Portal</span>
                 <i class="fa fa-credit-card fa-4x mb-3 text-primary"></i>

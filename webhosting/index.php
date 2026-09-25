@@ -29,7 +29,7 @@
                 <a href="#domains">Domains</a>
             </div>
             <div class="nav-actions">
-                <a href="https://billing.mcjim-server.com/login" class="login-btn">Client Login</a>
+                <a href="/billing_sso.php" class="login-btn">Client Login</a>
                 <a href="#pricing" class="btn btn-primary">Get Started</a>
             </div>
         </div>
@@ -77,7 +77,7 @@
                         <li><span class="check">✓</span> Free SSL Certificate</li>
                         <li><span class="check">✓</span> Weekly Backups</li>
                     </ul>
-                    <a href="https://billing.mcjim-server.com/order" class="btn btn-outline btn-block">Add to Cart</a>
+                    <a href="/billing_sso.php?return=/order" class="btn btn-outline btn-block">Add to Cart</a>
                 </div>
 
                 <!-- Premium Plan (Highlighted) -->
@@ -95,7 +95,7 @@
                         <li><span class="check">✓</span> Daily Backups</li>
                         <li><span class="check">✓</span> Free CDN Included</li>
                     </ul>
-                    <a href="https://billing.mcjim-server.com/order" class="btn btn-primary btn-block glow-effect">Add to Cart</a>
+                    <a href="/billing_sso.php?return=/order" class="btn btn-primary btn-block glow-effect">Add to Cart</a>
                 </div>
 
                 <!-- VPS Plan -->
@@ -112,7 +112,7 @@
                         <li><span class="check">✓</span> Root Access</li>
                         <li><span class="check">✓</span> Dedicated IP</li>
                     </ul>
-                    <a href="https://billing.mcjim-server.com/order" class="btn btn-outline btn-block">Add to Cart</a>
+                    <a href="/billing_sso.php?return=/order" class="btn btn-outline btn-block">Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -174,7 +174,8 @@
             </div>
             
             <div class="domain-search-box glass-panel reveal" style="transition-delay: 0.1s;">
-                <form action="https://billing.mcjim-server.com/order" method="GET" class="domain-form">
+                <form action="/billing_sso.php" method="GET" class="domain-form">
+                    <input type="hidden" name="return" value="/order">
                     <input type="text" name="domain" placeholder="Enter your perfect domain name..." required class="domain-input">
                     <select name="tld" class="domain-tld">
                         <option value=".com">.com</option>

@@ -47,13 +47,23 @@ class Server_Manager_CyberPanel extends Server_Manager
                 $username = 'user' . substr(md5($account->getClient()->getEmail()), 0, 12);
             }
 
+            // Sync password with CyberPanel to ensure SSO never fails due to desync
+            try {
+                $this->request('changeUserPassAPI', [
+                    'websiteOwner'  => $username,
+                    'ownerPassword' => $account->getPassword()
+                ]);
+            } catch (\Exception $e) {
+                error_log('[CyberPanel SSO] Password sync failed: ' . $e->getMessage());
+            }
+
             $ssoData = [
                 'host'     => rtrim($host . $port, '/'),
                 'username' => $username,
                 'password' => $account->getPassword(),
             ];
 
-            $cacheDir = __DIR__ . '/../../../data/cache/';
+            $cacheDir = __DIR__ . '/cache/';
             if (!is_dir($cacheDir)) {
                 mkdir($cacheDir, 0755, true);
             }
@@ -68,7 +78,7 @@ class Server_Manager_CyberPanel extends Server_Manager
             }
 
             $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
-            return $protocol . $_SERVER['HTTP_HOST'] . '/cyberpanel_sso.php?token=' . $token;
+            return $protocol . $_SERVER['HTTP_HOST'] . '/webhosting/cyberpanel_sso.php?token=' . $token;
         }
 
         return $host . $port;
