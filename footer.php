@@ -48,9 +48,15 @@
 				a small donation would mean so much.</small>
 				</div>
 				<div class="mt-2">
+				 <?php if (isset($_SESSION['user'])) { ?>
+				  <a href="billing_sso.php" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+					<button class="pp-A7U93SR9K428N text-dark" type="submit"><i class="fab fa-paypal text-dark"></i> Donate Now</button>
+				  </a>
+				 <?php } else { ?>
 				  <form action="https://www.paypal.com/ncp/payment/A7U93SR9K428N" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
 					<button class="pp-A7U93SR9K428N text-dark" type="submit"><i class="fab fa-paypal text-dark"></i> Donate Now</button>
 				  </form>
+				 <?php } ?>
 				</div>
 			</div>
 		</div>
@@ -77,9 +83,9 @@
 <!-- Bootstrap core JavaScript -->
 <script src="assets/jquery/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-<?php if (isset($_SESSION['user'])): ?>
-<script src="/chat/chat_notification.js?v=<?=SITE_VERSION?>"></script>
-<?php endif; ?>
+<?php if (isset($_SESSION['user'])) { ?>
+<script src="/chat/chat_notification.js?v=<?php echo defined('SITE_VERSION') ? SITE_VERSION : '1.0'; ?>"></script>
+<?php } ?>
 
 <!-- Additional Scripts -->
 <script src="assets/js/slick.js"></script>

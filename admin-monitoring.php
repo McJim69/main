@@ -94,17 +94,17 @@
 
 let serverIds = [];
 
-\$(document).ready(function() {
+$(document).ready(function() {
     loadServers();
     loadBillingMetrics();
 
-    \$("#serverForm").submit(function(e) {
+    $("#serverForm").submit(function(e) {
         e.preventDefault();
         // Gi-update ang action identifier parameters alang sa server insertion rules
-        let formData = \$(this).serialize() + "&action=add_server";
-        \$.post("ajax_monitoring_servers.php", formData, function(res) {
+        let formData = $(this).serialize() + "&action=add_server";
+        $.post("ajax_monitoring_servers.php", formData, function(res) {
             if(res.status == 'success') {
-                \$("#serverForm")[0].reset();
+                $("#serverForm")[0].reset();
                 loadServers();
             } else {
                 alert(res.message);
@@ -115,11 +115,11 @@ let serverIds = [];
 
 function loadBillingMetrics() {
     // Karon nag-target na sa bag-ong unified endpoint query variable string rule
-    \$.get("ajax_monitoring_servers.php?action=fetch_billing", function(res) {
+    $.get("ajax_monitoring_servers.php?action=fetch_billing", function(res) {
         if(res.status == 'success' || res.income !== undefined) {
-            \$("#metric-income").text("\$" + parseFloat(res.income).toFixed(2));
-            \$("#metric-clients").text(res.clients);
-            \$("#metric-tickets").text(res.tickets);
+            $("#metric-income").text("$" + parseFloat(res.income).toFixed(2));
+            $("#metric-clients").text(res.clients);
+            $("#metric-tickets").text(res.tickets);
         } else {
             console.error("Billing Application Core Error:", res.message);
         }
@@ -129,11 +129,11 @@ function loadBillingMetrics() {
 }
 
 function loadServers() {
-    \$.get("ajax_monitoring_servers.php?action=fetch_servers", function(response) {
+    $.get("ajax_monitoring_servers.php?action=fetch_servers", function(response) {
         if(response.status === 'success') {
             serverIds = [];
             if(response.data.length === 0) {
-                \$("#serverList").html('<div class="alert alert-info">No servers being monitored.</div>');
+                $("#serverList").html('<div class="alert alert-info">No servers being monitored.</div>');
                 return;
             }
             let html = '<table class="table table-dark table-striped"><thead><tr><th>Server</th><th>Status</th><th>Response</th><th>Last Checked</th><th>Action</th></tr></thead><tbody>';
@@ -159,22 +159,22 @@ function loadServers() {
                 </tr>`;
             });
             html += '</tbody></table>';
-            \$("#serverList").html(html);
+            $("#serverList").html(html);
         } else {
-            \$("#serverList").html(`<div class="alert alert-danger">Error: ${response.message}</div>`);
+            $("#serverList").html(`<div class="alert alert-danger">Error: ${response.message}</div>`);
         }
     }, 'json').fail(function(xhr, status, error) {
-        \$("#serverList").html(`<div class="alert alert-danger">AJAX Request Failed. Check console.</div>`);
+        $("#serverList").html(`<div class="alert alert-danger">AJAX Request Failed. Check console.</div>`);
         console.error("Servers Infrastructure Pipe Broken:", error, xhr.responseText);
     });
 }
 
 function checkServer(id) {
-    let row = \$(`#server-row-${id}`);
+    let row = $(`#server-row-${id}`);
     row.find('.status-cell').html('<i class="fa fa-spinner fa-spin"></i> Checking...');
     row.find('.check-btn').prop('disabled', true);
     
-    \$.post("ajax_monitoring_servers.php", {action: 'check_server', id: id}, function(res) {
+    $.post("ajax_monitoring_servers.php", {action: 'check_server', id: id}, function(res) {
         if(res.status == 'success') {
             let data = res.data;
             let badge = data.server_status == 'Online' ? 'success' : 'danger';
@@ -193,14 +193,14 @@ function checkServer(id) {
 
 function runAllChecks() {
     if(serverIds.length === 0) return;
-    \$("#runChecksBtn").prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Checking...');
+    $("#runChecksBtn").prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> Checking...');
     
     let promises = [];
     serverIds.forEach(id => {
-        let row = \$(`#server-row-${id}`);
+        let row = $(`#server-row-${id}`);
         row.find('.status-cell').html('<i class="fa fa-spinner fa-spin"></i>');
         
-        let p = \$.post("ajax_monitoring_servers.php", {action: 'check_server', id: id}, function(res) {
+        let p = $.post("ajax_monitoring_servers.php", {action: 'check_server', id: id}, function(res) {
             if(res.status == 'success') {
                 let data = res.data;
                 let badge = data.server_status == 'Online' ? 'success' : 'danger';
@@ -214,14 +214,14 @@ function runAllChecks() {
         promises.push(p);
     });
     
-    \$.when.apply(\$, promises).always(function() {
-        \$("#runChecksBtn").prop('disabled', false).html('<i class="fa fa-refresh"></i> Run All Checks');
+    $.when.apply($, promises).always(function() {
+        $("#runChecksBtn").prop('disabled', false).html('<i class="fa fa-refresh"></i> Run All Checks');
     });
 }
 
 function deleteServer(id) {
     if(confirm("Are you sure you want to delete this server?")) {
-        \$.post("ajax_monitoring_servers.php", {action: 'delete_server', id: id}, function(res) {
+        $.post("ajax_monitoring_servers.php", {action: 'delete_server', id: id}, function(res) {
             if(res.status == 'success') loadServers();
             else alert(res.message);
         }, 'json');

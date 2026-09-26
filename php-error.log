@@ -42,3 +42,12 @@ Stack trace:
 [23-Sep-2026 23:04:54 UTC] PHP   2. sendEmailAlert($name = 'casa.mcjim-server.com', $url = 'https://casa.mcjim-server.com', $from = 'Offline', $to = 'Online', $ping = 64, $code = 200) D:\Server\www\cron_alert_agent.php:63
 [23-Sep-2026 23:04:54 UTC] PHP   3. mail($to = 'info@mcjim-server.com', $subject = '✅ RESOLVED: Server casa.mcjim-server.com is ONLINE', $message = '\r\n        <html>\r\n        <head>\r\n            <title>✅ RESOLVED: Server casa.mcjim-server.com is ONLINE</title>\r\n        </head>\r\n        <body style=\'font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px; color: #333;\'>\r\n            <div style=\'max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);\'>\r\n                <div style=\'background-color: #28a745; padding: 20px; text-align: c', $additional_headers = 'MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: McJim Monitor <monitor@mcjim-server.com>\r\nReply-To: monitor@mcjim-server.com\r\nX-Mailer: PHP/8.0.13\r\n') D:\Server\www\cron_alert_agent.php:132
 [23-Sep-2026 23:04:54 UTC] CRITICAL ERROR: Failed to execute mail alert pipe dispatch routing.
+[25-Sep-2026 19:14:59 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 55
+[25-Sep-2026 19:15:00 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 55
+[25-Sep-2026 19:15:00 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 55
+[25-Sep-2026 19:16:07 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
+[25-Sep-2026 19:16:07 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
+[25-Sep-2026 19:18:28 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
+[25-Sep-2026 19:18:28 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
+[25-Sep-2026 19:18:36 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
+[25-Sep-2026 19:18:36 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56

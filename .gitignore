@@ -1,3 +1,4 @@
+# App Specific
 jellyfin_token.php
 !images/projects/
 webforms.php
@@ -9,3 +10,24 @@ projects/
 upload/
 cache/
 webmail/config.php
+
+# Security & Sensitive Data
+*.log
+*.sql
+*.sql.gz
+*.bak
+*.tmp
+*.temp
+.env
+.env.*
+
+# Scripting & Admin Tools
+*.py
+mcjim_output.txt
+progress.txt
+duration.txt
+
+# OS & Editor Files
+.DS_Store
+.idea/
+.vscode/
