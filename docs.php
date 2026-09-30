@@ -7,6 +7,7 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
     echo "<script>window.location.href='index.php';</script>";
     exit;
 }
+$isAdmin = (isset($_SESSION['access']) && $_SESSION['access'] === 'Admin');
 ?>
 
 <script>setActive("docs");</script>
@@ -35,6 +36,8 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
       color: #fff;
       border-color: #007bff;
   }
+  .admin-btns { font-size: 12px; cursor: pointer; color: #aaa; margin-left: 10px; }
+  .admin-btns:hover { color: #fff; }
 </style>
 
 <div class="page-heading header-text">
@@ -53,9 +56,12 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
     <div class="row">
       <div class="col-md-3">
         <h4 style="color:#fff;">Categories</h4>
-        <div class="list-group" id="categoryList">
+        <div class="list-group mb-3" id="categoryList">
             <div class="text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</div>
         </div>
+        <?php if ($isAdmin): ?>
+        <button class="btn btn-sm btn-primary w-100" onclick="showAddCategoryModal()"><i class="fa fa-plus"></i> Add Category</button>
+        <?php endif; ?>
       </div>
       <div class="col-md-9">
         <div class="mb-3">
@@ -66,14 +72,29 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 </div>
             </div>
         </div>
-        <h4 id="articleListTitle" style="color:#fff;">All Articles</h4>
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 id="articleListTitle" style="color:#fff; margin:0;">All Articles</h4>
+            <?php if ($isAdmin): ?>
+            <button class="btn btn-sm btn-success" id="addArticleBtn" onclick="showAddArticleModal()"><i class="fa fa-plus"></i> Add Article</button>
+            <?php endif; ?>
+        </div>
+        
         <div id="articleList" class="row">
             <div class="col-12 text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</div>
         </div>
         
         <!-- Single Article View -->
         <div id="singleArticleView" style="display:none;">
-            <button class="btn btn-sm btn-secondary mb-3" onclick="showArticleList()"><i class="fa fa-arrow-left"></i> Back</button>
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <button class="btn btn-sm btn-secondary" onclick="showArticleList()"><i class="fa fa-arrow-left"></i> Back</button>
+                <?php if ($isAdmin): ?>
+                <div>
+                    <button class="btn btn-sm btn-info" id="editArticleBtn" onclick="showEditArticleModal()"><i class="fa fa-edit"></i> Edit</button>
+                    <button class="btn btn-sm btn-danger" id="deleteArticleBtn" onclick="deleteArticle()"><i class="fa fa-trash"></i> Delete</button>
+                </div>
+                <?php endif; ?>
+            </div>
             <h2 id="viewTitle" style="color:#fff;"></h2>
             <p class="text-muted" style="margin-bottom: 20px;"><i class="fa fa-folder-open"></i> <span id="viewCategory"></span> &nbsp; <i class="fa fa-clock-o"></i> <span id="viewDate"></span></p>
             <div id="viewContent" class="ql-editor" style="color:var(--text-main); line-height: 1.8; padding: 0;"></div>
@@ -85,7 +106,11 @@ if(!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 
 <?php require("footer.php"); ?>
 <script>
+const isAdmin = <?php echo $isAdmin ? 'true' : 'false'; ?>;
 let allArticles = [];
+let allCategories = [];
+let currentCategoryId = 0;
+let currentArticle = null;
 
 $(document).ready(function() {
     loadCategories();
@@ -95,9 +120,11 @@ $(document).ready(function() {
 function loadCategories() {
     $.get("ajax_docs.php?action=fetch_categories", function(response) {
         if(response.status === 'success') {
-            let html = `<a href="javascript:void(0)" class="list-group-item list-group-item-action active" onclick="loadArticles(0, this)">All Categories</a>`;
+            allCategories = response.data;
+            let html = `<a href="javascript:void(0)" class="list-group-item list-group-item-action ${currentCategoryId == 0 ? 'active' : ''}" onclick="loadArticles(0, this)">All Categories</a>`;
             response.data.forEach(cat => {
-                html += `<a href="javascript:void(0)" class="list-group-item list-group-item-action" onclick="loadArticles(${cat.id}, this)">${cat.title}</a>`;
+                let adminHtml = isAdmin ? `<span class="float-right"><i class="fa fa-edit admin-btns" onclick="showEditCategoryModal(${cat.id}, '${cat.title.replace(/'/g, "\\'")}', '${(cat.description||'').replace(/'/g, "\\'")}', event)"></i> <i class="fa fa-trash admin-btns" onclick="deleteCategory(${cat.id}, event)"></i></span>` : '';
+                html += `<a href="javascript:void(0)" class="list-group-item list-group-item-action ${currentCategoryId == cat.id ? 'active' : ''}" onclick="loadArticles(${cat.id}, this)">${cat.title} ${adminHtml}</a>`;
             });
             $("#categoryList").html(html);
         }
@@ -105,16 +132,25 @@ function loadCategories() {
 }
 
 function loadArticles(categoryId, element) {
+    currentCategoryId = categoryId;
     if(element) {
         $("#categoryList .list-group-item").removeClass("active");
         $(element).addClass("active");
-        $("#articleListTitle").text($(element).text());
+        // Remove admin buttons from text for title
+        let clone = $(element).clone();
+        clone.find('span').remove();
+        $("#articleListTitle").text(clone.text().trim());
     } else {
-        $("#articleListTitle").text("All Articles");
+        if(categoryId == 0) {
+            $("#categoryList .list-group-item").removeClass("active");
+            $("#categoryList .list-group-item:first").addClass("active");
+            $("#articleListTitle").text("All Articles");
+        }
     }
     
     $("#singleArticleView").hide();
     $("#articleListTitle").show();
+    if(isAdmin) $("#addArticleBtn").show();
     $("#wikiSearchInput").val('');
     $("#articleList").show().html('<div class="col-12 text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</div>');
     
@@ -157,17 +193,18 @@ function filterArticles(query) {
 
 function viewArticle(slug) {
     $("#articleList, #articleListTitle").hide();
+    if(isAdmin) $("#addArticleBtn").hide();
     $("#singleArticleView").show();
     $("#viewContent").html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i></div>');
     $("#viewTitle, #viewCategory, #viewDate").empty();
     
     $.get("ajax_docs.php?action=fetch_article&slug=" + slug, function(response) {
         if(response.status === 'success') {
-            let art = response.data;
-            $("#viewTitle").text(art.title);
-            $("#viewCategory").text(art.category_title);
-            $("#viewDate").text(art.updated_at);
-            $("#viewContent").html(art.content);
+            currentArticle = response.data;
+            $("#viewTitle").text(currentArticle.title);
+            $("#viewCategory").text(currentArticle.category_title);
+            $("#viewDate").text(currentArticle.updated_at);
+            $("#viewContent").html(currentArticle.content);
         } else {
             $("#viewContent").html('<div class="alert alert-danger">Error loading article.</div>');
         }
@@ -175,8 +212,220 @@ function viewArticle(slug) {
 }
 
 function showArticleList() {
+    currentArticle = null;
     $("#singleArticleView").hide();
-    $("#articleList, #articleListTitle").show();
+    $("#articleListTitle").show();
+    if(isAdmin) $("#addArticleBtn").show();
+    $("#articleList").show();
+}
+
+/* =========================================
+   ADMIN ACTIONS
+========================================= */
+
+function showAddCategoryModal() {
+    Swal.fire({
+        title: 'Add Category',
+        html: `
+            <input id="catTitle" class="swal2-input" placeholder="Category Title">
+            <input id="catDesc" class="swal2-input" placeholder="Description">
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        preConfirm: () => {
+            return {
+                title: document.getElementById('catTitle').value,
+                description: document.getElementById('catDesc').value
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post("ajax_docs.php", { action: 'create_category', title: result.value.title, description: result.value.description }, function(res) {
+                if(res.status == 'success') {
+                    Swal.fire('Success', res.message, 'success');
+                    loadCategories();
+                } else {
+                    Swal.fire('Error', res.message, 'error');
+                }
+            }, 'json');
+        }
+    });
+}
+
+function showEditCategoryModal(id, title, description, event) {
+    event.stopPropagation();
+    Swal.fire({
+        title: 'Edit Category',
+        html: `
+            <input id="catTitle" class="swal2-input" value="${title}" placeholder="Category Title">
+            <input id="catDesc" class="swal2-input" value="${description}" placeholder="Description">
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        preConfirm: () => {
+            return {
+                title: document.getElementById('catTitle').value,
+                description: document.getElementById('catDesc').value
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post("ajax_docs.php", { action: 'update_category', id: id, title: result.value.title, description: result.value.description }, function(res) {
+                if(res.status == 'success') {
+                    Swal.fire('Success', res.message, 'success');
+                    loadCategories();
+                } else {
+                    Swal.fire('Error', res.message, 'error');
+                }
+            }, 'json');
+        }
+    });
+}
+
+function deleteCategory(id, event) {
+    event.stopPropagation();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post("ajax_docs.php", { action: 'delete_category', id: id }, function(res) {
+                if(res.status == 'success') {
+                    Swal.fire('Deleted!', res.message, 'success');
+                    if(currentCategoryId == id) loadArticles(0);
+                    loadCategories();
+                } else {
+                    Swal.fire('Error', res.message, 'error');
+                }
+            }, 'json');
+        }
+    });
+}
+
+function showAddArticleModal() {
+    let catOptions = allCategories.map(c => `<option value="${c.id}" ${c.id == currentCategoryId ? 'selected' : ''}>${c.title}</option>`).join('');
+    
+    Swal.fire({
+        title: 'Add Article',
+        html: `
+            <select id="artCategory" class="swal2-input" style="height:auto; padding: 10px;">
+                <option value="0">Select Category...</option>
+                ${catOptions}
+            </select>
+            <input id="artTitle" class="swal2-input" placeholder="Article Title">
+            <div id="artEditor" style="height: 200px; margin-top: 20px; background: #fff; color: #000; text-align: left;"></div>
+        `,
+        width: 800,
+        didOpen: () => {
+            window.artQuill = new Quill('#artEditor', {
+                theme: 'snow'
+            });
+        },
+        showCancelButton: true,
+        preConfirm: () => {
+            return {
+                category_id: document.getElementById('artCategory').value,
+                title: document.getElementById('artTitle').value,
+                content: window.artQuill.root.innerHTML
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post("ajax_docs.php", { 
+                action: 'create_article', 
+                category_id: result.value.category_id, 
+                title: result.value.title, 
+                content: result.value.content 
+            }, function(res) {
+                if(res.status == 'success') {
+                    Swal.fire('Success', res.message, 'success');
+                    loadArticles(currentCategoryId);
+                } else {
+                    Swal.fire('Error', res.message, 'error');
+                }
+            }, 'json');
+        }
+    });
+}
+
+function showEditArticleModal() {
+    if(!currentArticle) return;
+    
+    let catOptions = allCategories.map(c => `<option value="${c.id}" ${c.id == currentArticle.category_id ? 'selected' : ''}>${c.title}</option>`).join('');
+    
+    Swal.fire({
+        title: 'Edit Article',
+        html: `
+            <select id="artCategory" class="swal2-input" style="height:auto; padding: 10px;">
+                ${catOptions}
+            </select>
+            <input id="artTitle" class="swal2-input" value="${currentArticle.title.replace(/"/g, '&quot;')}" placeholder="Article Title">
+            <div id="artEditor" style="height: 200px; margin-top: 20px; background: #fff; color: #000; text-align: left;"></div>
+        `,
+        width: 800,
+        didOpen: () => {
+            window.artQuill = new Quill('#artEditor', {
+                theme: 'snow'
+            });
+            window.artQuill.root.innerHTML = currentArticle.content;
+        },
+        showCancelButton: true,
+        preConfirm: () => {
+            return {
+                id: currentArticle.id,
+                category_id: document.getElementById('artCategory').value,
+                title: document.getElementById('artTitle').value,
+                content: window.artQuill.root.innerHTML
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post("ajax_docs.php", { 
+                action: 'update_article', 
+                id: result.value.id,
+                category_id: result.value.category_id, 
+                title: result.value.title, 
+                content: result.value.content 
+            }, function(res) {
+                if(res.status == 'success') {
+                    Swal.fire('Success', res.message, 'success');
+                    viewArticle(currentArticle.slug); // Refresh view
+                } else {
+                    Swal.fire('Error', res.message, 'error');
+                }
+            }, 'json');
+        }
+    });
+}
+
+function deleteArticle() {
+    if(!currentArticle) return;
+    
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post("ajax_docs.php", { action: 'delete_article', id: currentArticle.id }, function(res) {
+                if(res.status == 'success') {
+                    Swal.fire('Deleted!', res.message, 'success');
+                    showArticleList();
+                    loadArticles(currentCategoryId);
+                } else {
+                    Swal.fire('Error', res.message, 'error');
+                }
+            }, 'json');
+        }
+    });
 }
 </script>
-
