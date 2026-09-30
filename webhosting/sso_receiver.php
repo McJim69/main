@@ -31,9 +31,9 @@ if (!$payload || !isset($payload['time'])) {
     die("Invalid SSO payload.");
 }
 
-// Expire the token after 60 seconds to prevent replay attacks
-if (time() - $payload['time'] > 60) {
-    die("SSO token expired. Please try logging in again.");
+// Expire the token if time difference is greater than 5 minutes (300 seconds)
+if (abs(time() - $payload['time']) > 300) {
+    die("SSO token expired or invalid time sync. Please try logging in again.");
 }
 
 $email = $payload['email'];

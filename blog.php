@@ -7,7 +7,7 @@
 <script>setActive("blog");</script>
 
 <link rel="stylesheet" href="/assets/css/blog.css?v=<?= SITE_VERSION ?>">	
-<link rel="stylesheet" href="/vendor/venobox/venobox.min.css">	
+<link rel="stylesheet" href="/assets/venobox/venobox.min.css">	
 
 <!-- Heading -->
 <div class="page-heading header-text header">
@@ -28,7 +28,8 @@
 
 <?php require("footer.php");?>
 
-<script src="/vendor/venobox/venobox.min.js"></script>
+<script src="/assets/venobox/venobox.min.js"></script>
+<script src="/ajax_call_posts.js?v=<?= SITE_VERSION ?>"></script>
 
 <script>
 $(document).ready(function(){

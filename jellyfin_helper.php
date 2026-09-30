@@ -54,8 +54,7 @@ function get_jellyfin_token($user, $pass) {
             "Token"    => $data["AccessToken"],
             "UserId"   => $data["User"]["Id"],
             "ServerId" => $data["ServerId"],
-            "DeviceId" => "mcjim-sso",
-            "UserObj"  => $data["User"]
+            "DeviceId" => "mcjim-sso"
         ];
         return base64_encode(json_encode($authObj));
     }

@@ -147,15 +147,16 @@
     <?php endif; ?>
 
 	<!-- SweetAlert2 & Quill -->
-	<link href="/assets/sweetalert2/dist/sweetalert2.css" rel="stylesheet">
-	<link href="/assets/quill/quill.snow.css" rel="stylesheet">
+	<link  href="/assets/sweetalert2/dist/sweetalert2.css" rel="stylesheet">
+	<script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<link  href="/assets/quill/quill.snow.css" rel="stylesheet">
 	<script src="/assets/quill/quill.js"></script>
 
 	<!-- JQUERY -->
 	<script src="/assets/jquery/jquery.min.js"></script>
 	
 	<!-- Paypal Gateway -->
-	<script src="assets/fontawesome/js/all.min.js"></script>
+	<script src="/assets/fontawesome/js/all.min.js"></script>
 	<script src="https://www.paypal.com/web-sdk/v6/core"></script>
 </head>
 

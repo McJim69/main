@@ -51,3 +51,43 @@ Stack trace:
 [25-Sep-2026 19:18:28 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
 [25-Sep-2026 19:18:36 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
 [25-Sep-2026 19:18:36 UTC] PHP Parse error:  syntax error, unexpected token "else" in D:\Server\www\footer.php on line 56
+[30-Sep-2026 08:55:46 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:55:46 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:55:58 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:55:58 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:56:04 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:56:04 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:56:14 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:56:20 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:56:40 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
+[30-Sep-2026 08:56:46 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "SITE_VERSION" in D:\Server\www\ajax_posts_details.php:14
+Stack trace:
+#0 {main}
+  thrown in D:\Server\www\ajax_posts_details.php on line 14
