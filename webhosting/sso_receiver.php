@@ -54,14 +54,15 @@ if (!$client) {
     $password = bin2hex(random_bytes(10)); // Random secure password
     
     try {
-        $clientId = $clientService->clientCreate([
+        $clientService->guestCreateClient([
             'email'      => $email,
             'first_name' => $firstName,
             'last_name'  => $lastName,
             'password'   => $password,
             'currency'   => 'USD' // Change if your default currency is different
         ]);
-        $client = $di['db']->load('Client', $clientId);
+        
+        $client = $di['db']->findOne('Client', 'email = ?', [$email]);
     } catch (Exception $e) {
         die("Failed to auto-register user in FOSSBilling: " . $e->getMessage());
     }

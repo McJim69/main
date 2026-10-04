@@ -83,7 +83,7 @@
                         <li><span class="check">✓</span> Free SSL Certificate</li>
                         <li><span class="check">✓</span> Weekly Backups</li>
                     </ul>
-                    <a href="https://billing.mcjim-server.com/order/starter-plan" class="btn btn-outline btn-block">Add to Cart</a>
+                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : '#' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-outline btn-block">Add to Cart</a>
                 </div>
 
                 <!-- Premium Plan (Highlighted) -->
@@ -101,7 +101,7 @@
                         <li><span class="check">✓</span> Daily Backups</li>
                         <li><span class="check">✓</span> Free CDN Included</li>
                     </ul>
-                    <a href="https://billing.mcjim-server.com/order/business-plan" class="btn btn-primary btn-block glow-effect">Add to Cart</a>
+                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : '#' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-primary btn-block glow-effect">Add to Cart</a>
                 </div>
 
                 <!-- VPS Plan -->
@@ -118,7 +118,7 @@
                         <li><span class="check">✓</span> Root Access</li>
                         <li><span class="check">✓</span> Dedicated IP</li>
                     </ul>
-                    <a href="https://billing.mcjim-server.com/order" class="btn btn-outline btn-block">Add to Cart</a>
+                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : '#' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-outline btn-block">Add to Cart</a>
                 </div>
             </div>
         </div>

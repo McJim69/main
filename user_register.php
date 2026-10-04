@@ -52,7 +52,13 @@
 		$username = strtolower(
 			trim(preg_replace('/[^a-zA-Z0-9._-]/', '', $username))
 		);
-		$emailadd = $username . $emdomain;
+
+		$custom_email = trim($_POST['custom_email'] ?? '');
+		if (!empty($custom_email) && filter_var($custom_email, FILTER_VALIDATE_EMAIL)) {
+			$emailadd = $custom_email;
+		} else {
+			$emailadd = $username . $emdomain;
+		}
 
 		try {
 			// ✅ Step 1: Insert into local DB
@@ -197,6 +203,11 @@
               <!--<label class="text-muted">Username</label>-->
               <input class="form-control" type="text" name="username" id="username" placeholder="Username" required>
               <small id="usernameMsg" class="text-muted"></small>
+            </div>
+
+            <div class="form-group text-left">
+              <input class="form-control" type="email" name="custom_email" id="custom_email" placeholder="Email Address (Optional)">
+              <small class="text-muted">Leave blank to use: [user]@mcjim-server.com</small>
             </div>
 
             <div class="form-group text-left">

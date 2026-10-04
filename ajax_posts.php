@@ -75,13 +75,13 @@
 							More
 						</button> &nbsp;
 						<?php if(isset($_SESSION['uno']) && (($_SESSION['access'] ?? '') === 'Admin' || $_SESSION['uno'] == $p['user_uno'])): ?>
-						<button class="filled-button edit-btn"
+						<button type="button" class="filled-button edit-btn"
 								data-id="<?php echo $p['id']; ?>"
 								data-title="<?php echo htmlspecialchars($p['title'], ENT_QUOTES, 'UTF-8'); ?>"
 								data-content="<?php echo htmlspecialchars($p['content'], ENT_QUOTES, 'UTF-8'); ?>">
 							Edit
 						</button> &nbsp;
-						<button class="filled-button delete-post-btn"
+						<button type="button" class="filled-button delete-post-btn"
 								data-post-id="<?php echo $p['id']; ?>">
 							Delete
 						</button>

@@ -21,7 +21,7 @@
 		$seo_desc = "Interactive public and logged users for blogging and for any other information.";
 		$seo_keywords = "McJim Blogs, My Blogs, @mcjimblogs";
 		$seo_robots = "index, follow";
-	} else if ($current_file === 'movies.php') {
+	} else if ($current_file === 'movies.php' || $current_file === 'movies_owl.php') {
 		$seo_title = "Movies | McJim Cyberworks";
 		$seo_desc = "List of latest decent streamed movies. Seachable, sorted by genre, year and randomized.";
 		$seo_keywords = "McJim Movies, Movie List, Movie Carousel, Decent Movies";
