@@ -55,7 +55,7 @@ while ($it = $itemsRes->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <title>Invoice <?php echo $inv['invoice_number']; ?></title>
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background: #f4f6f9;

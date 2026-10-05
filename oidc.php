@@ -1,7 +1,6 @@
 <?php
 // oidc.php - Minimal OpenID Connect Provider for Jellyfin SSO
-session_start();
-require("connect.php");
+require_once("connect.php");
 
 define('OIDC_ISSUER', 'https://mcjim-server.com');
 define('OIDC_CLIENT_ID', 'jellyfin');
@@ -201,8 +200,9 @@ if ($action === 'token') {
 }
 
 if ($action === 'userinfo') {
-    $headers = getallheaders();
-    $auth = $headers['Authorization'] ?? '';
+    $rawHeaders = function_exists('getallheaders') ? getallheaders() : [];
+    $headers = array_change_key_case($rawHeaders ?: [], CASE_LOWER);
+    $auth = $headers['authorization'] ?? $_SERVER['HTTP_AUTHORIZATION'] ?? '';
     
     if (preg_match('/Bearer\s(\S+)/', $auth, $matches)) {
         $token = $matches[1];

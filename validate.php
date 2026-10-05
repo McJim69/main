@@ -1,5 +1,5 @@
 <?php
-	require("config.php");
+	require_once("connect.php");
 	if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
 		header("X-Remote-User: " . $_SESSION['user']);
 		http_response_code(200);

@@ -1,12 +1,13 @@
 <?php
     require("connect.php");
-    require("header.php");
-    require("menunav.php");
 
     if (!isset($_SESSION["user"]) || $_SESSION["access"] !== "Admin") {
         echo "<script>window.location='index.php';</script>";
         exit;
     }
+
+    require("header.php");
+    require("menunav.php");
 ?>
 <script>setActive("support");</script>
 <link href="assets/css/card-grid.css" rel="stylesheet">

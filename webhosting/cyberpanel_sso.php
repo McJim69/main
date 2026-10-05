@@ -13,6 +13,7 @@ if (!file_exists($tokenFile)) {
 }
 
 $data = json_decode(file_get_contents($tokenFile), true);
+@unlink($tokenFile);
 if (!$data) {
     die('Invalid token data.');
 }

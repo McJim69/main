@@ -156,7 +156,6 @@
 	<script src="/assets/jquery/jquery.min.js"></script>
 	
 	<!-- Paypal Gateway -->
-	<script src="/assets/fontawesome/js/all.min.js"></script>
 	<script src="https://www.paypal.com/web-sdk/v6/core"></script>
 </head>
 

@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require_once("connect.php");
 
 	if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {

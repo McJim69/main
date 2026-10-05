@@ -6,7 +6,6 @@
 // ;extension=fileinfo //
 // ;extension=gd       //
 //=====================//
-session_start();
 require_once("connect.php");
 require_once("crud_functions.php");
 
@@ -15,92 +14,6 @@ header('Content-Type: application/json');
 if(!isset($_SESSION['uno'])) {
   echo json_encode(['status'=>'ERROR','message'=>'You must be logged in']);
   exit;
-}
-
-// Helper Function for Resizing and WebP Conversion
-function convertAndResizeToWebp($sourcePath, $maxWidth = 1920, $maxHeight = 1920, $quality = 80) {
-  // Check if GD extension functions exist before executing
-  if (!function_exists('imagecreatetruecolor')) {
-    return $sourcePath; // Fallback to original if GD is missing
-  }
-
-  $info = getimagesize($sourcePath);
-  if (!$info) return $sourcePath;
-
-  $mime = $info['mime'];
-  switch ($mime) {
-    case 'image/jpeg': 
-    case 'image/jpg': // Fallback mapping
-      $srcImage = @imagecreatefromjpeg($sourcePath); 
-      break;
-    case 'image/png':  
-      $srcImage = @imagecreatefrompng($sourcePath); 
-      break;
-    case 'image/gif':  
-      $srcImage = @imagecreatefromgif($sourcePath); 
-      break;
-    case 'image/webp': 
-      if (function_exists('imagecreatefromwebp')) {
-        $srcImage = @imagecreatefromwebp($sourcePath); 
-      } else {
-        return $sourcePath;
-      }
-      break;
-    default: return $sourcePath;
-  }
-
-  if (!$srcImage) return $sourcePath;
-
-  $origWidth  = imagesx($srcImage);
-  $origHeight = imagesy($srcImage);
-
-  $ratio = $origWidth / $origHeight;
-  $newWidth  = $origWidth;
-  $newHeight = $origHeight;
-
-  if ($newWidth > $maxWidth) {
-    $newWidth  = $maxWidth;
-    $newHeight = round($newWidth / $ratio);
-  }
-
-  if ($newHeight > $maxHeight) {
-    $newHeight = $maxHeight;
-    $newWidth  = round($newHeight * $ratio);
-  }
-
-  $finalImage = imagecreatetruecolor($newWidth, $newHeight);
-
-  if ($mime == 'image/png' || $mime == 'image/webp' || $mime == 'image/gif') {
-    imagealphablending($finalImage, false);
-    imagesavealpha($finalImage, true);
-  }
-
-  imagecopyresampled($finalImage, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
-
-  $pathInfo = pathinfo($sourcePath);
-  $webpPath = $pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.webp';
-
-  // Check if WebP output is supported by the server
-  if (function_exists('imagewebp')) {
-    if (imagewebp($finalImage, $webpPath, $quality)) {
-      imagedestroy($srcImage);
-      imagedestroy($finalImage);
-
-      if (cleanPath($sourcePath) !== cleanPath($webpPath) && file_exists($sourcePath)) {
-        @unlink($sourcePath);
-      }
-      return $webpPath;
-    }
-  }
-
-  imagedestroy($srcImage);
-  imagedestroy($finalImage);
-  return $sourcePath;
-}
-
-// Quick helper to safely compare file system paths
-function cleanPath($path) {
-    return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
 }
 
 if(isset($_POST['title'], $_POST['content'])) {

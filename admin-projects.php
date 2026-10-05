@@ -1,14 +1,14 @@
 <?php
 	require_once("connect.php");
-//	require("setup_projects_db.php"); // Ensure tables are created
-	require("header.php");
-	require("menunav.php");
 
 	// Admin-only guard
 	if (!isset($_SESSION['user']) || !isset($_SESSION['access']) || $_SESSION['access'] !== 'Admin') {
 		header("Location: index.php");
 		exit;
 	}
+
+	require("header.php");
+	require("menunav.php");
 
 	$stmt = $conn->prepare("SELECT p.pid, p.pname, p.plink, p.pimgUrl FROM projects p ORDER BY p.pid DESC");
 	$stmt->execute();
@@ -118,7 +118,7 @@
                     </div>
                     <div class="form-group">
                         <label>Cover Image URL / Path</label>
-                        <input type="text" class="form-control" name="pimgUrl" id="pimgUrl" value="images/projects/<?php echo htmlspecialchars($row['plink']); ?>/logo.png" required>
+                        <input type="text" class="form-control" name="pimgUrl" id="pimgUrl" value="" placeholder="images/projects/folder/logo.png" required>
                     </div>
                 </div>
                 
@@ -128,27 +128,27 @@
                         <label>Long Description</label>
                         <textarea class="form-control" name="long_desc" id="long_desc" rows="3"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-none">
                         <label>How It Works</label>
                         <textarea class="form-control" name="how_itworks" id="how_itworks" rows="2"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-none">
                         <label>Management</label>
                         <textarea class="form-control" name="management" id="management" rows="2"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-none">
                         <label>Public Management</label>
                         <textarea class="form-control" name="mgt_public" id="mgt_public" rows="2"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-none">
                         <label>Admin Management</label>
                         <textarea class="form-control" name="mgt_admin" id="mgt_admin" rows="2"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-none">
                         <label>Features</label>
                         <textarea class="form-control" name="features" id="features" rows="2"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-none">
                         <label>Tech Used (comma separated)</label>
                         <input type="text" class="form-control" name="tech_used" id="tech_used">
                     </div>

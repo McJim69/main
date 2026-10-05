@@ -1,13 +1,14 @@
 <?php
 	require("connect.php");
-	require("header.php");
-	require("menunav.php");
 
 	// Admin-only guard
 	if (!isset($_SESSION['user']) || !isset($_SESSION['access']) || $_SESSION['access'] !== 'Admin') {
 		header("Location: index.php");
 		exit;
 	}
+
+	require("header.php");
+	require("menunav.php");
 
 	// Fetch all users
 	$stmt = $conn->prepare("SELECT uno, fullname, username, access, imgUrl, status, last_active FROM users ORDER BY fullname ASC");
