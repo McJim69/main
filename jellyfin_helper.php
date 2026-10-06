@@ -44,7 +44,7 @@ function get_jellyfin_token($user, $pass) {
     $error = curl_error($ch);
     curl_close($ch);
 
-    file_put_contents("d:/Server/www/jellyfin_debug.log", "URL: $url\nPayload: $payload\nError: $error\nResponse: $response\n\n", FILE_APPEND);
+    file_put_contents(__DIR__ . "/jellyfin_debug.log", "URL: $url\nPayload: $payload\nError: $error\nResponse: $response\n\n", FILE_APPEND);
 
     $data = json_decode($response, true);
     
