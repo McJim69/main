@@ -10,6 +10,11 @@ if (!isset($_SESSION['user']) || !isset($_SESSION['access']) || $_SESSION['acces
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && isset($_SERVER['CONTENT_LENGTH']) && $_SERVER['CONTENT_LENGTH'] > 0) {
+    echo json_encode(["status" => "ERROR", "message" => "Total upload payload size exceeds PHP post_max_size limit (" . ini_get('post_max_size') . "). Please select smaller files."]);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $action = $_GET['action'] ?? '';
     if ($action === 'get') {
@@ -102,6 +107,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $features = $_POST['features'] ?? '';
         $tech_used = $_POST['tech_used'] ?? '';
 
+        if (empty($pimgUrl) && !empty($plink)) {
+            $pimgUrl = "images/projects/" . preg_replace('/[^a-zA-Z0-9_-]/', '_', $plink) . "/logo.png";
+        }
+
         if ($action === 'create') {
             $stmt = $conn->prepare("INSERT INTO projects (pname, description, plink, pimgUrl) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $pname, $desc, $plink, $pimgUrl);
@@ -116,17 +125,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
                 // Handle file uploads
                 if (!empty($_FILES['project_images']['name'][0])) {
-                    $upload_dir = __DIR__ . '/images/projects/' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $plink) . '/';
+                    $clean_folder = preg_replace('/[^a-zA-Z0-9_-]/', '_', $plink);
+                    $upload_dir = __DIR__ . '/images/projects/' . $clean_folder . '/';
                     if (!is_dir($upload_dir)) {
-                        mkdir($upload_dir, 0777, true);
+                        @mkdir($upload_dir, 0777, true);
                     }
                     $stmt3 = $conn->prepare("INSERT INTO projects_images (pid, imgUrl) VALUES (?, ?)");
                     foreach ($_FILES['project_images']['name'] as $key => $filename) {
-                        $tmp_name = $_FILES['project_images']['tmp_name'][$key];
-                        if (is_uploaded_file($tmp_name)) {
-                            $target_file = $upload_dir . basename($filename);
+                        $err = $_FILES['project_images']['error'][$key] ?? UPLOAD_ERR_NO_FILE;
+                        $tmp_name = $_FILES['project_images']['tmp_name'][$key] ?? '';
+                        if ($err === UPLOAD_ERR_OK && is_uploaded_file($tmp_name)) {
+                            $clean_filename = time() . '_' . $key . '_' . preg_replace('/[^a-zA-Z0-9_.-]/', '_', basename($filename));
+                            $target_file = $upload_dir . $clean_filename;
                             if (move_uploaded_file($tmp_name, $target_file)) {
-                                $img_db_path = 'images/projects/' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $plink) . '/' . basename($filename);
+                                $img_db_path = 'images/projects/' . $clean_folder . '/' . $clean_filename;
                                 $stmt3->bind_param("is", $new_pid, $img_db_path);
                                 $stmt3->execute();
                             }
@@ -165,17 +177,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
                 // Handle file uploads for update
                 if (!empty($_FILES['project_images']['name'][0])) {
-                    $upload_dir = __DIR__ . '/images/projects/' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $plink) . '/';
+                    $clean_folder = preg_replace('/[^a-zA-Z0-9_-]/', '_', $plink);
+                    $upload_dir = __DIR__ . '/images/projects/' . $clean_folder . '/';
                     if (!is_dir($upload_dir)) {
-                        mkdir($upload_dir, 0777, true);
+                        @mkdir($upload_dir, 0777, true);
                     }
                     $stmt3 = $conn->prepare("INSERT INTO projects_images (pid, imgUrl) VALUES (?, ?)");
                     foreach ($_FILES['project_images']['name'] as $key => $filename) {
-                        $tmp_name = $_FILES['project_images']['tmp_name'][$key];
-                        if (is_uploaded_file($tmp_name)) {
-                            $target_file = $upload_dir . basename($filename);
+                        $err = $_FILES['project_images']['error'][$key] ?? UPLOAD_ERR_NO_FILE;
+                        $tmp_name = $_FILES['project_images']['tmp_name'][$key] ?? '';
+                        if ($err === UPLOAD_ERR_OK && is_uploaded_file($tmp_name)) {
+                            $clean_filename = time() . '_' . $key . '_' . preg_replace('/[^a-zA-Z0-9_.-]/', '_', basename($filename));
+                            $target_file = $upload_dir . $clean_filename;
                             if (move_uploaded_file($tmp_name, $target_file)) {
-                                $img_db_path = 'images/projects/' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $plink) . '/' . basename($filename);
+                                $img_db_path = 'images/projects/' . $clean_folder . '/' . $clean_filename;
                                 $stmt3->bind_param("is", $pid, $img_db_path);
                                 $stmt3->execute();
                             }
