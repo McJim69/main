@@ -87,7 +87,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form id="projectForm" onsubmit="saveProject(event)">
+      <form id="projectForm" novalidate onsubmit="saveProject(event)">
       <div class="modal-body">
             <input type="hidden" id="pid" name="pid" value="">
             <input type="hidden" id="action" name="action" value="create">
@@ -272,6 +272,23 @@
 
     function saveProject(e) {
         e.preventDefault();
+        
+        const pname = document.getElementById("pname").value.trim();
+        const description = document.getElementById("description").value.trim();
+        const plink = document.getElementById("plink").value.trim();
+        let pimgUrl = document.getElementById("pimgUrl").value.trim();
+
+        if (!pname || !description || !plink) {
+            alert("Please fill in Project Name, Description, and Project Link.");
+            $('#basic-tab').tab('show');
+            return;
+        }
+
+        if (!pimgUrl) {
+            pimgUrl = "images/projects/" + plink + "/logo.png";
+            document.getElementById("pimgUrl").value = pimgUrl;
+        }
+
         const formData = new FormData(document.getElementById("projectForm"));
 
         fetch("ajax_projects_crud.php", {
@@ -283,10 +300,13 @@
             if(data.status === "OK") {
                 alert("Project saved successfully!");
                 $('#projectModal').modal('hide');
-                location.reload(); // Reload to show new data
+                location.reload();
             } else {
                 alert("Error: " + data.message);
             }
+        })
+        .catch(err => {
+            alert("Request failed: " + err);
         });
     }
 </script>
