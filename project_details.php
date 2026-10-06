@@ -43,6 +43,66 @@
 
 <script>setActive("projects");</script>
 
+<style>
+/* Login Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    position: relative;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.close-modal:hover { color: white; }
+.modal-header h3 { font-size: 1.8rem; margin-bottom: 5px; }
+.modal-header p { color: var(--text-muted); margin-bottom: 25px; font-size: 0.9rem; }
+.input-group { margin-bottom: 20px; text-align: left; }
+.input-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-muted); }
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 15, 0.5);
+    color: white;
+    font-family: var(--font-main);
+    outline: none;
+    transition: all 0.3s ease;
+}
+.input-group input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+</style>
 <link href="assets/css/parsedown.css" rel="stylesheet">   
 
 <div class="page-heading header-text" style="z-index:1">
@@ -68,7 +128,6 @@
 		$plink[] = $proj_row['plink'];
 	}
 	$proj_stmt->close();
-
 	$path         = 'projects';
 	$readme       = 'README.md'; // ✅ semicolon
 	$project      = $plink[0];   // ✅ get first plink
@@ -98,7 +157,10 @@
             <?= $html_content ?>
 		  <div align="center" style="margin:20px 0 -20px 0">
 			<a href="projects/<?php echo $project ?>" class="filled-button" target="_blank"><i class="fa fa-eye"></i> Live Demo</a>
-		<!--<a href="https://github.com/McJim69/<?php echo $project ?>" class="filled-button" target="_blank"><i class="fa fa-github"></i> Git Clone</a>-->
+            <a href="<?= isset($_SESSION['user']) ? 'https://billing.mcjim-server.com/order?product='.$pid.'' : '#' ?>" 
+				<?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="filled-button">
+				<i class="fa fa-download"></i> Download
+			</a>
 		  </div>
         </div>
       </div>
@@ -106,6 +168,41 @@
   </div>
 </div>
 
+<!-- Scripts -->
+<script src="/webhosting/script.js?v=1790022913"></script>
+
+<!-- Login Modal -->
+<div class="modal-overlay" id="loginModal">
+	<div class="modal-content glass-panel login-card" style="">
+		<span class="close-modal" onclick="document.getElementById('loginModal').classList.remove('active');">&times;</span>
+		<div>
+			<h3>Client Login</h3>
+			<p>Access your McJim Server dashboard</p><br>
+		</div>
+		<form action="login.php?return=billing_sso.php" method="POST" class="login-form">
+			<input type="hidden" name="login" value="1">
+			<div class="input-group">
+				<label>Username</label>
+				<input type="text" name="user" required placeholder="Enter your username">
+			</div>
+			<div class="input-group">
+				<label>Password</label>
+				<input type="password" name="pass" required placeholder="Enter your password">
+			</div>
+			<button type="submit" class="btn btn-primary btn-block glow-effect">Login</button>
+		</form>
+		<div id="login-error" style="color: #ef4444; margin-top: 15px; font-size: 0.9rem; display: none;">Invalid credentials. Please try again.</div>
+	</div>
+</div>
+
+<script>
+	const urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.get('error')) {
+		document.getElementById('loginModal').classList.add('active');
+		document.getElementById('login-error').style.display = 'block';
+	}
+</script>
+	
 <!-- Gallery Section -->
 <?php if (count($images) > 0): ?>
     
@@ -144,5 +241,5 @@
 <?php endif; ?>
 
 </div>
-
+	
 <?php require_once("footer.php"); ?>

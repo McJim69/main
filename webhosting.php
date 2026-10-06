@@ -83,7 +83,7 @@
                         <li><span class="check">✓</span> Free SSL Certificate</li>
                         <li><span class="check">✓</span> Weekly Backups</li>
                     </ul>
-                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : '#' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-outline btn-block">Add to Cart</a>
+                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : 'https://billing.mcjim-server.com/order?product=2' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-outline btn-block">Add to Cart</a>
                 </div>
 
                 <!-- Premium Plan (Highlighted) -->
@@ -101,7 +101,7 @@
                         <li><span class="check">✓</span> Daily Backups</li>
                         <li><span class="check">✓</span> Free CDN Included</li>
                     </ul>
-                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : '#' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-primary btn-block glow-effect">Add to Cart</a>
+                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : 'https://billing.mcjim-server.com/order?product=4' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-primary btn-block glow-effect">Add to Cart</a>
                 </div>
 
                 <!-- VPS Plan -->
@@ -118,7 +118,7 @@
                         <li><span class="check">✓</span> Root Access</li>
                         <li><span class="check">✓</span> Dedicated IP</li>
                     </ul>
-                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : '#' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-outline btn-block">Add to Cart</a>
+                    <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : 'https://billing.mcjim-server.com/order?product=3' ?>" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?> class="btn btn-outline btn-block">Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -181,7 +181,7 @@
             </div>
             
             <div class="domain-search-box glass-panel reveal" style="transition-delay: 0.1s;">
-                <form action="https://billing.mcjim-server.com/order" method="GET" class="domain-form">
+                <a href="<?= isset($_SESSION['user']) ? 'billing_sso.php' : 'https://billing.mcjim-server.com/order?product=5' ?>" class="domain-form" <?= !isset($_SESSION['user']) ? "onclick=\"document.getElementById('loginModal').classList.add('active'); return false;\"" : "" ?>>
                     <input type="text" name="domain" placeholder="Enter your perfect domain name..." required class="domain-input">
                     <select name="tld" class="domain-tld">
                         <option value=".com">.com</option>
@@ -194,7 +194,7 @@
                         <option value=".tech">.tech</option>
                     </select>
                     <button type="submit" class="btn btn-primary glow-effect">Search</button>
-                </form>
+                </a>
             </div>
 
             <div class="tld-pricing reveal" style="transition-delay: 0.2s;">
