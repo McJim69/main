@@ -163,9 +163,18 @@
                 </div>
             </div>
       </div>
+      <div id="uploadProgressContainer" class="px-3 pb-2" style="display:none;">
+        <div class="d-flex justify-content-between mb-1 text-light small">
+          <span id="uploadStatusText"><i class="fa fa-spinner fa-spin"></i> Uploading files...</span>
+          <span id="uploadPercentText" class="font-weight-bold">0%</span>
+        </div>
+        <div class="progress" style="height: 12px; background-color: rgba(255,255,255,0.1); border-radius: 6px;">
+          <div id="uploadProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%; transition: width 0.2s ease;"></div>
+        </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#projectModal').modal('hide')">Close</button>
-        <button type="submit" class="btn btn-primary">Save Project</button>
+        <button type="submit" id="btnSaveProject" class="btn btn-primary">Save Project</button>
       </div>
       </form>
     </div>
@@ -179,11 +188,13 @@
         document.getElementById("action").value = "create";
         document.getElementById("existing_images_container").style.display = "none";
         document.getElementById("existing_images").innerHTML = "";
+        document.getElementById("uploadProgressContainer").style.display = "none";
         document.getElementById("projectModalLabel").innerText = "Add New Project";
         $('#projectModal').modal('show');
     }
 
     function editProject(pid) {
+        document.getElementById("uploadProgressContainer").style.display = "none";
         // Fetch project details
         fetch("ajax_projects_crud.php?action=get&pid=" + pid)
             .then(res => res.json())
@@ -290,24 +301,76 @@
         }
 
         const formData = new FormData(document.getElementById("projectForm"));
+        const btnSave = document.getElementById("btnSaveProject");
+        const progressContainer = document.getElementById("uploadProgressContainer");
+        const progressBar = document.getElementById("uploadProgressBar");
+        const percentText = document.getElementById("uploadPercentText");
+        const statusText = document.getElementById("uploadStatusText");
 
-        fetch("ajax_projects_crud.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.status === "OK") {
-                alert("Project saved successfully!");
-                $('#projectModal').modal('hide');
-                location.reload();
-            } else {
-                alert("Error: " + data.message);
+        btnSave.disabled = true;
+        btnSave.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
+        progressContainer.style.display = "block";
+        progressBar.style.width = "0%";
+        progressBar.classList.add("progress-bar-striped", "progress-bar-animated", "bg-success");
+        progressBar.classList.remove("bg-danger");
+        percentText.innerText = "0%";
+        statusText.innerHTML = '<i class="fa fa-upload"></i> Uploading files...';
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax_projects_crud.php", true);
+
+        xhr.upload.onprogress = function(evt) {
+            if (evt.lengthComputable) {
+                const percentComplete = Math.round((evt.loaded / evt.total) * 100);
+                progressBar.style.width = percentComplete + "%";
+                percentText.innerText = percentComplete + "%";
+                if (percentComplete === 100) {
+                    statusText.innerHTML = '<i class="fa fa-cog fa-spin"></i> Processing on server...';
+                }
             }
-        })
-        .catch(err => {
-            alert("Request failed: " + err);
-        });
+        };
+
+        xhr.onload = function() {
+            btnSave.disabled = false;
+            btnSave.innerHTML = 'Save Project';
+
+            let data;
+            try {
+                data = JSON.parse(xhr.responseText);
+            } catch (err) {
+                statusText.innerHTML = '<i class="fa fa-exclamation-triangle text-danger"></i> Server error';
+                progressBar.classList.remove("bg-success");
+                progressBar.classList.add("bg-danger");
+                alert("Server returned invalid response: " + xhr.responseText);
+                return;
+            }
+
+            if (xhr.status === 200 && data.status === "OK") {
+                progressBar.style.width = "100%";
+                percentText.innerText = "100%";
+                statusText.innerHTML = '<i class="fa fa-check-circle text-success"></i> Saved successfully!';
+                setTimeout(() => {
+                    $('#projectModal').modal('hide');
+                    location.reload();
+                }, 400);
+            } else {
+                statusText.innerHTML = '<i class="fa fa-exclamation-triangle text-danger"></i> Failed!';
+                progressBar.classList.remove("bg-success");
+                progressBar.classList.add("bg-danger");
+                alert("Error: " + (data.message || "Failed to save project."));
+            }
+        };
+
+        xhr.onerror = function() {
+            btnSave.disabled = false;
+            btnSave.innerHTML = 'Save Project';
+            statusText.innerHTML = '<i class="fa fa-exclamation-triangle text-danger"></i> Network error';
+            progressBar.classList.remove("bg-success");
+            progressBar.classList.add("bg-danger");
+            alert("Network error occurred during upload.");
+        };
+
+        xhr.send(formData);
     }
 </script>
 
